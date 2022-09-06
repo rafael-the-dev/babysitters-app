@@ -13,16 +13,24 @@ export const FilterContextProvider = ({ children }) => {
     const [ experiencia, setExperiencia ] = useState({
         anos: 0,
         faixaEtaria: {
+            adolescente: false,
             bebe: false,
             crianca: false,
             criancaPreEscolar: false,
             criancaEnsinoBasico: false,
-            Adolescente: false
+            criancaComNecessidades: false
         }
     });
 
+    const [ verificacoes, setVerificacoes ] = useState({
+        avaliacoesReferencias: false,
+        documentoDeIdentifcacao: false,
+        registoCriminal: false,
+        supersitter: false
+    })
+
     return (
-        <FilterContext.Provider value={{ experiencia, tipo, setExperiencia, setTipo }}>
+        <FilterContext.Provider value={{ experiencia, tipo, verificacoes, setExperiencia, setTipo, setVerificacoes }}>
             { children }
         </FilterContext.Provider>
     );

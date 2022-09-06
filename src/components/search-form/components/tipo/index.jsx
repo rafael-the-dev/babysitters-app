@@ -1,54 +1,43 @@
 import { useCallback, useContext } from "react"
-import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
+import { FormGroup, Hidden } from "@mui/material";
+import classNames from "classnames";
+
+import classes from "./styles.module.css";
 
 import { FilterContext } from "src/context"
 import Title from "../title";
-import Label from "../label"
+import Checkbox from "../checkbox";
 
 
 const Tipo = () => {
     const { tipo, setTipo }  = useContext(FilterContext);
 
     const { ama, babysitter, outraFamilia } = tipo;
-    console.log(tipo)
+    
     const checkboxChangeHandler = useCallback(prop => () => {
         setTipo(tipoAtual => ({ ...tipoAtual, [prop]: !tipoAtual[prop]}))
     }, []);
 
     return (
-        <div>
-            <Title>Tipo</Title>
+        <div className={classNames(classes.container, "sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6")}>
+            <Hidden smUp>
+                <Title>Tipo</Title>
+            </Hidden>
             <FormGroup className="mt-3">
-                <FormControlLabel 
-                    className="m-0" 
-                    control={
-                        <Checkbox 
-                            className="p-[5px]" 
-                            checked={babysitter} 
-                            onChange={checkboxChangeHandler("babysitter")} 
-                        />
-                    } 
+                <Checkbox 
+                    checked={babysitter} 
+                    onChange={checkboxChangeHandler("babysitter")} 
                     label="Babysitter" 
                 />
-                <FormControlLabel 
-                    className="m-0" 
-                    control={
-                        <Checkbox 
-                            className="p-[5px]" 
-                            checked={ama} 
-                            onChange={checkboxChangeHandler("ama")} 
-                        />
-                    } 
+                <Checkbox 
+                    checked={ama} 
+                    onChange={checkboxChangeHandler("ama")} 
                     label="Ama" 
                 />
-                <FormControlLabel 
-                    className="m-0" 
-                    control={
-                        <Checkbox 
-                            className="p-[5px]" 
-                            checked={outraFamilia} 
-                            onChange={checkboxChangeHandler("outraFamilia")} />
-                        } 
+                <Checkbox 
+                    className="items-start" 
+                    checked={outraFamilia} 
+                    onChange={checkboxChangeHandler("outraFamilia")} 
                     label="Outra família (famílias que ajudam famílias)" 
                 />
             </FormGroup>

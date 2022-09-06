@@ -1,20 +1,25 @@
 import { useCallback, useContext } from "react"
-import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
+import { FormGroup, Hidden } from "@mui/material";
+import classNames from "classnames";
+
+import classes from "./styles.module.css"
 
 import { FilterContext } from "src/context"
 import Title from "../title";
-import Label from "../label"
+import Label from "../label";
+import Checkbox from "../checkbox"
 
 const FiltersContainer = () => {
     const { experiencia, setExperiencia }  = useContext(FilterContext);
 
     const { anos, faixaEtaria } = experiencia;
     const {
+        adolescente,
         bebe,
         crianca,
         criancaPreEscolar,
         criancaEnsinoBasico,
-        Adolescente
+        criancaComNecessidades
     } = faixaEtaria;
 
     const rangeChangeHandler = useCallback((event) => {
@@ -29,9 +34,9 @@ const FiltersContainer = () => {
     }, []);
 
     return (
-        <div className="mt-8">
+        <div className={classNames(classes.container, "mt-8 sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-2 sm:pb-6")}>
             <div className="flex flex-col items-stretch">
-                <Title>Experiência</Title>
+                <Hidden smUp><Title>Experiência</Title></Hidden>
                 <Label className="my-2" htmlFor="experience-range">
                     { anos } até 11+ anos
                 </Label>
@@ -48,11 +53,24 @@ const FiltersContainer = () => {
             <div className="mt-6">
                 <Title>Experiência com a faixa etária</Title>
                 <FormGroup className="mt-3">
-                    <FormControlLabel className="m-0" control={<Checkbox className="p-[5px]" checked={bebe} onChange={checkboxChangeHandler("bebe")} />} label="Bebé" />
-                    <FormControlLabel className="m-0" control={<Checkbox className="p-[5px]" checked={crianca} onChange={checkboxChangeHandler("crianca")} />} label="Criança (Creche)" />
-                    <FormControlLabel className="m-0" control={<Checkbox className="p-[5px]" checked={criancaPreEscolar} onChange={checkboxChangeHandler("criancaPreEscolar")} />} label="Criança (Pré-escolar)" />
-                    <FormControlLabel className="m-0" control={<Checkbox className="p-[5px]" checked={criancaEnsinoBasico} onChange={checkboxChangeHandler("criancaEnsinoBasico")} />} label="Criança (Ensino Básico)" />
-                    <FormControlLabel className="m-0" control={<Checkbox className="p-[5px]" checked={Adolescente} onChange={checkboxChangeHandler("Adolescente")} />} label="Adolescente" />
+                    <Checkbox checked={bebe} onChange={checkboxChangeHandler("bebe")} label="Bebé" />
+                    <Checkbox checked={crianca} onChange={checkboxChangeHandler("crianca")} label="Criança (Creche)" />
+                    <Checkbox checked={criancaPreEscolar} onChange={checkboxChangeHandler("criancaPreEscolar")} label="Criança (Pré-escolar)" />
+                    <Checkbox checked={criancaEnsinoBasico} onChange={checkboxChangeHandler("criancaEnsinoBasico")} label="Criança (Ensino Básico)" />
+                    <Checkbox checked={adolescente} onChange={checkboxChangeHandler("adolescente")} label="Adolescente" />
+                    <div className="border-y border-solid border-gray-300 mt-4 py-6 sm:border-b-0 sm:pb-1">
+                        <Checkbox 
+                            className="items-start"
+                            checked={criancaComNecessidades} 
+                            label={<>
+                                Experiência com crianças com necessidades especiais<br/>
+                                <div>
+                                    Ver babysitters certificadas para cuidar de crianças com necessidades especiais
+                                </div>
+                            </>} 
+                            onChange={checkboxChangeHandler("criancaComNecessidades")} 
+                        />
+                    </div>
                 </FormGroup>
             </div>
         </div>

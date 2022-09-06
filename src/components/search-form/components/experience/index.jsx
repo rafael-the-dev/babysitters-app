@@ -1,9 +1,14 @@
+import { useCallback, useContext } from "react"
 import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
 
+import { FilterContext } from "src/context"
 import Title from "../title";
 import Label from "../label"
 
-const FiltersContainer = ({ anos, faixaEtaria, setExperiencia }) => {
+const FiltersContainer = () => {
+    const { experiencia, setExperiencia }  = useContext(FilterContext);
+
+    const { anos, faixaEtaria } = experiencia;
     const {
         bebe,
         crianca,
@@ -12,19 +17,19 @@ const FiltersContainer = ({ anos, faixaEtaria, setExperiencia }) => {
         Adolescente
     } = faixaEtaria;
 
-    const rangeChangeHandler = (event) => {
+    const rangeChangeHandler = useCallback((event) => {
         setExperiencia(experiencia => ({ ...experiencia, anos: event.target.value }))
-    };
+    }, []);
 
-    const checkboxChangeHandler = prop => () => {
-        setExperiencia(experiencia => ({ ...experiencia, faixaEtaria: {
-            ...experiencia.faixaEtaria,
-            [prop]: !experiencia.faixaEtaria[prop]
+    const checkboxChangeHandler = useCallback(prop => () => {
+        setExperiencia(experienciaAtual => ({ ...experienciaAtual, faixaEtaria: {
+            ...experienciaAtual.faixaEtaria,
+            [prop]: !experienciaAtual.faixaEtaria[prop]
         } }))
-    };
-console.log(faixaEtaria)
+    }, []);
+
     return (
-        <div>
+        <div className="mt-8">
             <div className="flex flex-col items-stretch">
                 <Title>Experiência</Title>
                 <Label className="my-2" htmlFor="experience-range">

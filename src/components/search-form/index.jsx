@@ -7,22 +7,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import classes from "./styles.module.css"
 
 import Drawer from "../drawer";
+import Tipo from "./components/tipo"
 import Experience from "./components/experience"
 
 const Search = () => {
     const [ value, setValue ] = useState("");
-    const [ experiencia, setExperiencia ] = useState({
-        anos: 0,
-        faixaEtaria: {
-            bebe: false,
-            crianca: false,
-            criancaPreEscolar: false,
-            criancaEnsinoBasico: false,
-            Adolescente: false
-        }
-    })
-
+    
     const openDrawer = useRef(null);
+
+    const tipo = useMemo(() => <Tipo />, [])
+    const experienceMemo = useMemo(() => <Experience />, []);
 
     const changeHandler = useCallback(event => setValue(event.target.value), []);
     const openDrawerHandler = useCallback(() => openDrawer.current?.(), [])
@@ -53,10 +47,8 @@ const Search = () => {
                 drawerPaper={classNames(classes.drawerPaper, `px-5 py-4`)}
                 openHandler={openDrawer}>
                     <div>
-                        <Experience 
-                            { ...experiencia } 
-                            setExperiencia={setExperiencia}
-                        />
+                        { tipo }
+                        { experienceMemo }
                     </div>
             </Drawer>
         </form>

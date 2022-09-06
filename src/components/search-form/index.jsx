@@ -1,13 +1,31 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { Button, IconButton } from "@mui/material";
 
 import SearchIcon from '@mui/icons-material/Search';
 
+import classes from "./styles.module.css"
+
+import Drawer from "../drawer";
+import Experience from "./components/experience"
+
 const Search = () => {
     const [ value, setValue ] = useState("");
+    const [ experiencia, setExperiencia ] = useState({
+        anos: 0,
+        faixaEtaria: {
+            bebe: false,
+            crianca: false,
+            criancaPreEscolar: false,
+            criancaEnsinoBasico: false,
+            Adolescente: false
+        }
+    })
+
+    const openDrawer = useRef(null);
 
     const changeHandler = useCallback(event => setValue(event.target.value), []);
+    const openDrawerHandler = useCallback(() => openDrawer.current?.(), [])
 
     return (
         <form className="flex ">
@@ -26,9 +44,21 @@ const Search = () => {
             </div>
             <Button 
                 className="border-black capitalize py-1 text-black hover:bg-black hover:border-black hover:text-white"
+                onClick={openDrawerHandler}
                 variant="outlined">
                 filtros
             </Button>
+            <Drawer
+                anchor="bottom"
+                drawerPaper={classNames(classes.drawerPaper, `px-5 py-4`)}
+                openHandler={openDrawer}>
+                    <div>
+                        <Experience 
+                            { ...experiencia } 
+                            setExperiencia={setExperiencia}
+                        />
+                    </div>
+            </Drawer>
         </form>
     );
 };

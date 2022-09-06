@@ -1,10 +1,12 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { Button, Hidden, IconButton, Stack } from "@mui/material";
 
 import SearchIcon from '@mui/icons-material/Search';
 
-import classes from "./styles.module.css"
+import classes from "./styles.module.css";
+
+import { FilterContext } from "src/context"
 
 import Chip from "./components/chip";
 import Drawer from "../drawer";
@@ -14,6 +16,8 @@ import Verificacoes from "./components/verificacoes";
 import Popover from "../popover"
 
 const Search = () => {
+    const { experienciasSelecionada, tiposSelecionados, verificacoesSelecionadas } = useContext(FilterContext);
+
     const [ value, setValue ] = useState("");
     
     const openDrawer = useRef(null);
@@ -66,9 +70,9 @@ const Search = () => {
             </Hidden>
             <Hidden smDown>
                 <div className="flex">
-                    <Chip label="Tipo" onClick={clickHandler(openTipoPopover)} value="1" />
-                    <Chip label="Experiência" onClick={clickHandler(openExperienciaPopover)} value="2" />
-                    <Chip label="Verificações" onClick={clickHandler(openVerificacoesPopover)} value="3" />
+                    <Chip label="Tipo" onClick={clickHandler(openTipoPopover)} value={tiposSelecionados} />
+                    <Chip label="Experiência" onClick={clickHandler(openExperienciaPopover)} value={experienciasSelecionada} />
+                    <Chip label="Verificações" onClick={clickHandler(openVerificacoesPopover)} value={verificacoesSelecionadas} />
                     <Chip label="Mais Filtros" value="4" />
                 </div>
                 <Popover paperClassName="border border-black border-solid mt-3 rounded-xl" onClickRef={openTipoPopover}>

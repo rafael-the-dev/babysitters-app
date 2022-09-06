@@ -1,0 +1,35 @@
+.button {
+    padding: .1rem .2rem .1rem .4rem;
+    width: 320px;
+}
+
+.buttonIcon {
+    height: 32px;
+    width: 32px;
+}
+
+.selectedLink::after, .notSelectedLink::after {
+    content: "" !important;
+    height: 2px;
+    margin-top: .3rem;
+    transition: width .8s ease;
+}
+
+.selectedLink::after {
+    width: 50%;
+}
+
+.notSelectedLink::after {
+    transform: scale(0);
+    width: 20%;
+}
+
+.notSelectedLink:hover .notSelectedLink:after {
+    transform: scale(1) !important;
+}
+
+
+.form {
+    margin-top: 1.8rem;
+    width: 80%;
+}

@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import classes from "./styles.module.css"
 
 import Link from "../link";
+import Form from "./components/form";
 import Drawer from "../drawer";
 import ListItem from "./components/list-item";
 
@@ -17,8 +18,9 @@ const Header = () => {
     const onClick = () => openDrawer.current?.();
 
     return (
-        <header className={classNames(`flex items-center justify-between px-5 py-2`)}>
+        <header className={classNames(`border-b border-gray-400 border-solid flex items-center justify-between px-5 py-2 sm:py-4`)}>
             <Link className="uppercase" href="/">Logo</Link>
+            <Hidden smDown><Form /></Hidden>
             <div className="flex items-center">
                 <Hidden mdDown>
                     <IconButton>

@@ -42,8 +42,12 @@ export const FilterContextProvider = ({ children }) => {
         return Object.values(verificacoes).filter(item => item).length;
     }, [ verificacoes ]);
 
+    const totalCamposSelecionads = useMemo(() => {
+        return experienciasSelecionada + tiposSelecionados + verificacoesSelecionadas;
+    }, [ experienciasSelecionada, tiposSelecionados, verificacoesSelecionadas ])
+
     return (
-        <FilterContext.Provider value={{ experiencia, experienciasSelecionada, tipo, tiposSelecionados, verificacoes, verificacoesSelecionadas, 
+        <FilterContext.Provider value={{ experiencia, experienciasSelecionada, tipo, totalCamposSelecionads, tiposSelecionados, verificacoes, verificacoesSelecionadas, 
             setExperiencia, setTipo, setVerificacoes }}>
             { children }
         </FilterContext.Provider>

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
-import { Button, Hidden, IconButton, Stack } from "@mui/material";
+import { Avatar, Button, Hidden, IconButton, Stack } from "@mui/material";
 
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -16,7 +16,7 @@ import Verificacoes from "./components/verificacoes";
 import Popover from "../popover"
 
 const Search = () => {
-    const { experienciasSelecionada, tiposSelecionados, verificacoesSelecionadas } = useContext(FilterContext);
+    const { experienciasSelecionada, tiposSelecionados, totalCamposSelecionads, verificacoesSelecionadas } = useContext(FilterContext);
 
     const [ value, setValue ] = useState("");
     
@@ -55,6 +55,7 @@ const Search = () => {
                         onClick={openDrawerHandler}
                         variant="outlined">
                         filtros
+                        <Avatar className={classes.total}>{ totalCamposSelecionads }</Avatar>
                     </Button>
                     <Drawer
                         anchor="bottom"

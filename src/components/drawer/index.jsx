@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState} from "react"
 import { Drawer } from "@mui/material"
 
-const Container = ({ anchor, children, id, closeHandler, drawerPaper, drawerRoot, openHandler }) => {
+const Container = ({ anchor, children, id, closeHandler, drawerPaper, drawerRoot, openHandler, onCloseHelper }) => {
     const [ open, setOpen ] = useState(false);
 
     const onOpen = useCallback(() => setOpen(true), []);
-    const onClose = useCallback(() => setOpen(false), []);
+    const onClose = useCallback(() => {
+        setOpen(false);
+        if(onCloseHelper) onCloseHelper();
+    }, [ onCloseHelper ]);
 
     useEffect(() => {
         if(closeHandler) closeHandler.current = onClose;

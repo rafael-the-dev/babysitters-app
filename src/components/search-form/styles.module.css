@@ -1,3 +1,10 @@
 .drawerPaper {
     height: 87%;
 }
+
+.total {
+    height: 20px;
+    font-size: .9rem;
+    margin-left: .4rem;
+    width: 20px;
+}

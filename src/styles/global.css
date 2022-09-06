@@ -1,4 +1,6 @@
-
+* {
+    font-family: 'Montserrat', Roboto, sans-serif !important;
+}
 a {
     text-decoration: none;
 }

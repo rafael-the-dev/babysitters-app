@@ -31,6 +31,7 @@ const Verificacoes = () => {
             </Hidden>
             <FormGroup className="mt-3">
                 <Checkbox 
+                    className="sm:items-start"
                     checked={documentoDeIdentifcacao} 
                     label="Documento de identificação" 
                     onChange={checkboxChangeHandler("documentoDeIdentifcacao")} 
@@ -41,6 +42,7 @@ const Verificacoes = () => {
                     onChange={checkboxChangeHandler("registoCriminal")} 
                 />
                 <Checkbox 
+                    className="sm:items-start"
                     checked={avaliacoesReferencias} 
                     label="Tem avaliações ou referências"
                     onChange={checkboxChangeHandler("avaliacoesReferencias")}  

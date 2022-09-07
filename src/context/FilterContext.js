@@ -3,6 +3,10 @@ import React, { createContext, useCallback, useEffect, useMemo, useRef, useState
 export const FilterContext = createContext();
 FilterContext.displayName = 'FilterContext';
 
+const countHelper = (values) => {
+    return [ ...new Set(values.filter(item => item))].length;
+};
+
 export const FilterContextProvider = ({ children }) => {
 
     const [ disponibilidade, setDisponibilidade ] = useState({
@@ -56,7 +60,16 @@ export const FilterContextProvider = ({ children }) => {
     const experienciasSelecionada = useMemo(() => {
         const ano = experiencia.anos > 0 ? 1 : 0; 
         return ano + [ ...new Set(Object.values(experiencia.faixaEtaria).filter(item => item))].length;
-    }, [ experiencia ])
+    }, [ experiencia ]);
+
+    const maisFiltrosSelecionados = useMemo(() => {
+        const disponibilidadeLength = countHelper(Object.values(disponibilidade));
+        const idadeSelecionada = idade > 14 ? 1: 0;
+        const informacaoAdicionalLength = countHelper(Object.values(informacaoAdicional));
+        const localBabysittingLength = countHelper(Object.values(localBabysitting));
+
+        return disponibilidadeLength + idadeSelecionada + informacaoAdicionalLength + localBabysittingLength;
+    }, [ disponibilidade, idade, informacaoAdicional, localBabysitting ])
 
     const tiposSelecionados = useMemo(() => {
         return Object.values(tipo).filter(item => item).length;
@@ -67,8 +80,8 @@ export const FilterContextProvider = ({ children }) => {
     }, [ verificacoes ]);
 
     const totalCamposSelecionads = useMemo(() => {
-        return experienciasSelecionada + tiposSelecionados + verificacoesSelecionadas;
-    }, [ experienciasSelecionada, tiposSelecionados, verificacoesSelecionadas ])
+        return experienciasSelecionada + tiposSelecionados + verificacoesSelecionadas + maisFiltrosSelecionados;
+    }, [ experienciasSelecionada, maisFiltrosSelecionados, tiposSelecionados, verificacoesSelecionadas ])
 
     return (
         <FilterContext.Provider value={{ 
@@ -78,6 +91,7 @@ export const FilterContextProvider = ({ children }) => {
             idade,
             informacaoAdicional,
             localBabysitting,
+            maisFiltrosSelecionados,
             setDisponibilidade, setExperiencia, setIdade, setInformacaoAdiconal, setLocalBabysitting, 
             setTipo, setVerificacoes,
             tipo, 

@@ -18,7 +18,7 @@ import MaisFiltros from "./components/mais-filtros"
 import Popover from "../popover"
 
 const Search = () => {
-    const { experienciasSelecionada, tiposSelecionados, totalCamposSelecionads, verificacoesSelecionadas } = useContext(FilterContext);
+    const { experienciasSelecionada, maisFiltrosSelecionados, tiposSelecionados, totalCamposSelecionads, verificacoesSelecionadas } = useContext(FilterContext);
 
     const [ value, setValue ] = useState("");
     
@@ -87,7 +87,7 @@ const Search = () => {
                     <Chip label="Tipo" onClick={clickHandler(openTipoPopover)} value={tiposSelecionados} />
                     <Chip label="Experiência" onClick={clickHandler(openExperienciaPopover)} value={experienciasSelecionada} />
                     <Chip label="Verificações" onClick={clickHandler(openVerificacoesPopover)} value={verificacoesSelecionadas} />
-                    <Chip label="Mais Filtros" onClick={openDrawerHandler} value="4" />
+                    <Chip label="Mais Filtros" onClick={openDrawerHandler} value={maisFiltrosSelecionados} />
                 </div>
                 <Popover paperClassName="border border-black border-solid mt-3 rounded-xl" onClickRef={openTipoPopover}>
                     { tipo }

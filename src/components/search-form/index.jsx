@@ -13,6 +13,7 @@ import Drawer from "../drawer";
 import Experience from "./components/experience";
 import Tipo from "./components/tipo"
 import Verificacoes from "./components/verificacoes";
+import MaisFiltros from "./components/mais-filtros"
 import Popover from "../popover"
 
 const Search = () => {
@@ -28,6 +29,7 @@ const Search = () => {
     const tipo = useMemo(() => <Tipo />, [])
     const experienceMemo = useMemo(() => <Experience />, []);
     const verificacoesMemo = useMemo(() => <Verificacoes />, []);
+    const maisFiltrosMemo = useMemo(() => <MaisFiltros />, [])
 
     const changeHandler = useCallback(event => setValue(event.target.value), []);
     const openDrawerHandler = useCallback(() => openDrawer.current?.(), []);
@@ -57,24 +59,27 @@ const Search = () => {
                         filtros
                         <Avatar className={classes.total}>{ totalCamposSelecionads }</Avatar>
                     </Button>
-                    <Drawer
-                        anchor="bottom"
-                        drawerPaper={classNames(classes.drawerPaper, `px-5 py-4`)}
-                        openHandler={openDrawer}>
-                            <div>
-                                { tipo }
-                                { experienceMemo }
-                                { verificacoesMemo }
-                            </div>
-                    </Drawer>
                 </form>
             </Hidden>
+            <Drawer
+                anchor="bottom"
+                drawerPaper={classNames(classes.drawerPaper, `px-5 py-4 sm:px-0 sm:rounded-xl`)}
+                openHandler={openDrawer}>
+                    <div className="sm:rounded-xl sm:h-full sm:overflow-y-auto sm:px-4">
+                        <Hidden smUp>
+                            { tipo }
+                            { experienceMemo }
+                            { verificacoesMemo }
+                        </Hidden>
+                        { maisFiltrosMemo }
+                    </div>
+            </Drawer>
             <Hidden smDown>
                 <div className="flex">
                     <Chip label="Tipo" onClick={clickHandler(openTipoPopover)} value={tiposSelecionados} />
                     <Chip label="Experiência" onClick={clickHandler(openExperienciaPopover)} value={experienciasSelecionada} />
                     <Chip label="Verificações" onClick={clickHandler(openVerificacoesPopover)} value={verificacoesSelecionadas} />
-                    <Chip label="Mais Filtros" value="4" />
+                    <Chip label="Mais Filtros" onClick={openDrawerHandler} value="4" />
                 </div>
                 <Popover paperClassName="border border-black border-solid mt-3 rounded-xl" onClickRef={openTipoPopover}>
                     { tipo }

@@ -19,7 +19,8 @@ const Tipo = () => {
     }, []);
 
     return (
-        <div className={classNames(classes.container, "sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6")}>
+        <div className={classNames(classes.container, "sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6",
+        "border-b border-solid border-gray-300 pb-8 pt-4")}>
             <Hidden smUp>
                 <Title>Tipo</Title>
             </Hidden>

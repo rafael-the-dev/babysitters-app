@@ -25,7 +25,8 @@ const Verificacoes = () => {
     });
 
     return (
-        <div className={classNames(classes.container, "mt-8 sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6")}>
+        <div className={classNames(classes.container, "sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6",
+        "border-b border-solid border-gray-300 py-8")}>
             <Hidden smUp>
                 <Title>Verificações</Title>
             </Hidden>

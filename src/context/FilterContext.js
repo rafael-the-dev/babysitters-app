@@ -4,10 +4,13 @@ export const FilterContext = createContext();
 FilterContext.displayName = 'FilterContext';
 
 export const FilterContextProvider = ({ children }) => {
-    const [ tipo, setTipo ] = useState({
-        ama: false,
-        babysitter: true,
-        outraFamilia: false
+
+    const [ disponibilidade, setDisponibilidade ] = useState({
+        animaisEstimacao: false,
+        apoiarTrabalhosCasa: false,
+        lidesDomesticas: false,
+        prepararRefeicoes: false,
+
     });
 
     const [ experiencia, setExperiencia ] = useState({
@@ -21,12 +24,33 @@ export const FilterContextProvider = ({ children }) => {
             criancaComNecessidades: false
         }
     });
+    
+    const [ idade, setIdade ] = useState(14);
+
+    const [ informacaoAdicional, setInformacaoAdiconal ] = useState({
+        certificadoPrimeirosSocorros: false,
+        naoFumador: false,
+        temCarro: false,
+        temFilhos: false,
+        temCartaConducao: false
+    });
+
+    const [ localBabysitting, setLocalBabysitting ] = useState({
+        casaFamilia: false,
+        casaBabysitter: false
+    });
 
     const [ verificacoes, setVerificacoes ] = useState({
         avaliacoesReferencias: false,
         documentoDeIdentifcacao: false,
         registoCriminal: false,
         supersitter: false
+    });
+
+    const [ tipo, setTipo ] = useState({
+        ama: false,
+        babysitter: true,
+        outraFamilia: false
     });
 
     const experienciasSelecionada = useMemo(() => {
@@ -47,8 +71,21 @@ export const FilterContextProvider = ({ children }) => {
     }, [ experienciasSelecionada, tiposSelecionados, verificacoesSelecionadas ])
 
     return (
-        <FilterContext.Provider value={{ experiencia, experienciasSelecionada, tipo, totalCamposSelecionads, tiposSelecionados, verificacoes, verificacoesSelecionadas, 
-            setExperiencia, setTipo, setVerificacoes }}>
+        <FilterContext.Provider value={{ 
+            disponibilidade,
+            experiencia, 
+            experienciasSelecionada, 
+            idade,
+            informacaoAdicional,
+            localBabysitting,
+            setDisponibilidade, setExperiencia, setIdade, setInformacaoAdiconal, setLocalBabysitting, 
+            setTipo, setVerificacoes,
+            tipo, 
+            totalCamposSelecionads, 
+            tiposSelecionados, 
+            verificacoes, 
+            verificacoesSelecionadas
+         }}>
             { children }
         </FilterContext.Provider>
     );

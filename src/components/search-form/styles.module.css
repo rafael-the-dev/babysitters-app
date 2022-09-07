@@ -8,3 +8,12 @@
     margin-left: .4rem;
     width: 20px;
 }
+
+@media screen and (min-width: 600px) { 
+    .drawerPaper {
+        height: 90%;
+        left: 10%;
+        top: 5%;
+        width: 80%;
+    }
+}

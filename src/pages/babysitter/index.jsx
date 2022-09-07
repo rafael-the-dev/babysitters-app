@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo } from "react"
-import { Button, Typography } from "@mui/material";
+import { Button, Hidden, Typography } from "@mui/material";
 import classNames from "classnames";
+import dynamic from 'next/dynamic'
 
 import classes from "./styles.module.css";
 
@@ -10,6 +11,10 @@ import { useFetch, useLazyFetch } from "src/hooks"
 import BabysitterCard from "src/components/babysitter-card"
 import Link from "src/components/link";
 import Search from "src/components/search-form";
+
+const DynamicMap = dynamic(() => import('src/components/leaflet-map'), {
+    ssr: false,
+})
 
 const Container = () => {
     const { data } = useFetch({ url: "https://jsonplaceholder.typicode.com/photos" });
@@ -42,7 +47,7 @@ const Container = () => {
             <FilterContextProvider>
                 <Search />
             </FilterContextProvider>
-            <section className="">
+            <section className="xl:flex justify-between">
                 <div className={classNames(classes.content, "px-5 xl:pr-4")}>
                     <div className="border-b border-solid border-gray-400 py-4">
                         <Typography
@@ -72,6 +77,11 @@ const Container = () => {
                         }
                     </div>
                 </div>
+                <Hidden lgDown>
+                    <div className={classNames(classes.mapContainer)}>
+                        <DynamicMap />
+                    </div>
+                </Hidden>
             </section>
         </main>
     );

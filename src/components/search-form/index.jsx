@@ -39,7 +39,7 @@ const Search = () => {
     const closeDrawerHandler = useCallback(() => closeDrawer.current?.(), [])
 
     return (
-        <div>
+        <div className="border-b border-solid border-gray-400 py-4 px-5">
             <Hidden smUp>
                 <form className="flex ">
                     <div className={classNames(`border border-black border-solid flex grow items-stretch mr-1 rounded-lg`)}>

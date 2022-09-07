@@ -1,19 +1,49 @@
-import { Button, Typography } from "@mui/material"
+import { useEffect, useId, useMemo } from "react"
+import { Button, Typography } from "@mui/material";
+import classNames from "classnames";
 
-import { FilterContextProvider } from "src/context"
+import classes from "./styles.module.css";
 
+import { FilterContextProvider } from "src/context";
+import { useFetch, useLazyFetch } from "src/hooks"
+
+import BabysitterCard from "src/components/babysitter-card"
 import Link from "src/components/link";
 import Search from "src/components/search-form";
 
 const Container = () => {
-    
+    const { data } = useFetch({ url: "https://jsonplaceholder.typicode.com/photos" });
+    const properties = useLazyFetch();
+    const { lazyFetch } = properties;
+    const users = properties.data;
+
+    const id = useId();
+
+    const usersData = useMemo(() => {
+        console.log(users)
+        if(Boolean(data) && Boolean(users)) {
+            return users.map((user, index) => ({
+                ...user,
+                image: data[index]
+            }));
+        }
+
+        return [];
+    }, [ data, users ])
+
+    useEffect(() => {
+        if(data) {
+            lazyFetch({ url: "https://jsonplaceholder.typicode.com/users" })
+        }
+    }, [ data ])
+
     return (
         <main className="">
             <FilterContextProvider>
                 <Search />
             </FilterContextProvider>
             <section className="">
-                <div className="px-5">
+                <div className={classNames(classes.content, "px-5 xl:pr-4")}>
                     <div className="border-b border-solid border-gray-400 py-4">
                         <Typography
                             className="font-bold text-2xl"
@@ -33,6 +63,13 @@ const Container = () => {
                             </Button>
                         </Link>
                         <Link className="mt-3 text-black underline sm:mt-0 sm:ml-4" href="/">Como funciona</Link>
+                    </div>
+                    <div>
+                        {
+                            usersData.map((user, index) => (
+                                <BabysitterCard { ...user } key={`${index}-${id}`} />
+                            ))
+                        }
                     </div>
                 </div>
             </section>

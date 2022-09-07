@@ -10,6 +10,7 @@ import { FilterContext } from "src/context"
 
 import Chip from "./components/chip";
 import Drawer from "../drawer";
+import DialogHeader from "src/components/dialog/components/dialog-header"
 import Experience from "./components/experience";
 import Tipo from "./components/tipo"
 import Verificacoes from "./components/verificacoes";
@@ -22,6 +23,7 @@ const Search = () => {
     const [ value, setValue ] = useState("");
     
     const openDrawer = useRef(null);
+    const closeDrawer = useRef(null);
     const openTipoPopover = useRef(null);
     const openExperienciaPopover = useRef(null);
     const openVerificacoesPopover = useRef(null);
@@ -33,7 +35,8 @@ const Search = () => {
 
     const changeHandler = useCallback(event => setValue(event.target.value), []);
     const openDrawerHandler = useCallback(() => openDrawer.current?.(), []);
-    const clickHandler = useCallback(func => event => func.current?.(event), [])
+    const clickHandler = useCallback(func => event => func.current?.(event), []);
+    const closeDrawerHandler = useCallback(() => closeDrawer.current?.(), [])
 
     return (
         <div>
@@ -63,9 +66,14 @@ const Search = () => {
             </Hidden>
             <Drawer
                 anchor="bottom"
-                drawerPaper={classNames(classes.drawerPaper, `px-5 py-4 sm:px-0 sm:rounded-xl`)}
+                closeHandler={closeDrawer}
+                drawerPaper={classNames(classes.drawerPaper, `py-4 sm:rounded-xl`)}
                 openHandler={openDrawer}>
-                    <div className="sm:rounded-xl sm:h-full sm:overflow-y-auto sm:px-4">
+                    <DialogHeader onClose={closeDrawerHandler}>
+                        <Hidden smUp>Filtrar resultados</Hidden>
+                        <Hidden smDown>Mais filtros</Hidden>
+                    </DialogHeader>
+                    <div className="px-5 sm:rounded-xl sm:h-full sm:overflow-y-auto sm:px-6">
                         <Hidden smUp>
                             { tipo }
                             { experienceMemo }

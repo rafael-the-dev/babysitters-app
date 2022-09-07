@@ -2,6 +2,11 @@
     height: 87%;
 }
 
+.drawerPaper h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
 .total {
     height: 20px;
     font-size: .9rem;
@@ -15,5 +20,19 @@
         left: 10%;
         top: 5%;
         width: 80%;
+    }
+}
+
+@media screen and (min-width: 768px) { 
+    .drawerPaper {
+        left: 0;
+        margin: 0 auto;
+        width: 550px;
+    }
+}
+
+@media screen and (min-width: 900px) { 
+    .drawerPaper {
+        width: 600px;
     }
 }

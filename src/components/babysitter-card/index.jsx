@@ -1,11 +1,20 @@
 import Image from "next/image"
-import { IconButton, Typography } from "@mui/material";
+import { IconButton, Rating, Typography } from "@mui/material";
+import classNames from "classnames";
+import { styled } from '@mui/material/styles';
 
 import classes from "./styles.module.css"
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import classNames from "classnames";
+import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
+import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+
+const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#59bec9',
+    }
+});
 
 
 const Card = ({ image, name }) => {
@@ -54,9 +63,18 @@ const Card = ({ image, name }) => {
                     "flex flex-col  justify-between mt-4 sm:flex-row sm:items-end")}>
                     <div className={classNames(classes.footerContent, "before:bg-gray-400 before:block before:mr-auto")}>
                         <ul className="font-medium text-gray-500">
-                            <li>Tempo médio de resposta: 3 horas</li>
-                            <li className="mt-2">Registo criminal</li>
+                            <li className="flex items-center">
+                                <TimerOutlinedIcon className="mr-1 text-sm" />
+                                Tempo médio de resposta: 3 horas
+                            </li>
+                            <li className="flex items-center mt-2">
+                                <NoteAltOutlinedIcon className="mr-1 text-sm" />
+                                Registo criminal
+                            </li>
                         </ul>
+                        <div className="flex items-center mt-3">
+                            <StyledRating className="mr-3" name="read-only" value={4} readOnly />  1 avaliação
+                        </div>
                     </div>
                     <Typography
                         component="h3"

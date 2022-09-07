@@ -1,11 +1,11 @@
 
-
+import ComoFunciona from "src/components/como-funciona";
 
 const Home = () => {
 
     return (
         <main>
-            Hello babysitters
+            <ComoFunciona />
         </main>
     );
 };

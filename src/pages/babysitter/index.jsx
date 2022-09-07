@@ -40,7 +40,7 @@ const Container = () => {
         if(data) {
             lazyFetch({ url: "https://jsonplaceholder.typicode.com/users" })
         }
-    }, [ data ])
+    }, [ data, lazyFetch ])
 
     return (
         <main className="">

@@ -16,7 +16,7 @@ const Tipo = () => {
     
     const checkboxChangeHandler = useCallback(prop => () => {
         setTipo(tipoAtual => ({ ...tipoAtual, [prop]: !tipoAtual[prop]}))
-    }, []);
+    }, [ setTipo ]);
 
     return (
         <div className={classNames(classes.container, "sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6",

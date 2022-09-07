@@ -25,14 +25,14 @@ const FiltersContainer = () => {
 
     const rangeChangeHandler = useCallback((event) => {
         setExperiencia(experiencia => ({ ...experiencia, anos: event.target.value }))
-    }, []);
+    }, [ setExperiencia ]);
 
     const checkboxChangeHandler = useCallback(prop => () => {
         setExperiencia(experienciaAtual => ({ ...experienciaAtual, faixaEtaria: {
             ...experienciaAtual.faixaEtaria,
             [prop]: !experienciaAtual.faixaEtaria[prop]
         } }))
-    }, []);
+    }, [ setExperiencia ]);
 
     return (
         <div className={classNames(classes.container, "mt-8 sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-4 sm:pb-6")}>

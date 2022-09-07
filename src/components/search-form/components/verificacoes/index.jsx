@@ -22,7 +22,7 @@ const Verificacoes = () => {
             ...verificacoesAtuails,
             [prop]: !verificacoesAtuails[prop]
         }));
-    });
+    }, [ setVerificacoes ]);
 
     return (
         <div className={classNames(classes.container, "sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-1 sm:pb-6",

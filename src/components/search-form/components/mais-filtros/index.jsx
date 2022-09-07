@@ -17,7 +17,7 @@ const MaisFiltros = () => {
         setDisponibilidade, setIdade, setInformacaoAdiconal, setLocalBabysitting
     } = useContext(FilterContext);
 
-    const idadeChangeHandler = useCallback(event => setIdade(event.target.value), []);
+    const idadeChangeHandler = useCallback(event => setIdade(event.target.value), [ setIdade ]);
 
     const changeHandler = useCallback((prop, func ) => () => {
         func(properties => ({

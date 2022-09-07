@@ -5,6 +5,7 @@ import { FilterContext } from "src/context"
 
 import Checkbox from "../checkbox";
 import Label from "../label";
+import Range from "../range";
 import Title from "../title"
 
 const MaisFiltros = () => {
@@ -31,13 +32,11 @@ const MaisFiltros = () => {
                 <Label className="" htmlFor="idade-range">
                     { idade } até 95+ anos
                 </Label>
-                <input 
-                    className="mt-6"
+                <Range 
                     id="idade-range" 
-                    min="14" 
-                    max="95" 
+                    min={14} 
+                    max={95}
                     onChange={idadeChangeHandler}
-                    type="range" 
                     value={idade}
                 />
             </div>

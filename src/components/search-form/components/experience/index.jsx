@@ -7,7 +7,8 @@ import classes from "./styles.module.css"
 import { FilterContext } from "src/context"
 import Title from "../title";
 import Label from "../label";
-import Checkbox from "../checkbox"
+import Checkbox from "../checkbox";
+import Range from "../range"
 
 const FiltersContainer = () => {
     const { experiencia, setExperiencia }  = useContext(FilterContext);
@@ -34,19 +35,17 @@ const FiltersContainer = () => {
     }, []);
 
     return (
-        <div className={classNames(classes.container, "mt-8 sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-2 sm:pb-6")}>
+        <div className={classNames(classes.container, "mt-8 sm:mt-0 sm:rounded-xl sm:px-4 sm:pt-4 sm:pb-6")}>
             <div className="border-b border-solid border-gray-300 pb-8 flex flex-col items-stretch">
                 <Hidden smUp><Title>Experiência</Title></Hidden>
                 <Label className="my-2" htmlFor="experience-range">
                     { anos } até 11+ anos
                 </Label>
-                <input 
-                    className=""
+                <Range 
                     id="experience-range" 
-                    min="0" 
-                    max="11" 
+                    min={0}
+                    max={11}
                     onChange={rangeChangeHandler}
-                    type="range" 
                     value={anos}
                 />
             </div>

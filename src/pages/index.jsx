@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useRef } from "react"
 import { Button, Typography } from "@mui/material"
 import classNames from "classnames";
 
@@ -11,6 +12,26 @@ import Link from "src/components/link"
 import Seguranca from "src/components/home-components/seguranca";
 
 const Home = () => {
+    const swapText = useRef(null);
+    const currentIndex = useRef(1);
+
+    useEffect(() => {
+        const list = [ "famílias", "babysitters", "amas" ];
+
+        const timer = setInterval(() => {
+            swapText.current.innerHTML = list[currentIndex.current];
+
+            if(currentIndex.current + 1 >= list.length) {
+                currentIndex.current = 0;
+            } else {
+                currentIndex.current += 1;
+            }
+        }, 2000);
+
+        return () => {
+            clearInterval(timer);
+        }
+    }, [])
 
     return (
         <main>
@@ -28,7 +49,9 @@ const Home = () => {
                         <Typography 
                             className={classNames(classes.heroTitle, "font-bold text-3xl text-white md:text-4xl")}
                             component="h1">
-                            A plataforma de cuidados infantis em que famílias confia
+                            A plataforma de cuidados infantis em que 
+                            <span className="px-2 text-cyan-400" ref={swapText}>famílias</span> 
+                            confia
                         </Typography>
                         <Link href="/">
                             <Button

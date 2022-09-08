@@ -1,6 +1,6 @@
 
 .videoWrapper {
-    height: 430px;
+    height: 450px;
 }
 
 .video {
@@ -9,6 +9,10 @@
 
 .heroContentWrapper {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, .3), rgba(0, 0, 0, .5));
+}
+
+.heroTitle {
+    width: 80%;
 }
 
 @media screen and (min-width: 650px) {

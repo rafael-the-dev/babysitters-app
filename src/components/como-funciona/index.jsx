@@ -1,12 +1,13 @@
 
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
-import Card from "./components/card"
+import Card from "./components/card";
+import Link from "src/components/link"
 
 const ComoFuncionaContainer = () => {
 
     return (
-        <section className="py-8 px-5 text-center">
+        <section className="flex flex-col items-center py-8 px-5 text-center">
             <Typography 
                 className="font-bold text-2xl"
                 component="h2">
@@ -31,6 +32,11 @@ const ComoFuncionaContainer = () => {
                     title="Marcar"
                 />
             </div>
+            <Link href="/">
+                <Button className="bg-neutral-800 normal-case py-2 px-8 rounded-lg text-white hover:bg-black">
+                    Inscreva-se gratuitamente
+                </Button>
+            </Link>
         </section>
     );
 };

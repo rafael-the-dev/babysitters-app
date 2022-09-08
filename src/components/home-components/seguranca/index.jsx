@@ -6,14 +6,14 @@ import ListItem from "./components/list-item";
 const SegurancaContainer = () => {
 
     return (
-        <section className="py-8 px-5 text-center">
+        <section className="bg-cyan-200 my-12 py-12 px-5 text-center lg:py-16">
             <Typography 
-                className="font-bold text-2xl"
+                className="font-semibold text-2xl"
                 component="h2">
                 Segurança e transparência são a nossa prioridade
             </Typography>
             <Typography 
-                className="font-medium mt-2 text-gray-500 sm:mt-4"
+                className="font-medium mt-6 text-gray-500"
                 component="p">
                 Babysits oferece uma plataforma transparente, para que possa ter a certeza de 
                 que os seus filhos estão em boas mãos.

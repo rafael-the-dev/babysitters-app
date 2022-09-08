@@ -1,0 +1,37 @@
+.content {
+    left: 0;
+    position: absolute;
+    top: -49px;
+    transform: scale(0);
+    transition: all .7s ease;
+    z-index: 21;
+}
+
+.contentShow {
+    transform: scale(1);
+    top: 39px;
+}
+
+.form {
+    width: 85%;
+}   
+
+@media screen and (min-width: 768px) {
+    .content, .contentShow {
+        position: relative;
+        transform: scale(1);
+        top: 0;
+    }
+
+    .form {
+        border-radius: 26px;
+        padding: 10px .25rem 10px 16px !important;
+        width: 450px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .form {
+        width: 550px;
+    }
+}

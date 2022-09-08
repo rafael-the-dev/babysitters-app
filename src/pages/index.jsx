@@ -44,7 +44,7 @@ const Home = () => {
                     </video>
                 </div>
                 <div className={classNames(classes.heroContentWrapper, "absolute h-full left-0 top-0 w-full",
-                    "flex items-end px-5 pb-12 md:pb-16")}>
+                    "flex items-end px-5 pb-12 md:pb-16 xl:pb-28")}>
                     <div className="flex flex-col">
                         <Typography 
                             className={classNames(classes.heroTitle, "font-bold text-3xl text-white md:text-4xl")}

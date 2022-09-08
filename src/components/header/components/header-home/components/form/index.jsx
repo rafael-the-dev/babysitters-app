@@ -1,18 +1,34 @@
-import { useCallback, useState } from "react"
-import { Hidden, IconButton } from "@mui/material";
+import { useCallback, useMemo, useRef, useState } from "react"
+import { Button, ClickAwayListener, Hidden, IconButton } from "@mui/material";
 import classNames from "classnames";
 
 import classes from "./styles.module.css"
 
 import CloseIcon from '@mui/icons-material/Close';
+import NearMeIcon from '@mui/icons-material/NearMe';
 import SearchIcon from '@mui/icons-material/Search';
 
 import Link from "src/components/link";
+import Popover from "src/components/popover";
 
 const Form = () => {
     const [ open, setOpen ] = useState(false);
 
+    const popoverClose = useRef(null);
+    const popoverOpen = useRef(null);
+
+    const popoverMemo = useMemo(() => (
+        <Popover onClickRef={popoverOpen} onCloseRef={popoverClose}>
+            <Link href="/">
+                <Button className='py-3 px-4 text-black' startIcon={<NearMeIcon />}>
+                    Pesquisar nas proximidades
+                </Button>
+            </Link>
+        </Popover>
+    ), [ ])
+
     const toggleState = useCallback(() => setOpen(b => !b), []);
+    const focusHandler = useCallback((event) => popoverOpen.current?.(event), []);
 
     return (
         <div className="flex justify-end grow pr-3 md:justify-center md:pr-0">
@@ -38,6 +54,7 @@ const Form = () => {
                         <input 
                             className="border-0 outline-none py-1 w-full"
                             id='search-form'
+                            onClick={focusHandler}
                             placeholder="Search"
                         />
                     </div>
@@ -48,6 +65,7 @@ const Form = () => {
                     </IconButton>
                 </form>
             </div>
+            { popoverMemo }
             <Hidden mdUp>
                 <IconButton className={classNames("text-white", { "bg-cyan-700 hover:bg-cyan-400": open })} onClick={toggleState}>
                     { open ? <CloseIcon /> : <SearchIcon  /> }

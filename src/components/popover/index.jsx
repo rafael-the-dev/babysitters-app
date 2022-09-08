@@ -11,7 +11,7 @@ const PopoverContainer = ({ children, customClose, id, onClickRef, onCloseRef, p
     
     const openPopover = Boolean(anchorEl);
     const popoverID = openPopover ? `${id}-popover` : undefined;
-
+    
     const childrenMemo = useMemo(() => <>{ children }</>, [ children ])
 
     const handleClose = useCallback(event => {

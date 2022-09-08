@@ -143,6 +143,9 @@ const BabysittersContainer = () => {
                 </div>
                 <Controllers indexRef={currentIndex} slide={slide} setChildrenListRef={setChildrenListRef} />
             </div>
+            <Link className="block font-medium mt-6 text-black text-center underline" href="babysitter">
+                Ver todas 10 000 babysitters disponiveis
+            </Link>
         </div>
     );
 };

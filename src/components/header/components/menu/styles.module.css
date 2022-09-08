@@ -1,0 +1,19 @@
+.badge .MuiBadge-badge {
+    background-color: rgb(236,107,105);
+}
+
+.avatar {
+    height: 30px;
+    margin-left: 5px;
+    width: 30px;
+}
+
+.drawerPaper {
+    width: 80%;
+}
+
+@media screen and (min-width: 600px) {
+    .drawerPaper {
+        width: 300px;
+    }
+}

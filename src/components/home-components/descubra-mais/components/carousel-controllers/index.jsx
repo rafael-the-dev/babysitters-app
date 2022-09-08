@@ -73,24 +73,6 @@ const CarouselControllers = ({ indexRef, slide, setChildrenListRef }) => {
                 onClick={nextItemClickHandler}>
                 <KeyboardArrowRightIcon />
             </IconButton>
-            <style jsx>
-                {
-                    `
-                        .controllers-container {
-                            left: 0;
-                            top: 50%;
-                            transform: translate(0, -50%);
-                        }
-
-                        .controllers__button {
-                            background-color: #97979794;
-                            height: 40px;
-                            width: 40px;
-                        }
-
-                    `
-                }
-            </style>
         </>
     );
 };

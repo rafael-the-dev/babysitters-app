@@ -1,0 +1,16 @@
+.imageContainer {
+    height: 40px;
+    width: 40px;
+}
+
+@media screen and (min-width: 600px) {
+    .listItem {
+        width: 48%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .listItem {
+        width: 32%;
+    }
+}

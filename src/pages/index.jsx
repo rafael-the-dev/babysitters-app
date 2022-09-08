@@ -37,7 +37,7 @@ const Home = () => {
         <main>
             <section className="relative">
                 <div className={classNames(classes.videoWrapper, `w-full`)}>
-                    <video autoPlay className={classNames(classes.video, `h-full object-cover w-full`)} loop muteds>
+                    <video autoPlay className={classNames(classes.video, `h-full object-cover w-full`)} loop muted>
                         <source src="https://cdn.babysits.com/content/global/hero/european/babysits_single_scene.mp4" type="video/mp4" />
                         <source src="https://cdn.babysits.com/content/global/hero/european/babysits_single_scene.webm" type="video/webm" />
                         Your browser does not support the video tag.

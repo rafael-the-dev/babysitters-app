@@ -1,8 +1,37 @@
 
 .videoWrapper {
-    height: 400px;
+    height: 430px;
 }
 
 .video {
     object-position: 0 50%;
+}
+
+.heroContentWrapper {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .3), rgba(0, 0, 0, .5));
+}
+
+@media screen and (min-width: 650px) {
+    .videoWrapper {
+        height: 450px;
+    }
+
+    .heroTitle {
+        line-height: 2.8rem;
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .videoWrapper {
+        height: 450px;
+    }
+
+    .heroContentWrapper {
+        padding-left: 15%;
+    }
+
+    .heroTitle {
+        line-height: 2.8rem;
+    }
 }

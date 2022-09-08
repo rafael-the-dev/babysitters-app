@@ -10,7 +10,8 @@ module.exports = {
       colors: {
         cyan: {
           200: "#edf8f8",
-          400: "rgb(89,190,201)"
+          400: "rgb(89,190,201)",
+          700: "#00748f"
         }
       },
       spacing: {

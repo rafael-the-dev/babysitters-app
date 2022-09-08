@@ -44,7 +44,7 @@ const Form = () => {
                             placeholder="Search"
                         />
                     </div>
-                    <IconButton className="bg-gray-400">
+                    <IconButton className="bg-cyan-400 text-white">
                         <SearchIcon />
                     </IconButton>
                 </form>
@@ -66,7 +66,7 @@ const Form = () => {
                 onClick={clickHandler}
                 variant="outlined">
                 Porto
-                <span className={classNames(classes.buttonIcon, "bg-gray-400 flex items-center justify-center rounded-full")}>
+                <span className={classNames(classes.buttonIcon, "bg-cyan-400 text-white flex items-center justify-center rounded-full")}>
                     <SearchIcon />
                 </span>
             </Button>

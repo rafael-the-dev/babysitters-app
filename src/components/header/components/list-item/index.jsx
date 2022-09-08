@@ -7,7 +7,7 @@ import classes from "./styles.module.css";
 const ListItem = ({ href, label }) => {
 
     return (
-        <li className={classNames(classes.listItem, "list-itema px-5 py-2 w-full hover:bg-red-500")}>
+        <li className={classNames(classes.listItem, "list-itema px-5 py-2 w-full hover:bg-cyan-400")}>
             <Link 
                 className="text-black"
                 href={href}>

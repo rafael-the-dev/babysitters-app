@@ -12,7 +12,7 @@ const ChipContainer = ({ label, onClick, value }) => (
         variant="outlined"
     >
         { label }
-        { Boolean(value) && <Avatar className={classes.avatar}>{ value }</Avatar> }
+        { Boolean(value) && <Avatar className={classNames(classes.avatar, "bg-cyan-400 text-white")}>{ value }</Avatar> }
     </Button>
 );
 

@@ -1,8 +1,13 @@
-import { useCallback, useEffect, useState} from "react"
-import { Drawer } from "@mui/material"
+import { useCallback, useEffect, useRef, useState} from "react"
+import { Drawer } from "@mui/material";
+import { useRouter } from "next/router"
 
 const Container = ({ anchor, children, id, closeHandler, drawerPaper, drawerRoot, openHandler, onCloseHelper }) => {
     const [ open, setOpen ] = useState(false);
+
+    const router = useRouter();
+    const { pathname } = router;
+    const currentPath = useRef(null);
 
     const onOpen = useCallback(() => setOpen(true), []);
     const onClose = useCallback(() => {
@@ -17,6 +22,14 @@ const Container = ({ anchor, children, id, closeHandler, drawerPaper, drawerRoot
     useEffect(() => {
         if(openHandler) openHandler.current = onOpen;
     }, [ onOpen, openHandler ]);
+
+    useEffect(() => {
+        if(pathname !== currentPath.current) {
+            setOpen(false);
+            return;
+        }
+        currentPath.current = pathname;
+    }, [ pathname ]);
 
     return (
         <Drawer

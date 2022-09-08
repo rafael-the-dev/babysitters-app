@@ -1,0 +1,8 @@
+
+.videoWrapper {
+    height: 400px;
+}
+
+.video {
+    object-position: 0 50%;
+}

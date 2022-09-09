@@ -1,12 +1,14 @@
-
+import classNames from "classnames";
+import { useRouter } from "next/router"
 import { Typography } from "@mui/material";
 
 import ListItem from "./components/list-item";
 
 const SegurancaContainer = () => {
-
+    const { pathname } = useRouter();
     return (
-        <section className="bg-cyan-200 my-12 py-12 px-5 text-center lg:py-16">
+        <section className={classNames("my-12 py-12 px-5 text-center lg:py-16",
+        { "bg-cyan-200": pathname === "/"})}>
             <Typography 
                 className="font-semibold text-2xl"
                 component="h2">

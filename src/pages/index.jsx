@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useRef } from "react"
-import { Button, Typography } from "@mui/material"
+import { Avatar, Button, Typography } from "@mui/material"
 import classNames from "classnames";
+import Image from "next/image";
 
 import classes from "./styles.module.css";
 import EditIcon from '@mui/icons-material/Edit';
+import AppStoreIcon from "public/icons/apple-black-logo-svgrepo-com.svg";
+import PlayStoreIcon from "public/icons/play-store-svgrepo-com.svg"
 
 import Babysitters from "src/components/home-components/descubra-mais copy";
 import ComoFunciona from "src/components/como-funciona";
@@ -66,6 +69,35 @@ const Home = () => {
             <Babysitters />
             <Seguranca />
             <ComoFunciona />
+            <section className="px-5 py-12">
+                <div>
+                    <Typography 
+                        className="font-bold text-2xl"
+                        component="h2">
+                        Descubra a conveniência do app Babysits
+                    </Typography>
+                    <Typography 
+                        className="font-medium mt-2 text-gray-500 sm:mt-4"
+                        component="p">
+                        Os cuidados infantis estão sempre ao seu alcance com a nossa aplicação. 
+                        Visualize rapidamente os empregos de babysitter e as babysitters disponíveis na sua área!
+                    </Typography>
+                    <div className="flex mt-6">
+                        <Link href="/">
+                            <Button 
+                                className="border-black capitalize text-black hover:bg-black hover:border-black hover:fill-white hover:text-white"
+                                startIcon={<AppStoreIcon className={classes.buttonIcon} />}
+                                variant="outlined">App store</Button>
+                        </Link>
+                        <Link className="ml-4" href="/">
+                            <Button 
+                                className="border-black capitalize text-black hover:bg-black hover:border-black hover:fill-white hover:text-white"
+                                startIcon={<PlayStoreIcon className={classes.buttonIcon} />}
+                                variant="outlined">Google play</Button>
+                        </Link>
+                    </div>
+                </div>
+            </section>
             <DescubraMais />
         </main>
     );

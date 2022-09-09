@@ -1,0 +1,38 @@
+
+.container {
+    transition: all .8s ease;
+}
+
+.container:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transform: translateY(-10px);
+}
+
+.avatar {
+    height: 80px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+}
+
+.avatar img {
+    transform: scale(.55);
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 32%;
+    }
+
+    .avatar {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .avatar {
+        height: 80px;
+        width: 80px;
+    }
+}

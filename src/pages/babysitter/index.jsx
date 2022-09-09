@@ -12,6 +12,7 @@ import BabysitterCard from "src/components/babysitter-card"
 import Link from "src/components/link";
 import Search from "src/components/search-form";
 import Seguranca from "src/components/home-components/seguranca";
+import ComoFunciona from "src/components/babysitter-page-components/como-funciona"
 
 const DynamicMap = dynamic(() => import('src/components/leaflet-map'), {
     ssr: false,
@@ -85,6 +86,7 @@ const Container = () => {
                 </Hidden>
             </section>
             <Seguranca />
+            <ComoFunciona />
         </main>
     );
 };

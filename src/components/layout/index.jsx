@@ -1,6 +1,7 @@
 import classes from "./styles.module.css";
 
 import Header from "../header";
+import Footer from "../footer";
 
 const LayoutContainer = ({ children }) => {
     
@@ -8,6 +9,7 @@ const LayoutContainer = ({ children }) => {
         <div className={classes.root}>
             <Header />
             { children }
+            <Footer />
         </div>
     );
 };

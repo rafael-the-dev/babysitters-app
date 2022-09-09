@@ -132,6 +132,33 @@ const Home = () => {
                 </div>
             </section>
             <DescubraMais />
+            <section className="bg-cyan-200 justify-between mb-16 px-5 py-12 md:flex">
+                <div className="md:mr-2 md:w-1/2">
+                    <Typography 
+                        className="font-bold text-2xl"
+                        component="h2">
+                        Aquilo em que acreditamos
+                    </Typography>
+                    <Typography 
+                        className="font-medium mt-2 opacity-90 sm:mt-4"
+                        component="p">
+                        A Babysits se preocupa com o futuro das crianças! Essa é uma das razões 
+                        pelas quais somos membros da Leaders For Climate Action e dedicamos parte de 
+                        nossa receita à remoção de CO2 da atmosfera.
+                    </Typography>
+                </div>
+            </section>
+            <section className="flex flex-col px-5 py-12">
+                <div>
+                    <div className="md:mr-2 md:w-1/2">
+                        <Typography 
+                            className="font-bold text-2xl"
+                            component="h2">
+                            O que você está procurando?
+                        </Typography>
+                    </div>
+                </div>
+            </section>
         </main>
     );
 };

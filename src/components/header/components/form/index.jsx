@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button, IconButton, Typography } from "@mui/material"
 import classNames from "classnames";
 
@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Link from "src/components/link";
 import Drawer from "src/components/drawer"
 
-const Form = () => {
+const Form = forwardRef(({ className }, ref) => {
     const [ open, setOpen ] = useState(false);
 
     const openHandler = useRef(null);
@@ -60,10 +60,12 @@ const Form = () => {
     const closeHandler = useCallback(() => setOpen(false), []);
 
     return (
-        <div className="grow relative">
+        <div className={classNames("grow relative")} ref={ref}>
             <Button className={classNames(classes.button, `bg-transparent border-neutral-400 flex items-center 
-                justify-between mx-auto outline-none rounded-2xl text-black`, { [classes.buttonOpen]: open })}
+                justify-between mx-auto outline-none rounded-2xl text-black`, { [classes.buttonOpen]: open },
+                className)}
                 onClick={clickHandler}
+                
                 variant="outlined">
                 Porto
                 <span className={classNames(classes.buttonIcon, "bg-cyan-400 text-white flex items-center justify-center rounded-full")}>
@@ -73,7 +75,9 @@ const Form = () => {
             { drawerMemo }
         </div>
     );
-};
+});
+
+Form.displayName = "Form";
 
 export default Form;
 

@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useRef, useState } from "react"
-import { Button, ClickAwayListener, Hidden, IconButton } from "@mui/material";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { Button, Hidden, IconButton } from "@mui/material";
 import classNames from "classnames";
 
 import classes from "./styles.module.css"
@@ -10,12 +10,21 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import Link from "src/components/link";
 import Popover from "src/components/popover";
+import FixedForm from "../../../form";
+import Drawer from "../../../drawer-form"
 
 const Form = () => {
     const [ open, setOpen ] = useState(false);
 
+    const contentRef = useRef(null);
+    const buttonRef = useRef(null);
+    const searchButtonRef = useRef(null);
     const popoverClose = useRef(null);
     const popoverOpen = useRef(null);
+    const onOpenRef = useRef(null);
+
+    const drawerMemo = useMemo(() => <div className={classes.hideDrawer}><Drawer onOpen={onOpenRef} /></div>, []);
+    const searchButtonMemo = useMemo(() => <div className={classes.hideSearchButton}><FixedForm ref={buttonRef} /></div>, [])
 
     const popoverMemo = useMemo(() => (
         <Popover onClickRef={popoverOpen} onCloseRef={popoverClose}>
@@ -27,13 +36,69 @@ const Form = () => {
         </Popover>
     ), [ ])
 
-    const toggleState = useCallback(() => setOpen(b => !b), []);
+    const toggleState = useCallback(() => {
+        const { scrollY } = window;
+        if(scrollY > 50) {
+            onOpenRef.current?.();
+        } else {
+            setOpen(b => !b);
+        }
+    }, []);
+    
     const focusHandler = useCallback((event) => popoverOpen.current?.(event), []);
 
+    const scrollHandler = useCallback(() => {
+        const { innerWidth, scrollY } = window;
+
+        if(innerWidth > 768) {
+            try {
+                if(scrollY > 50) {
+                    contentRef.current.classList.add(classes.contentScroll);
+                    buttonRef.current?.classList?.remove(classes.fixedFormButton);
+                } else {
+                    contentRef.current.classList.remove(classes.contentScroll);
+                    buttonRef.current?.classList?.add(classes.fixedFormButton);
+                }
+            }catch(e) {
+                console.error(e)
+            }
+        }
+
+        if(scrollY > 50) {
+            setOpen(currentState => {
+                if(currentState) {
+                    return false;
+                }
+                return false;
+            })
+            searchButtonRef.current.classList.add("bg-cyan-700");
+        } else {
+            searchButtonRef.current.classList.remove("bg-cyan-700")
+        }
+        
+    }, []);
+
+    useEffect(() => {
+        const currentWindow = window;
+
+        scrollHandler();
+        
+        currentWindow.addEventListener("scroll", scrollHandler);
+        currentWindow.addEventListener("resize", scrollHandler);
+
+        return () => {
+            currentWindow.removeEventListener("scroll", scrollHandler);
+            currentWindow.removeEventListener("resize", scrollHandler);
+        };
+    }, [ scrollHandler ])
+
     return (
-        <div className="flex justify-end grow pr-3 md:justify-center md:pr-0">
+        <div className={classNames(classes.container, "flex justify-end grow pr-3 md:justify-center md:pr-0")}>
+            { searchButtonMemo }
+            { drawerMemo }
             <div className={classNames(classes.content, "flex flex-col items-center py-8 w-full md:py-0",
-            { [classes.contentShow]: open })}>
+            { [classes.contentShow]: open })}
+                ref={contentRef}>
                 <div className={classNames("flex justify-center")}>
                     <Link 
                         className={classNames(classes.selectedLink, "font-semibold mr-4 text-white text-sm text-center md:text-base after:block after:bg-black after:mx-auto")} href="/">
@@ -66,11 +131,12 @@ const Form = () => {
                 </form>
             </div>
             { popoverMemo }
-            <Hidden mdUp>
-                <IconButton className={classNames("text-white", { "bg-cyan-700 hover:bg-cyan-400": open })} onClick={toggleState}>
-                    { open ? <CloseIcon /> : <SearchIcon  /> }
-                </IconButton>
-            </Hidden>
+            <IconButton 
+                className={classNames( "text-white md:hidden", { "bg-cyan-700 hover:bg-cyan-400": open })} 
+                onClick={toggleState}
+                ref={searchButtonRef}>
+                { open ? <CloseIcon /> : <SearchIcon  /> }
+            </IconButton>
         </div>
     );
 };

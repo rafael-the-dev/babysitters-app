@@ -1,3 +1,7 @@
+.container {
+    width: 70%;
+}
+
 .content {
     left: 0;
     position: absolute;
@@ -14,7 +18,19 @@
 
 .form {
     width: 85%;
-}   
+}  
+
+.fixedFormButton {
+    position: absolute !important;
+    transition: all 1s ease;
+    top: 49px !important;
+    transform: scale(0);
+    z-index: -1 !important;
+}
+
+.hideSearchButton {
+    transform: scale(0) !important;
+}
 
 @media screen and (min-width: 768px) {
     .content, .contentShow {
@@ -23,10 +39,26 @@
         top: 0;
     }
 
+    .contentScroll {
+        left: 0;
+        position: absolute;
+        top: -29px;
+        transform: scale(0);
+        z-index: 21;
+    }
+
     .form {
         border-radius: 26px;
         padding: 10px .25rem 10px 16px !important;
         width: 450px;
+    }
+
+    .hideDrawer {
+        transform: scale(0) !important;
+    }
+
+    .hideSearchButton {
+        transform: scale(1) !important;
     }
 }
 

@@ -114,8 +114,8 @@ const DescubraMaisContainer = () => {
                 <div className="overflow-hidden py-4 relative">
                     <ul className={classNames(classes.slider, "relative")} ref={sliderRef}>
                         {
-                            list.splice(0, 10).map((item) => (
-                                <Card { ...item } key={item.id} />
+                            list.splice(0, 10).map((item, index) => (
+                                <Card { ...item } key={index} />
                             ))
                         }
                     </ul>

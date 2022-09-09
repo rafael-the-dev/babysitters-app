@@ -14,7 +14,7 @@ const Header = () => {
     return (
         <header className={classNames(`border-b border-gray-400 border-solid flex items-center justify-between px-5 py-2 sm:py-4`)}>
             <Link className="uppercase" href="/">Logo</Link>
-            <Form />
+            <Hidden mdDown><Form /></Hidden>
             <div className="flex items-center">
                 <Hidden mdDown>
                     <IconButton>

@@ -7,7 +7,7 @@ import Link from "src/components/link"
 const ComoFuncionaContainer = () => {
 
     return (
-        <section className="flex flex-col items-center py-8 px-5 text-center">
+        <section className="flex flex-col items-center py-8 px-5 text-center mb-12">
             <Typography 
                 className="font-bold text-2xl"
                 component="h2">

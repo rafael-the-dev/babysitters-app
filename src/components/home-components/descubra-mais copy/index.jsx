@@ -123,10 +123,10 @@ const BabysittersContainer = () => {
     }, [ resizeHandler ])
 
     return (
-        <div className="px-5 pb-12 pt-8">
+        <div className="px-5 pb-12 pt-20">
             <Link href="/">
                 <Button
-                    className="capitalize font-bold text-left sm:text-lg text-black"
+                    className="capitalize font-bold mb-4 text-left sm:text-lg text-black"
                     endIcon={<PlayArrowIcon />}>
                     Conheça babysitters selecionadas em sua área
                 </Button>

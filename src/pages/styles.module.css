@@ -15,9 +15,23 @@
     width: 80%;
 }
 
+.appsImageContainer {
+    height: 150px;
+}
+
 .buttonIcon {
     height: 30px;
     width: 22px;
+}
+
+@media screen and (min-width: 600px) {
+    .appsImageContainer {
+        width: 40%
+    }
+
+    .appsContent {
+        width: 55%;
+    }
 }
 
 @media screen and (min-width: 650px) {
@@ -42,6 +56,15 @@
 
     .heroTitle {
         line-height: 2.8rem;
+    }
+
+    .appsImageContainer {
+        height: 301px;
+        width: 442px;
+    }
+
+    .appsContent {
+        width: calc(100% - 442px);
     }
 }
 

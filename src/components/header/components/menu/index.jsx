@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import { Avatar, Badge, Button, IconButton } from "@mui/material"
 import classNames from "classnames";
-import { styled } from "@mui/material/styles"
+import { styled } from "@mui/material/styles";
+import { useRouter } from "next/router"
 
 import classes from "./styles.module.css";
 
@@ -22,6 +23,8 @@ const CustomBadge = styled(Badge)({
 })
 
 const Menu = () => {
+    const { pathname } = useRouter();
+
     const openDrawer = useRef(null);
 
     const onClick = () => openDrawer.current?.();
@@ -30,7 +33,8 @@ const Menu = () => {
         <>
             <CustomBadge className={classes.badge} variant="dot">
                 <Button
-                    className="bg-white px-2 py-1 rounded-xl hover:bg-gray-100"
+                    className={classNames("bg-white px-2 py-1 rounded-xl hover:bg-gray-100",
+                    { "border border-gray-300 border-solid ": pathname !== "/" })}
                     onClick={onClick}>
                         <MenuIcon className="text-black" />
                         <Avatar 

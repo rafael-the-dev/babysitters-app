@@ -9,11 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import classes from "./styles.module.css"
 
 import HeaderHome from "./components/header-home";
+import HeaderOthers from "./components/header-others"
 
 const Header = () => {
     const { pathname } = useRouter();
 
-    return pathname === "/" ? <HeaderHome /> : <></>;
+    return pathname === "/" ? <HeaderHome /> : <HeaderOthers />;
 };
 
 export default Header;

@@ -7,6 +7,7 @@ import classes from "./styles.module.css";
 
 import VerifiedIcon from '@mui/icons-material/Verified';
 
+import ListItem from "src/components/babysitter-list-item"
 import Rating from "src/components/blue-rating"
 
 const Container = () => {
@@ -47,7 +48,7 @@ const Container = () => {
                     <div className="flex items-center">
                         <Rating value={4} /> 1 Avaliação 
                     </div>
-                    <span className="font-bold ml-3">Supersiter</span>
+                    <span className="font-bold ml-3">Supersitster</span>
                 </div>
                 <Typography
                     component="p"
@@ -58,6 +59,46 @@ const Container = () => {
                     momentos de qualidade com crianças.
                 </Typography>
             </div>
+            <ul className="border-t border-gray-400 border-solid px-5 pt-8 mt-8">
+                <ListItem 
+                    description="> 2 anos"
+                    title="Experiência de babysitting"
+                    titleComponent="h2"
+                />
+                <ListItem 
+                    description="Criança (Pré-escolar) • Criança (Ensino Básico) • Adolescente"
+                    title="Experiência com a faixa etária"
+                    titleComponent="h2"
+                />
+                <ListItem 
+                    description="Adriana Bonifácio tem uma certificado em cuidados para crianças com necessidades especiais. Entre diretamente em contacto com Adriana Bonifácio para verificar as certificações. Saber mais"
+                    title="Experiência com crianças com necessidades especiais"
+                    titleComponent="h2"
+                />
+            </ul>
+            <ul className="border-t border-gray-400 border-solid px-5 pt-8 mt-8">
+                <ListItem 
+                    description="Supersitters são babysitters que prestaram um excelente serviço na comunidade Babysits."
+                    title="Adriana Bonifácio é um(a) Supersitter"
+                    titleComponent="h2"
+                />
+                <ListItem 
+                    description="Adriana Bonifácio forneceu com êxito um documento de identificação oficial. "
+                    title="Documento de identificação"
+                    titleComponent="h2"
+                />
+                <ListItem 
+                    description="Adriana Bonifácio forneceu o Registo criminal, e este foi verificado pela Babysits. Saber mais
+                    Emitido em: 16 de fevereiro de 2022"
+                    title="Registo criminal"
+                    titleComponent="h2"
+                />
+                <ListItem 
+                    description="Adriana Bonifácio tem certificação em primeiros socorros. Entre em contacto diretamente com Adriana Bonifácio para verificar as certificações."
+                    title="Certificado de primeiros socorros"
+                    titleComponent="h2"
+                />
+            </ul>
         </main>
     );
 };

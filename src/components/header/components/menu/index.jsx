@@ -52,8 +52,8 @@ const Menu = () => {
                     <ul className="border-b border-solid border-gray-400 pb-3">
                         <ListItem href="/" label="Faça o download da aplicação" />
                         <ListItem href="/" label="Dicas e artigos" />
-                        <ListItem href="/" label="Como funciona" />
-                        <ListItem href="babysitter" label="Confiança e Segurança" />
+                        <ListItem href="babysitter" label="Como funciona" />
+                        <ListItem href="confianca" label="Confiança e Segurança" />
                     </ul>
                     <ul className="pt-3">
                         <ListItem href="/" label="Iniciar sessão" />

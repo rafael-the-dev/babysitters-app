@@ -1,0 +1,21 @@
+
+.hero {
+    height: 150px;
+}
+
+.imageContainer {
+    height: 100px;
+    width: 100px;
+}
+
+.imageContainer img {
+    border-radius: .75rem;
+}
+
+.index::before {
+    content: "." !important;
+    font-size: 1.2rem;
+    left: 0;
+    top: 0;
+    transform: translate(0px, -38%);
+}

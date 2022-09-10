@@ -13,10 +13,12 @@ import ComoFunciona from "src/components/como-funciona";
 import DescubraMais from "src/components/home-components/descubra-mais";
 import Link from "src/components/link"
 import Seguranca from "src/components/home-components/seguranca";
+import Routes from "src/components/home-components/links"
 
 const Home = () => {
     const swapText = useRef(null);
     const currentIndex = useRef(1);
+
 
     useEffect(() => {
         const list = [ "famílias", "babysitters", "amas" ];
@@ -148,17 +150,7 @@ const Home = () => {
                     </Typography>
                 </div>
             </section>
-            <section className="flex flex-col px-5 py-12">
-                <div>
-                    <div className="md:mr-2 md:w-1/2">
-                        <Typography 
-                            className="font-bold text-2xl"
-                            component="h2">
-                            O que você está procurando?
-                        </Typography>
-                    </div>
-                </div>
-            </section>
+            <Routes />
         </main>
     );
 };

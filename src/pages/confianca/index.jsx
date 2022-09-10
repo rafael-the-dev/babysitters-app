@@ -18,7 +18,18 @@ const Container = () => {
                 </Typography>
             </DefaultHero>
             <section className="px-5 py-12">
-                <ul className="flex flex-wrap items-stretch justify-between">
+                <Typography
+                    component="h2"
+                    className="font-semibold text-lg sm:text-xl lg:text-2xl">
+                    O que pode fazer para tornar a sua experiência segura
+                </Typography>
+                <Typography
+                    component="p"
+                    className={classNames(classes.description, "mt-4")}>
+                    Na Babysits, acreditamos em conceder autoridade aos nossos utilizadores para tomarem as 
+                    suas próprias decisões. Aqui deixamos alguns conselhos para garantir uma experiência segura na nossa plataforma:
+                </Typography>
+                <ul className="flex flex-wrap items-stretch justify-between mt-12">
                     <Card 
                         description="Utilize o serviço de mensagens da Babysits, que automaticamente detecta fraudes e comportamentos suspeitos. Nunca inclua informações de contacto na descrição do seu perfil."
                         icon="https://cdn.babysits.com/content/page/trust/tips/01-communicate-through-babysits.png"

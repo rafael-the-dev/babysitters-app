@@ -17,7 +17,54 @@ const Container = () => {
                     Resulta porque há confiança
                 </Typography>
             </DefaultHero>
-            <section className="px-5 py-12">
+            <section className="border-b border-gray-400 border-solid mt-8 px-5 py-12">
+                <Typography
+                    component="h2"
+                    className="font-semibold text-lg sm:text-xl lg:text-2xl">
+                    Medidas de confiança e segurança da Babysits
+                </Typography>
+                <Typography
+                    component="p"
+                    className={classNames(classes.description, "mt-4")}>
+                    Nada é mais importante do que a confiança e segurança quando procuramos uma babysitter ou um 
+                    trabalho de babysitting. Como tal, toda a comunidade Babysits deve trabalhar em conjunto 
+                    para garantir uma boa experiência na plataforma. Aqui apresentamos um resumo das medidas 
+                    mais importantes praticadas pela Babysits e as que cada utilizador pode tomar:
+                </Typography>
+                <ul className="flex flex-wrap items-stretch justify-between mt-12">
+                    <Card 
+                        description="Os utilizadores podem obter uma conta verificada ao fornecer um documento de identificação (p. ex.: carta de condução, passaporte, cartão do cidadão.)."
+                        icon="https://cdn.babysits.com/content/page/trust/measures/01-id-verification.png"
+                        title="Verificação de documento de identificação"
+                    />
+                    <Card 
+                        description="Saiba mais sobre as babysitters e sobre as famílias através dos testemunhos de outros membros da comunidade (referências e avaliações)."
+                        icon="https://cdn.babysits.com/content/page/trust/measures/02-reviews-references.png"
+                        title="Avaliações e Referências"
+                    />
+                    <Card 
+                        description="Tire partido do nosso sistema de mensagens que automaticamente deteta fraudes e comportamentos suspeitos."
+                        icon="https://cdn.babysits.com/content/page/trust/measures/03-secure-messaging.png"
+                        title="Envio seguro de mensagens"
+                    />
+                    <Card 
+                        description="Utilizamos um sistema seguro de pagamentos que nunca partilha com terceiros os dados do seu cartão de crédito ou conta bancária. Pagar através da Babysits não exige dinheiro vivo, é conveniente e mantém os seus dados em segurança."
+                        icon="https://cdn.babysits.com/content/page/trust/measures/06-secure-payments.png"
+                        title="Pagamentos seguros"
+                    />
+                    <Card 
+                        description="As babysitters e as famílias podem verificar os seus perfis através do endereço de e-mail, número de telefone e outros perfis online. Consulte o perfil do utilizador para ver as informações verificadas."
+                        icon="https://cdn.babysits.com/content/page/trust/measures/04-profile-verifications.png"
+                        title="Verificações de perfil"
+                    />
+                    <Card 
+                        description="A Babysits possui um conjunto de normas comunitárias que esperamos que todos os membros cumpram. Todos os membros concordam com as normas e os termos de serviço ao registarem-se na plataforma."
+                        icon="https://cdn.babysits.com/content/page/trust/measures/05-community-standards.png"
+                        title="Normas comunitárias"
+                    />
+                </ul>
+            </section>
+            <section className="px-5 mt-8 py-12">
                 <Typography
                     component="h2"
                     className="font-semibold text-lg sm:text-xl lg:text-2xl">

@@ -36,7 +36,7 @@ const Container = () => {
                             className="font-bold text-lg">
                             Adriana Bonifácio
                         </Typography>
-                        <div className="flex items-center mt-2 sm:mt-0">
+                        <div className="flex items-center mt-2 sm:mt-0 sm:ml-3">
                             <VerifiedIcon />
                             <span className={classNames(classes.index, "font-bold ml-2 pl-4 relative before:absolute")}>24</span>
                         </div>

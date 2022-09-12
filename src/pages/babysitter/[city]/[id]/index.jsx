@@ -5,9 +5,17 @@ import classNames from "classnames";
 
 import classes from "./styles.module.css";
 
+import AccessibilityOutlinedIcon from '@mui/icons-material/AccessibilityOutlined';
+import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
+import CarIcon from "public/icons/car-svgrepo-com.svg";
+import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShortcutIcon from '@mui/icons-material/Shortcut';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';
+import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
 import Link from "src/components/link"
@@ -142,16 +150,67 @@ const Container = () => {
                             titleComponent="h2"
                         />
                     </ul>
+                    <section className="border-t border-gray-400 border-solid mt-12 px-5 py-8">
+                        <Typography
+                            component="h2"
+                            className="font-bold text-lg">
+                            Sobre mim
+                        </Typography>
+                        <ul className={classNames(classes.sobreMimList, "flex flex-wrap justify-between mt-6")}>
+                            <ListItem 
+                                description="Não"
+                                icon={<AssignmentIndOutlinedIcon />}
+                                title="Carta de condução"
+                            />
+                            <ListItem 
+                                description="Não"
+                                icon={<DirectionsCarOutlinedIcon />}
+                                title="Carro"
+                            />
+                            <ListItem 
+                                description="Não"
+                                icon={<AccessibilityOutlinedIcon />}
+                                title="Tem filhos"
+                            />
+                            <ListItem 
+                                description="Não"
+                                icon={<SmokingRoomsOutlinedIcon />}
+                                title="Fumante"
+                            />
+                            <ListItem 
+                                description="Na casa da família"
+                                icon={<HomeOutlinedIcon />}
+                                title="Local de babysitting preferido"
+                            />
+                            <ListItem 
+                                description="Português"
+                                icon={<TranslateOutlinedIcon />}
+                                title="Línguas que falo"
+                            />
+                            <ListItem 
+                                description="Mestrado"
+                                icon={<SchoolOutlinedIcon />}
+                                title="Educação"
+                            />
+                            <ListItem 
+                                description="5 vezes"
+                                icon={<FavoriteBorderIcon />}
+                                title="Favoritos"
+                            />
+                            <li></li>
+                        </ul>
+                    </section>
                 </Grid>
                 <Grid className="bg-white fixed bottom-0 px-5 pb-4 w-full z-10 xl:pb-0 xl:relative xl:pl-0" item xs={12} xl={4}>
-                    <div className={classNames(classes.contactContainer, "flex flex-col items-stretch mt-4 rounded-lg")}>
+                    <div className={classNames(classes.contactContainer, "xl:items-stretch",
+                        "flex flex-col items-stretch justify-between mt-4 rounded-lg sm:flex-row sm:items-center xl:flex-col")}>
                         <Typography
                             component="h2"
                             className="font-bold">
                             8,00 €/hora <br/>
                             <span className="font-medium text-neutral-700">Valor por hora</span>
                         </Typography>
-                        <Link className="mt-4" href="/">
+                        <Link className="mt-4 sm:mt-0 xl:mt-4" href="/">
                             <Button className="bg-cyan-700 capitalize px-4 rounded-lg text-white w-full hover:bg-cyan-400">
                                 Contactar Adriana Bonifacio
                             </Button>
@@ -159,13 +218,6 @@ const Container = () => {
                     </div>
                 </Grid>
             </Grid>
-            <section>
-                <Typography
-                    component="h2"
-                    className="font-bold text-lg">
-                    Sobre mim
-                </Typography>
-            </section>
         </main>
     );
 };

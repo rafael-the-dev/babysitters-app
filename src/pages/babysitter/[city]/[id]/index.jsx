@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { Button, IconButton, Typography } from "@mui/material";
+import { Breadcrumbs, Hidden, IconButton, Typography } from "@mui/material";
 import classNames from "classnames";
 
 import classes from "./styles.module.css";
@@ -18,12 +18,22 @@ const Container = () => {
 
     return (
         <main>
-            <div className="flex items-center justify-between px-5">
+            <div className="flex items-center justify-between py-2 px-5">
                 <div>
-                    <Link className="capitalize flex items-center font-medium text-black hover:underline" href="/">
-                        <ArrowBackIosNewIcon className="text-sm" />
-                        Babysitter porto
-                    </Link>
+                    <Hidden mdUp>
+                        <Link className="capitalize flex items-center font-medium text-black hover:underline" href="/">
+                            <ArrowBackIosNewIcon className="text-sm" />
+                            Babysitter porto
+                        </Link>
+                    </Hidden>
+                    <Hidden mdDown>
+                        <Breadcrumbs>
+                            <Link className="capitalize font-medium text-sm text-neutral-800 hover:font-semibold" href="/">Babysits</Link>
+                            <Link className="capitalize font-medium text-sm text-neutral-800 hover:font-semibold" href="/">Procuro babysitter</Link>
+                            <Link className="capitalize font-medium text-sm text-neutral-800 hover:font-semibold" href="/">Babysitter porto</Link>
+                            <Link className="capitalize font-medium text-sm text-neutral-800 hover:font-semibold" href="/">Adriana Bonifácio</Link>
+                        </Breadcrumbs>
+                    </Hidden>
                 </div>
                 <div className="flex">
                     <IconButton>

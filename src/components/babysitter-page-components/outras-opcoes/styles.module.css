@@ -1,0 +1,9 @@
+.slider {
+    height: 270px;
+}
+
+@media screen and (min-width: 768px) {
+    .slider {
+        height: 340px;
+    }
+}

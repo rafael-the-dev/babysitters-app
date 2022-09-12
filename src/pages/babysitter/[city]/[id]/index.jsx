@@ -31,6 +31,7 @@ import ViewAgendaOutlinedIcon from '@mui/icons-material/ViewAgendaOutlined';
 
 import Link from "src/components/link"
 import ListItem from "src/components/babysitter-list-item"
+import OutrasOpcoes from "src/components/babysitter-page-components/outras-opcoes"
 import Rating from "src/components/blue-rating"
 
 const Container = () => {
@@ -114,7 +115,7 @@ const Container = () => {
                         </div>
                         <Typography
                             component="p"
-                            className="leading-6 mt-4 text-sm">
+                            className="leading-6 mt-4 text-sm sm:leading-7 sm:text-base">
                             Olá, o meu nome é Adriana Bonifácio. cadora de Infância e Professora do 1.º Ciclo do 
                             Ensino Básico. Considero-me uma pessoa compreensiva, organizada, pontual, responsável, 
                             carinhosa, dinâmica e criativa, características estas que considero essenciais para partilhar 
@@ -335,6 +336,7 @@ const Container = () => {
                         </ul>
                     </div>
                 </div>
+                <OutrasOpcoes />
             </div>
         </main>
     );

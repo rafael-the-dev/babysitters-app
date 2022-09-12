@@ -12,7 +12,7 @@ const ListItem = ({ description, icon, title, titleComponent }) => {
             <div className="ml-3">
                 <Typography
                     component={ titleComponent ?? "h3" }
-                    className="font-bold">
+                    className="font-semibold">
                     { title }
                 </Typography>
                 <Typography

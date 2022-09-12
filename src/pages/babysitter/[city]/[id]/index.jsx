@@ -1,6 +1,6 @@
 
 import Image from "next/image";
-import { Breadcrumbs, Hidden, IconButton, Typography } from "@mui/material";
+import { Button, Breadcrumbs, Hidden, Grid, IconButton, Typography } from "@mui/material";
 import classNames from "classnames";
 
 import classes from "./styles.module.css";
@@ -70,62 +70,81 @@ const Container = () => {
                     </div>
                 </div>
             </section>
-            <div className="px-5 py-8">
-                <div className="flex items-center">
-                    <div className="flex flex-col sm:flex-row sm:items-center">
-                        <Rating value={4} /> 1 Avaliação 
+            <Grid container className="xl:justify-between">
+                <Grid className="xl:pr-5" item xs={12} xl={8}>
+                    <div className="px-5 py-8">
+                        <div className="flex items-center">
+                            <div className="flex flex-col sm:flex-row sm:items-center">
+                                <Rating value={4} /> 1 Avaliação 
+                            </div>
+                            <span className="font-bold ml-3">Supersitster</span>
+                        </div>
+                        <Typography
+                            component="p"
+                            className="leading-6 mt-4 text-sm">
+                            Olá, o meu nome é Adriana Bonifácio. cadora de Infância e Professora do 1.º Ciclo do 
+                            Ensino Básico. Considero-me uma pessoa compreensiva, organizada, pontual, responsável, 
+                            carinhosa, dinâmica e criativa, características estas que considero essenciais para partilhar 
+                            momentos de qualidade com crianças.
+                        </Typography>
                     </div>
-                    <span className="font-bold ml-3">Supersitster</span>
-                </div>
-                <Typography
-                    component="p"
-                    className="leading-6 mt-4 text-sm">
-                    Olá, o meu nome é Adriana Bonifácio. cadora de Infância e Professora do 1.º Ciclo do 
-                    Ensino Básico. Considero-me uma pessoa compreensiva, organizada, pontual, responsável, 
-                    carinhosa, dinâmica e criativa, características estas que considero essenciais para partilhar 
-                    momentos de qualidade com crianças.
-                </Typography>
-            </div>
-            <ul className="border-t border-gray-400 border-solid px-5 pt-8 mt-8">
-                <ListItem 
-                    description="> 2 anos"
-                    title="Experiência de babysitting"
-                    titleComponent="h2"
-                />
-                <ListItem 
-                    description="Criança (Pré-escolar) • Criança (Ensino Básico) • Adolescente"
-                    title="Experiência com a faixa etária"
-                    titleComponent="h2"
-                />
-                <ListItem 
-                    description="Adriana Bonifácio tem uma certificado em cuidados para crianças com necessidades especiais. Entre diretamente em contacto com Adriana Bonifácio para verificar as certificações. Saber mais"
-                    title="Experiência com crianças com necessidades especiais"
-                    titleComponent="h2"
-                />
-            </ul>
-            <ul className="border-t border-gray-400 border-solid px-5 pt-8 mt-8">
-                <ListItem 
-                    description="Supersitters são babysitters que prestaram um excelente serviço na comunidade Babysits."
-                    title="Adriana Bonifácio é um(a) Supersitter"
-                    titleComponent="h2"
-                />
-                <ListItem 
-                    description="Adriana Bonifácio forneceu com êxito um documento de identificação oficial. "
-                    title="Documento de identificação"
-                    titleComponent="h2"
-                />
-                <ListItem 
-                    description="Adriana Bonifácio forneceu o Registo criminal, e este foi verificado pela Babysits. Saber mais
-                    Emitido em: 16 de fevereiro de 2022"
-                    title="Registo criminal"
-                    titleComponent="h2"
-                />
-                <ListItem 
-                    description="Adriana Bonifácio tem certificação em primeiros socorros. Entre em contacto diretamente com Adriana Bonifácio para verificar as certificações."
-                    title="Certificado de primeiros socorros"
-                    titleComponent="h2"
-                />
-            </ul>
+                    <ul className="border-t border-gray-400 border-solid px-5 pt-8 mt-8">
+                        <ListItem 
+                            description="> 2 anos"
+                            title="Experiência de babysitting"
+                            titleComponent="h2"
+                        />
+                        <ListItem 
+                            description="Criança (Pré-escolar) • Criança (Ensino Básico) • Adolescente"
+                            title="Experiência com a faixa etária"
+                            titleComponent="h2"
+                        />
+                        <ListItem 
+                            description="Adriana Bonifácio tem uma certificado em cuidados para crianças com necessidades especiais. Entre diretamente em contacto com Adriana Bonifácio para verificar as certificações. Saber mais"
+                            title="Experiência com crianças com necessidades especiais"
+                            titleComponent="h2"
+                        />
+                    </ul>
+                    <ul className="border-t border-gray-400 border-solid px-5 pt-8 mt-8">
+                        <ListItem 
+                            description="Supersitters são babysitters que prestaram um excelente serviço na comunidade Babysits."
+                            title="Adriana Bonifácio é um(a) Supersitter"
+                            titleComponent="h2"
+                        />
+                        <ListItem 
+                            description="Adriana Bonifácio forneceu com êxito um documento de identificação oficial. "
+                            title="Documento de identificação"
+                            titleComponent="h2"
+                        />
+                        <ListItem 
+                            description="Adriana Bonifácio forneceu o Registo criminal, e este foi verificado pela Babysits. Saber mais
+                            Emitido em: 16 de fevereiro de 2022"
+                            title="Registo criminal"
+                            titleComponent="h2"
+                        />
+                        <ListItem 
+                            description="Adriana Bonifácio tem certificação em primeiros socorros. Entre em contacto diretamente com Adriana Bonifácio para verificar as certificações."
+                            title="Certificado de primeiros socorros"
+                            titleComponent="h2"
+                        />
+                    </ul>
+                </Grid>
+                <Grid className="xl:pr-5" item xs={12} xl={4}>
+                    <div className={classNames(classes.contactContainer, "flex flex-col items-stretch mt-4 rounded-lg")}>
+                        <Typography
+                            component="h2"
+                            className="font-bold">
+                            8,00 €/hora <br/>
+                            <span className="font-medium text-neutral-700">Valor por hora</span>
+                        </Typography>
+                        <Link className="mt-4" href="/">
+                            <Button className="bg-cyan-700 capitalize px-4 rounded-lg text-white w-full">
+                                Contactar Adriana Bonifacio
+                            </Button>
+                        </Link>
+                    </div>
+                </Grid>
+            </Grid>
         </main>
     );
 };

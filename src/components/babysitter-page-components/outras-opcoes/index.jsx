@@ -1,10 +1,12 @@
 import { useCallback, useRef } from "react";
+import Typography from "@mui/material/Typography"
 import classNames from "classnames"
 
 import classes from "./styles.module.css"
 
 import Carousel from "src/components/carousel";
-import Card from "./components/card"
+import Card from "./components/card";
+import Link from "src/components/link"
 
 const Container = () => {
     const sliderRef = useRef(null);
@@ -58,6 +60,11 @@ const Container = () => {
 
     return (
         <section className="border-t border-gray-400 border-solid mt-8 py-12 mb-8">
+            <Typography
+                component="h2"
+                className="font-bold mb-8 text-lg md:text-xl lg:text-2xl">
+                Descubra outras opções dentro e nos arredores de Porto
+            </Typography>
             <Carousel
                 currentIndex={currentIndex}
                 childrenList={childrenList}
@@ -72,6 +79,13 @@ const Container = () => {
                     ))
                 }
             </Carousel>
+            <div className="flex flex-wrap items-center mt-4">
+                <Link className="text-black text-medium hover:underline" href="/">Babysitters</Link>
+                <span className="h-10 text-lg mx-3">.</span>
+                <Link className="text-black text-medium hover:underline" href="/">Amas</Link>
+                <span className="h-10 text-lg mx-3">.</span>
+                <Link className="text-black text-medium hover:underline" href="/">Ofertas de trabalho de babysitting</Link>
+            </div>
         </section>
     );
 };

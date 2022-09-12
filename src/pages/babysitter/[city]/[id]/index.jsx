@@ -1,12 +1,16 @@
 
 import Image from "next/image";
-import { Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import classNames from "classnames";
 
 import classes from "./styles.module.css";
 
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ShortcutIcon from '@mui/icons-material/Shortcut';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
+import Link from "src/components/link"
 import ListItem from "src/components/babysitter-list-item"
 import Rating from "src/components/blue-rating"
 
@@ -14,8 +18,21 @@ const Container = () => {
 
     return (
         <main>
-            <div>
-
+            <div className="flex items-center justify-between px-5">
+                <div>
+                    <Link className="capitalize flex items-center font-medium text-black hover:underline" href="/">
+                        <ArrowBackIosNewIcon className="text-sm" />
+                        Babysitter porto
+                    </Link>
+                </div>
+                <div className="flex">
+                    <IconButton>
+                        <ShortcutIcon />
+                    </IconButton>
+                    <IconButton>
+                        <FavoriteBorderIcon />
+                    </IconButton>
+                </div>
             </div>
             <section 
                 className={classNames(classes.hero, `bg-cover bg-center bg-no-repeat flex items-center px-5`)}
@@ -45,7 +62,7 @@ const Container = () => {
             </section>
             <div className="px-5 py-8">
                 <div className="flex items-center">
-                    <div className="flex items-center">
+                    <div className="flex flex-col sm:flex-row sm:items-center">
                         <Rating value={4} /> 1 Avaliação 
                     </div>
                     <span className="font-bold ml-3">Supersitster</span>

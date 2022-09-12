@@ -7,16 +7,27 @@ import classes from "./styles.module.css";
 
 import AccessibilityOutlinedIcon from '@mui/icons-material/AccessibilityOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
-import CarIcon from "public/icons/car-svgrepo-com.svg";
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import CasinoOutlinedIcon from '@mui/icons-material/CasinoOutlined';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import ContentCutOutlinedIcon from '@mui/icons-material/ContentCutOutlined';
 import DirectionsCarOutlinedIcon from '@mui/icons-material/DirectionsCarOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
+import LoopOutlinedIcon from '@mui/icons-material/LoopOutlined';
+import MusicNoteOutlinedIcon from '@mui/icons-material/MusicNoteOutlined';
+import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import ShortcutIcon from '@mui/icons-material/Shortcut';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import SmokingRoomsOutlinedIcon from '@mui/icons-material/SmokingRoomsOutlined';
 import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
+import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import ViewAgendaOutlinedIcon from '@mui/icons-material/ViewAgendaOutlined';
 
 import Link from "src/components/link"
 import ListItem from "src/components/babysitter-list-item"
@@ -200,6 +211,54 @@ const Container = () => {
                             <li></li>
                         </ul>
                     </section>
+                    <div className="border-t border-gray-400 border-solid mt-12 px-5 py-8 sm:flex sm:pt-12">
+                        <div className="sm:w-1/2">
+                            <Typography
+                                component="h2"
+                                className="font-bold text-lg">
+                                Habilidades
+                            </Typography>
+                            <ul className="mt-3">
+                                <li className="flex items-center mb-2">
+                                    <ContentCutOutlinedIcon className="mr-2" />
+                                    Trabalhos manuais
+                                </li>
+                                <li className="flex items-center mb-2">
+                                    <CreateOutlinedIcon className="mr-2" />
+                                    Desenhar
+                                </li>
+                                <li className="flex items-center mb-2">
+                                    <LocalLibraryOutlinedIcon className="mr-2" />
+                                    Ler
+                                </li>
+                                <li className="flex items-center mb-2">
+                                    <MusicNoteOutlinedIcon className="mr-2" />
+                                    Música
+                                </li>
+                                <li className="flex items-center mb-2">
+                                    <CasinoOutlinedIcon className="mr-2" />
+                                    Jogos
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="border-t border-gray-400 border-solid mt-8 pt-8 sm:border-t-0 sm:mt-0 sm:pt-0 sm:w-1/2">
+                            <Typography
+                                component="h2"
+                                className="font-bold text-lg">
+                                Tenho disponibilidade para/Estou à vontade com
+                            </Typography>
+                            <ul className="mt-3">
+                                <li className="flex items-center mb-2">
+                                    <PetsOutlinedIcon className="mr-2" />
+                                    Animais de estimação
+                                </li>
+                                <li className="flex items-center">
+                                    <ViewAgendaOutlinedIcon className="mr-2" />
+                                    Apoiar com trabalhos de casa
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </Grid>
                 <Grid className="bg-white fixed bottom-0 px-5 pb-4 w-full z-10 xl:pb-0 xl:relative xl:pl-0" item xs={12} xl={4}>
                     <div className={classNames(classes.contactContainer, "xl:items-stretch",
@@ -218,6 +277,65 @@ const Container = () => {
                     </div>
                 </Grid>
             </Grid>
+            <div className="px-5">
+                <div className="border-t border-gray-400 border-solid pt-8 md:flex md:pt-12">
+                    <div className="md:w-1/2">
+                        <Typography
+                            component="h2"
+                            className="font-bold text-lg">
+                            Adriana Bonifácio forneceu
+                        </Typography>
+                        <ul className="mt-3">
+                            <li className="flex items-center mb-2">
+                                <CheckCircleOutlineOutlinedIcon className="mr-2 text-cyan-400" />
+                                Documento de identificação
+                            </li>
+                            <li className="flex items-center mb-2">
+                                <CheckCircleOutlineOutlinedIcon className="mr-2 text-cyan-400" />
+                                Endereço de email
+                            </li>
+                            <li className="flex items-center mb-2">
+                                <CheckCircleOutlineOutlinedIcon className="mr-2 text-cyan-400" />
+                                Conta LinkedIn
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="border-t border-gray-400 border-solid mt-8 pt-8 md:border-t-0 md:mt-0 md:pt-0 md:w-1/2">
+                        <Typography
+                            component="h2"
+                            className="font-bold text-lg">
+                            Atividade
+                        </Typography>
+                        <ul className="mt-6">
+                            <ListItem 
+                                description="Setembro 2021"
+                                icon={<CreateOutlinedIcon />}
+                                title="Membro desde"
+                            />
+                            <ListItem 
+                                description="100%"
+                                icon={<ThumbUpOutlinedIcon />}
+                                title="Mensagens respondidas"
+                            />
+                            <ListItem 
+                                description="6 horas"
+                                icon={<TimerOutlinedIcon />}
+                                title="Tempo médio de resposta"
+                            />
+                            <ListItem 
+                                description="1"
+                                icon={<TodayOutlinedIcon />}
+                                title="Marcações"
+                            />
+                            <ListItem 
+                                description="0"
+                                icon={<LoopOutlinedIcon />}
+                                title="Marcações repetidas"
+                            />
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </main>
     );
 };

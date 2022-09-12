@@ -36,12 +36,26 @@ const Container = () => {
                     </Hidden>
                 </div>
                 <div className="flex">
-                    <IconButton>
-                        <ShortcutIcon />
-                    </IconButton>
-                    <IconButton>
-                        <FavoriteBorderIcon />
-                    </IconButton>
+                    <Hidden xlUp>
+                        <IconButton>
+                            <ShortcutIcon />
+                        </IconButton>
+                        <IconButton>
+                            <FavoriteBorderIcon />
+                        </IconButton>
+                    </Hidden>
+                    <Hidden xlDown>
+                        <Button
+                            className="normal-case text-black underline"
+                            startIcon={<ShortcutIcon />}>
+                            Partilhar
+                        </Button>
+                        <Button
+                            className="normal-case text-black underline"
+                            startIcon={<FavoriteBorderIcon />}>
+                            Guardar
+                        </Button>
+                    </Hidden>
                 </div>
             </div>
             <section 
@@ -129,7 +143,7 @@ const Container = () => {
                         />
                     </ul>
                 </Grid>
-                <Grid className="xl:pr-5" item xs={12} xl={4}>
+                <Grid className="bg-white fixed bottom-0 px-5 pb-4 w-full z-10 xl:pb-0 xl:relative xl:pl-0" item xs={12} xl={4}>
                     <div className={classNames(classes.contactContainer, "flex flex-col items-stretch mt-4 rounded-lg")}>
                         <Typography
                             component="h2"
@@ -138,13 +152,20 @@ const Container = () => {
                             <span className="font-medium text-neutral-700">Valor por hora</span>
                         </Typography>
                         <Link className="mt-4" href="/">
-                            <Button className="bg-cyan-700 capitalize px-4 rounded-lg text-white w-full">
+                            <Button className="bg-cyan-700 capitalize px-4 rounded-lg text-white w-full hover:bg-cyan-400">
                                 Contactar Adriana Bonifacio
                             </Button>
                         </Link>
                     </div>
                 </Grid>
             </Grid>
+            <section>
+                <Typography
+                    component="h2"
+                    className="font-bold text-lg">
+                    Sobre mim
+                </Typography>
+            </section>
         </main>
     );
 };

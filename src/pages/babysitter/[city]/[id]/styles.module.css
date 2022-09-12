@@ -46,4 +46,10 @@
         box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
         padding: 2rem 1rem;
     }
+
+    .contactCard {
+        position: fixed;
+        top: 100px;
+        width: 28%;
+    }
 }

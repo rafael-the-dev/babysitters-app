@@ -41,7 +41,7 @@ const Container = () => {
             child.style.width = `${width - widthReducer.current}px`;
             child.style.left = `${(width - (widthReducer.current - 20)) * index}px`;
         });
-        console.log(sliderRef)
+        
         sliderRef.current.style.width = `${width * childrenList.current.length}px`;
     }, []);
 
@@ -59,7 +59,7 @@ const Container = () => {
     }, []);
 
     return (
-        <section className="border-t border-gray-400 border-solid mt-8 py-12 mb-8">
+        <section className="border-t border-gray-400 border-solid mt-8 py-12 mb-8 xl:mt-12">
             <Typography
                 component="h2"
                 className="font-bold mb-8 text-lg md:text-xl lg:text-2xl">

@@ -2,7 +2,6 @@
 import { Avatar, Typography } from "@mui/material"
 
 const ListItem = ({ description, icon, title, titleComponent }) => {
-    console.log(typeof icon)
     return (
         <li className="flex mb-4 last:mb-0">
             {

@@ -1,4 +1,4 @@
-
+import { useCallback, useEffect, useRef } from "react"
 import Image from "next/image";
 import { Button, Breadcrumbs, Hidden, Grid, IconButton, Typography } from "@mui/material";
 import classNames from "classnames";
@@ -35,6 +35,29 @@ import OutrasOpcoes from "src/components/babysitter-page-components/outras-opcoe
 import Rating from "src/components/blue-rating"
 
 const Container = () => {
+    const cantactCardRef = useRef(null);
+
+    const scrollHandler = useCallback(() => {
+        const { scrollY } = window;
+
+        if((scrollY < 1600) && (scrollY > 225)) {
+            cantactCardRef.current.classList.add(classes.contactCard);
+            return;
+        }
+
+        cantactCardRef.current.classList.remove(classes.contactCard)
+    }, []);
+
+    useEffect(() => {
+        const currentWindow = window;
+
+        scrollHandler();
+        currentWindow.addEventListener("scroll", scrollHandler);
+
+        return () => {
+            currentWindow.removeEventListener("scroll", scrollHandler);
+        };
+    }, [ scrollHandler ])
 
     return (
         <main>
@@ -262,8 +285,10 @@ const Container = () => {
                     </div>
                 </Grid>
                 <Grid className="bg-white fixed bottom-0 px-5 pb-4 w-full z-10 xl:pb-0 xl:relative xl:pl-0" item xs={12} xl={4}>
-                    <div className={classNames(classes.contactContainer, "xl:items-stretch",
-                        "flex flex-col items-stretch justify-between mt-4 rounded-lg sm:flex-row sm:items-center xl:flex-col")}>
+                    <div 
+                        className={classNames(classes.contactContainer, classes.contactCard, "xl:items-stretch",
+                        "flex flex-col items-stretch justify-between mt-4 rounded-lg sm:flex-row sm:items-center xl:flex-col")}
+                        ref={cantactCardRef}>
                         <Typography
                             component="h2"
                             className="font-bold">

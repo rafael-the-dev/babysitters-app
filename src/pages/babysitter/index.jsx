@@ -1,4 +1,4 @@
-import { useEffect, useId, useMemo } from "react"
+import { useCallback, useEffect, useId, useMemo, useRef } from "react"
 import { Button, Hidden, Typography } from "@mui/material";
 import classNames from "classnames";
 import dynamic from 'next/dynamic'
@@ -12,7 +12,7 @@ import BabysitterCard from "src/components/babysitter-card"
 import Link from "src/components/link";
 import Search from "src/components/search-form";
 import Seguranca from "src/components/home-components/seguranca";
-import ComoFunciona from "src/components/babysitter-page-components/como-funciona"
+import ComoFunciona from "src/components/babysitter-page-components/como-funciona";
 
 const DynamicMap = dynamic(() => import('src/components/leaflet-map'), {
     ssr: false,
@@ -24,10 +24,10 @@ const Container = () => {
     const { lazyFetch } = properties;
     const users = properties.data;
 
+    const babysittersContentRef = useRef(null);
     const id = useId();
 
     const usersData = useMemo(() => {
-        console.log(users)
         if(Boolean(data) && Boolean(users)) {
             return users.map((user, index) => ({
                 ...user,
@@ -36,21 +36,51 @@ const Container = () => {
         }
 
         return [];
-    }, [ data, users ])
+    }, [ data, users ]);
+
+    const scrollHandler = useCallback((e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const { scrollY } = window;
+        console.log(scrollY)
+        //console.log(scrollY, babysittersContentRef)
+        if((scrollY > 40) && (scrollY < 800)) {
+            console.log(scrollY)
+            //window.scrollTo(0, 40);
+            babysittersContentRef.current.scrollIntoView();
+            /*babysittersContentRef.current.scroll({
+                top: babysittersContentRef.current.scrollTop + 5,
+                behavior: 'smooth'
+              })*/
+            return false;
+        }
+    }, [])
 
     useEffect(() => {
         if(data) {
             lazyFetch({ url: "https://jsonplaceholder.typicode.com/users" })
         }
-    }, [ data, lazyFetch ])
+    }, [ data, lazyFetch ]);
+
+    useEffect(() => {
+        const currentWindow = window;
+
+        currentWindow.addEventListener('wheel', scrollHandler, {passive: false});
+
+        return () => {
+            currentWindow.removeEventListener('wheel', scrollHandler);
+        };
+    }, [ scrollHandler ])
 
     return (
         <main className="">
             <FilterContextProvider>
                 <Search />
             </FilterContextProvider>
-            <section className="xl:flex justify-between">
-                <div className={classNames(classes.content, "px-5 xl:pr-4")}>
+            <section 
+                className="xl:flex justify-between">
+                <div className={classNames(classes.content, "px-5 xl:pr-4")}
+                    ref={babysittersContentRef}>
                     <div className="border-b border-solid border-gray-400 py-4">
                         <Typography
                             className="font-bold text-2xl"
@@ -79,7 +109,10 @@ const Container = () => {
                         }
                     </div>
                 </div>
-                <Hidden lgDown>
+                <div className="h-full grow bg-cyan-50">
+                    <h3>Hello world</h3>
+                </div>
+                <Hidden lgUp>
                     <div className={classNames(classes.mapContainer)}>
                         <DynamicMap />
                     </div>

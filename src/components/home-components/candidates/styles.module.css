@@ -1,0 +1,12 @@
+
+
+.jobsList {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@media screen and (min-width: 1200px) {
+    .jobsContainer {
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+}

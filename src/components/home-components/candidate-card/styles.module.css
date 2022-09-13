@@ -1,0 +1,24 @@
+.avatar {
+    height: 40px;
+    width: 40px;
+}
+
+.description {
+    text-overflow:ellipsis;
+    overflow:hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+.price {
+    width: 120px;
+}
+
+@media screen and (min-width: 768px) {
+    .avatar {
+        height: 70px;
+        width: 70px;
+    }
+}

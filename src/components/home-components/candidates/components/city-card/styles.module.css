@@ -1,0 +1,34 @@
+
+.container {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.link {
+    height: 270px;
+}
+
+.link img {
+    object-position: center;
+}
+
+.content {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .1), rgba(0, 0, 0, .5));
+}
+
+@media screen and (min-width: 600px) {
+    .container {
+        width: 48%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .container {
+        width: 23.5%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .link {
+       height: 300px;
+    }
+}

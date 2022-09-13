@@ -17,7 +17,7 @@ import Drawer from "../../../drawer-form";
 import SearchFilters from "../../../tabs";
 
 const Form = () => {
-    const { babysitter: { type }} = useContext(AppContext)
+    const { addUser, filters: { type } } = useContext(AppContext)
     const [ open, setOpen ] = useState(false);
 
     const contentRef = useRef(null);
@@ -30,8 +30,8 @@ const Form = () => {
 
     const labelFilter = useMemo(() => {
         const types = {
-            "CAES": "cães",
-            "CRIANCAS": "crianças"
+            "CAES": "dogsitter",
+            "CRIANCAS": "babysitter"
         };
 
         return types[type];
@@ -62,6 +62,8 @@ const Form = () => {
             setOpen(b => !b);
         }
     }, []);
+
+    const clickHandler = useCallback(prop => () => addUser(prop), []);
     
     const scrollHandler = useCallback(() => {
         const { innerWidth, scrollY } = window;
@@ -117,10 +119,15 @@ const Form = () => {
                 ref={contentRef}>
                 <div className={classNames("flex justify-center")}>
                     <Link 
-                        className={classNames(classes.selectedLink, "font-semibold mr-4 text-white text-sm text-center md:text-base after:block after:bg-black after:mx-auto")} href="/">
+                        className={classNames(classes.selectedLink, "font-semibold mr-4 text-white text-sm text-center md:text-base after:block after:bg-black after:mx-auto")} 
+                        href="/"
+                        onClick={clickHandler("EMPLOYERS")}>
                         Procuro babysitter
                     </Link>
-                    <Link className={classNames(classes.notSelectedLink, "font-semibold text-white text-sm text-center md:ml-4 md:text-base after:block after:bg-black after:mx-auto")} href="/">
+                    <Link 
+                        className={classNames(classes.notSelectedLink, "font-semibold text-white text-sm text-center md:ml-4 md:text-base after:block after:bg-black after:mx-auto")} 
+                        href="/"
+                        onClick={clickHandler("CANDIDATES")}>
                         Trabalhos de babysitting
                     </Link>
                 </div>
@@ -130,7 +137,7 @@ const Form = () => {
                         <label
                             className="font-semibold text-black text-xs"
                             htmlFor="search-form">
-                            Encontre rapidamente um(a) babysitter { labelFilter }
+                            Encontre rapidamente um(a) { labelFilter }
                         </label>
                         <input 
                             className="border-0 outline-none py-1 w-full"

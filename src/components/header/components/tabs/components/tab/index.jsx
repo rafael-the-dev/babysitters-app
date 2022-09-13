@@ -6,14 +6,14 @@ import classNames from "classnames";
 import { AppContext } from "src/context";
 
 const Tab = ({ id, icon, label }) => {
-    const { babysitter, setBabysitterType } = useContext(AppContext);
+    const { filters: { type }, addType } = useContext(AppContext);
 
-    const clickHandler = useCallback(() => setBabysitterType(id), [ id, setBabysitterType ])
+    const clickHandler = useCallback(() => addType(id), [ id, addType ])
 
     return (
         <Button 
             className={classNames(`border-b border-solid justify-start px-3 rounded-none last:border-0
-            `, babysitter.type === id ? "border-cyan-200 text-cyan-700" : "border-neutral-400 text-black" )}
+            `, type === id ? "border-cyan-200 text-cyan-700" : "border-neutral-400 text-black" )}
             onClick={clickHandler}
             startIcon={icon}>
             { label }

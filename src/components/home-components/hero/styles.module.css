@@ -1,0 +1,83 @@
+
+.videoWrapper, .dogsHero {
+    height: 480px;
+}
+
+.video {
+    object-position: 0 50%;
+}
+
+.heroContentWrapper {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, .5));
+}
+
+.dogsHero {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .4), rgba(0, 0, 0, .5)), url(/images/hero-dogsitting.jpg);
+}
+
+.heroTitle {
+    width: 80%;
+}
+
+.appsImageContainer {
+    height: 150px;
+}
+
+.buttonIcon {
+    height: 30px;
+    width: 22px;
+}
+
+.oqueAcreditamosImageContainer {
+    height: 150px;;
+}
+
+@media screen and (min-width: 600px) {
+    .appsImageContainer {
+        width: 40%
+    }
+
+    .appsContent {
+        width: 55%;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    .videoWrapper, .dogsHero {
+        height: 490px;
+    }
+
+    .heroTitle {
+        line-height: 2.8rem;
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .videoWrapper, .dogsHero {
+        height: 530px;
+    }
+
+    .heroContentWrapper, .dogsHero {
+        padding-left: 15%;
+    }
+
+    .heroTitle {
+        line-height: 2.8rem;
+    }
+
+    .appsImageContainer {
+        height: 301px;
+        width: 442px;
+    }
+
+    .appsContent {
+        width: calc(100% - 442px);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .videoWrapper, .dogsHero {
+        height: 88vh;
+    }
+}

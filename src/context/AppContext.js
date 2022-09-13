@@ -4,17 +4,23 @@ export const AppContext = createContext();
 AppContext.displayName = 'AppContext';
 
 export const AppContextProvider = ({ children }) => {
-    const [ babysitter, setBabysitter ] = useState({
-        type: "CRIANCAS"
+    const [ filters, setFilters ] = useState({
+        type: "CRIANCAS",
+        user: "EMPLOYERS"
     });
 
-    const setBabysitterType = useCallback(type => setBabysitter(props => ({
+    const addType = useCallback(type => setFilters(props => ({
         ...props,
         type
     })), []);
 
+    const addUser = useCallback(user => setFilters(props => ({
+        ...props,
+        user
+    })), []);
+
     return (
-        <AppContext.Provider value={{ babysitter, setBabysitterType }}>
+        <AppContext.Provider value={{ filters, addType, addUser }}>
             { children }
         </AppContext.Provider>
     );

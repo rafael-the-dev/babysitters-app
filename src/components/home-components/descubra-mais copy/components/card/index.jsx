@@ -12,8 +12,6 @@ const StyledRating = styled(Rating)({
 });
 
 const Card = ({ city, name, rating, url }) => {
-    const loader = () => url;
-
     return (
         <Paper 
             component="li" 
@@ -23,7 +21,6 @@ const Card = ({ city, name, rating, url }) => {
                 <Image 
                     alt={name}
                     layout="fill"
-                    loader={loader}
                     src={url}
                 />
             </div>

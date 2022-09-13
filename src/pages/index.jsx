@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useContext, useEffect, useRef } from "react"
 import { Button, Rating, Typography } from "@mui/material"
 import classNames from "classnames";
 import Image from "next/image";
@@ -14,8 +14,11 @@ import DescubraMais from "src/components/home-components/descubra-mais";
 import Link from "src/components/link"
 import Seguranca from "src/components/home-components/seguranca";
 import Routes from "src/components/home-components/links"
+import { AppContext } from "src/context";
 
 const Home = () => {
+    const { babysitter: { type } } = useContext(AppContext);
+
     const swapText = useRef(null);
     const currentIndex = useRef(1);
 
@@ -41,15 +44,16 @@ const Home = () => {
     return (
         <main>
             <section className="relative">
-                <div className={classNames(classes.videoWrapper, `w-full`)}>
+                { type === "CRIANCAS" && <div className={classNames(classes.videoWrapper, `w-full`)}>
                     <video autoPlay className={classNames(classes.video, `h-full object-cover w-full`)} loop muted>
                         <source src="https://cdn.babysits.com/content/global/hero/european/babysits_single_scene.mp4" type="video/mp4" />
                         <source src="https://cdn.babysits.com/content/global/hero/european/babysits_single_scene.webm" type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
-                </div>
-                <div className={classNames(classes.heroContentWrapper, "absolute h-full left-0 top-0 w-full",
-                    "flex items-end px-5 pb-12 md:pb-16 xl:pb-28")}>
+                </div> }
+                <div className={classNames({ [classNames(classes.heroContentWrapper, "absolute h-full left-0 top-0 w-full")]: type === "CRIANCAS"},
+                    "bg-cover bg-center bg-no-repeat flex items-end px-5 pb-12 md:pb-16 xl:pb-28", { [classes.dogsHero]: type === "CAES" }
+                    )}>
                     <div className="flex flex-col">
                         <Typography 
                             className={classNames(classes.heroTitle, "font-bold text-3xl text-white md:text-4xl")}

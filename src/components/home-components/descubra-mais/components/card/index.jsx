@@ -5,8 +5,6 @@ import Image from "next/image";
 import classes from "./styles.module.css";
 
 const Card = ({ title, url }) => {
-    const loader = () => url;
-
     return (
         <Paper 
             component="li" 
@@ -16,7 +14,6 @@ const Card = ({ title, url }) => {
                 <Image 
                     alt={title}
                     layout="fill"
-                    loader={loader}
                     src={url}
                 />
             </div>

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { Button, Hidden, IconButton } from "@mui/material";
 import classNames from "classnames";
 
@@ -8,12 +8,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import SearchIcon from '@mui/icons-material/Search';
 
+import { AppContext } from "src/context"
+
 import Link from "src/components/link";
 import Popover from "src/components/popover";
 import FixedForm from "../../../form";
-import Drawer from "../../../drawer-form"
+import Drawer from "../../../drawer-form";
+import SearchFilters from "../../../tabs";
 
 const Form = () => {
+    const { babysitter: { type }} = useContext(AppContext)
     const [ open, setOpen ] = useState(false);
 
     const contentRef = useRef(null);
@@ -22,7 +26,16 @@ const Form = () => {
     const popoverClose = useRef(null);
     const popoverOpen = useRef(null);
     const onOpenRef = useRef(null);
+    const onOpenSearchFilters = useRef(null);
 
+    const labelFilter = useMemo(() => {
+        const types = {
+            "CAES": "cães",
+            "CRIANCAS": "crianças"
+        };
+
+        return types[type];
+    }, [ type ])
     const drawerMemo = useMemo(() => <div className={classes.hideDrawer}><Drawer onOpen={onOpenRef} /></div>, []);
     const searchButtonMemo = useMemo(() => <div className={classes.hideSearchButton}><FixedForm ref={buttonRef} /></div>, [])
 
@@ -34,7 +47,12 @@ const Form = () => {
                 </Button>
             </Link>
         </Popover>
-    ), [ ])
+    ), [ ]);
+
+    const focusHandler = useCallback((event) => {
+        popoverOpen.current?.(event)
+        onOpenSearchFilters.current?.();
+    }, [])
 
     const toggleState = useCallback(() => {
         const { scrollY } = window;
@@ -45,8 +63,6 @@ const Form = () => {
         }
     }, []);
     
-    const focusHandler = useCallback((event) => popoverOpen.current?.(event), []);
-
     const scrollHandler = useCallback(() => {
         const { innerWidth, scrollY } = window;
 
@@ -114,7 +130,7 @@ const Form = () => {
                         <label
                             className="font-semibold text-black text-xs"
                             htmlFor="search-form">
-                            Encontre rapidamente um(a) babysitter
+                            Encontre rapidamente um(a) babysitter { labelFilter }
                         </label>
                         <input 
                             className="border-0 outline-none py-1 w-full"
@@ -123,6 +139,7 @@ const Form = () => {
                             placeholder="Search"
                         />
                     </div>
+                    <SearchFilters />
                     <IconButton 
                         className="bg-cyan-400 text-white"
                         onClick={toggleState}>

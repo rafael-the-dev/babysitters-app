@@ -7,7 +7,8 @@ import classes from "./styles.module.css";
 import SearchIcon from '@mui/icons-material/Search';
 
 import Link from "src/components/link";
-import Drawer from "src/components/drawer"
+import Drawer from "src/components/drawer";
+import Tab from "../user-tab"
 
 const DrawerForm = ({ onClose, onOpen }) => {
     const openHandler = useRef(null);
@@ -22,14 +23,13 @@ const DrawerForm = ({ onClose, onOpen }) => {
             onCloseHelper={onClose}
             openHandler={openHandler}>
             <div className={classNames("bg-white flex flex-col items-center py-8")}>
-                <div className={classNames("flex")}>
-                    <Link 
-                        className={classNames(classes.selectedLink, "font-semibold mr-4 text-black after:block after:bg-black after:mx-auto")} href="/">
+                <div className={classNames("flex items-start")}>
+                    <Tab className="text-black" id="EMPLOYERS">
                         Procuro babysitter
-                    </Link>
-                    <Link className={classNames(classes.notSelectedLink, "font-semibold text-black after:block after:bg-black after:mx-auto")} href="/">
+                    </Tab>
+                    <Tab className="text-black"  id="CANDIDATES">
                         Trabalhos de babysitting
-                    </Link>
+                    </Tab>
                 </div>
                 <form className={classNames("border border-black border-solid flex items-stretch rounded-3xl py-2 pl-3 pr-1",
                     classes.form)}>

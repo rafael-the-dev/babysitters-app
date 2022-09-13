@@ -15,6 +15,7 @@ import Popover from "src/components/popover";
 import FixedForm from "../../../form";
 import Drawer from "../../../drawer-form";
 import SearchFilters from "../../../tabs";
+import Tab from "../../../user-tab"
 
 const Form = () => {
     const { addUser, filters: { type } } = useContext(AppContext)
@@ -117,19 +118,13 @@ const Form = () => {
             <div className={classNames(classes.content, "flex flex-col items-center py-8 w-full md:py-0",
             { [classes.contentShow]: open })}
                 ref={contentRef}>
-                <div className={classNames("flex justify-center")}>
-                    <Link 
-                        className={classNames(classes.selectedLink, "font-semibold mr-4 text-white text-sm text-center md:text-base after:block after:bg-black after:mx-auto")} 
-                        href="/"
-                        onClick={clickHandler("EMPLOYERS")}>
+                <div className={classNames("flex items-start justify-center")}>
+                    <Tab className="after:bg-white" id="EMPLOYERS">
                         Procuro babysitter
-                    </Link>
-                    <Link 
-                        className={classNames(classes.notSelectedLink, "font-semibold text-white text-sm text-center md:ml-4 md:text-base after:block after:bg-black after:mx-auto")} 
-                        href="/"
-                        onClick={clickHandler("CANDIDATES")}>
+                    </Tab>
+                    <Tab className="after:bg-white" id="CANDIDATES">
                         Trabalhos de babysitting
-                    </Link>
+                    </Tab>
                 </div>
                 <form className={classNames("bg-white flex items-stretch mt-4 rounded-3xl py-2 pl-3 pr-1 md:mt-6",
                     classes.form)}>

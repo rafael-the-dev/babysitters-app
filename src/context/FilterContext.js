@@ -17,6 +17,51 @@ export const FilterContextProvider = ({ children }) => {
 
     });
 
+    const [ disponibilidadeDiaria, setDisponibilidadeDiaria ] = useState({
+        segunda: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        },
+        terca: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        },
+        quarta: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        },
+        quinta: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        },
+        sexta: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        },
+        sabado: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        },
+        domingo: {
+            fimDaTarte: false,
+            manha: false,
+            tarde: false,
+            noite: false
+        }
+    })
+
     const [ experiencia, setExperiencia ] = useState({
         anos: 0,
         faixaEtaria: {
@@ -85,14 +130,14 @@ export const FilterContextProvider = ({ children }) => {
 
     return (
         <FilterContext.Provider value={{ 
-            disponibilidade,
+            disponibilidade, disponibilidadeDiaria, 
             experiencia, 
             experienciasSelecionada, 
             idade,
             informacaoAdicional,
             localBabysitting,
             maisFiltrosSelecionados,
-            setDisponibilidade, setExperiencia, setIdade, setInformacaoAdiconal, setLocalBabysitting, 
+            setDisponibilidade, setDisponibilidadeDiaria, setExperiencia, setIdade, setInformacaoAdiconal, setLocalBabysitting, 
             setTipo, setVerificacoes,
             tipo, 
             totalCamposSelecionads, 

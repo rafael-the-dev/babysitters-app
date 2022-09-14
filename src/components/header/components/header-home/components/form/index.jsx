@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react"
 import { Button, Hidden, IconButton } from "@mui/material";
+import { useRouter } from "next/router"
 import classNames from "classnames";
 
 import classes from "./styles.module.css"
@@ -24,6 +25,7 @@ const Form = () => {
 
     const contentRef = useRef(null);
     const buttonRef = useRef(null);
+    const inputRef = useRef(null);
     const searchButtonRef = useRef(null);
     const popoverClose = useRef(null);
     const popoverOpen = useRef(null);
@@ -58,6 +60,18 @@ const Form = () => {
             setOpen(b => !b);
         }
     }, []);
+
+    const router = useRouter();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        const { value } = inputRef.current;
+
+        if(value.trim()) {
+            router.push("/babysitter")
+        }
+    };
 
     const clickHandler = useCallback(prop => () => addUser(prop), [ addUser ]);
     
@@ -122,7 +136,8 @@ const Form = () => {
                     </Tab>
                 </div>
                 <form className={classNames("bg-white flex items-stretch mt-4 rounded-3xl py-2 pl-3 pr-1 md:mt-6",
-                    classes.form)}>
+                    classes.form)}
+                    onSubmit={submitHandler}>
                     <div className="flex flex-col grow">
                         <label
                             className="font-semibold text-black text-xs"
@@ -134,12 +149,14 @@ const Form = () => {
                             id='search-form'
                             onClick={focusHandler}
                             placeholder="Search"
+                            ref={inputRef}
+                            required
                         />
                     </div>
                     <SearchFilters />
                     <IconButton 
                         className="bg-cyan-400 text-white"
-                        onClick={toggleState}>
+                        type="submit">
                         <SearchIcon />
                     </IconButton>
                 </form>

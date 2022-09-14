@@ -28,7 +28,7 @@ const Footer = () => {
                     <div className="lg:mr-6 xl:mr-12">
                         <Title>Babysits</Title>
                         <ul className="flex flex-wrap justify-center lg:flex-col">
-                            <ListItem href="/" label="Como funciona" />
+                            <ListItem href="como-funciona" label="Como funciona" />
                             <ListItem href="/" label="Ajuda" />
                             <ListItem href="/" label="Privacidade" />
                             <ListItem href="/" label="Termos" />
@@ -43,7 +43,7 @@ const Footer = () => {
                             <ul className="flex flex-col">
                                 <ListItem href="/" label="Sobre nós" />
                                 <ListItem href="/" label="Dicas e artigos" />
-                                <ListItem href="/" label="Confiança e Segurança" />
+                                <ListItem href="confianca" label="Confiança e Segurança" />
                                 <ListItem href="/" label="Normas comunitárias" />
                                 <ListItem href="/" label="Parceiros" />
                                 <ListItem href="/" label="Babysits para necessidades especiais" />
@@ -52,11 +52,11 @@ const Footer = () => {
                         <div>
                             <Title>Popular</Title>
                             <ul className="flex flex-col">
-                                <ListItem href="/" label="Babysitter Lisboa" />
-                                <ListItem href="/" label="Babysitter Porto" />
-                                <ListItem href="/" label="Babysitter Vila Nova de Gaia" />
-                                <ListItem href="/" label="Babysitter Braga" />
-                                <ListItem href="/" label="Babysitter Amadora" />
+                                <ListItem href="babysitter/lisboa" label="Babysitter Lisboa" />
+                                <ListItem href="babysitter/porto" label="Babysitter Porto" />
+                                <ListItem href="babysitter/vila-nova-de-gaia" label="Babysitter Vila Nova de Gaia" />
+                                <ListItem href="babysitter/porto" label="Babysitter Braga" />
+                                <ListItem href="babysitter/amadora" label="Babysitter Amadora" />
                                 <ListItem href="/" label="Trabalhos de babysitting" />
                             </ul>
                         </div>

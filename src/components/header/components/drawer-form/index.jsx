@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { IconButton } from "@mui/material"
+import { IconButton } from "@mui/material";
+import { useRouter } from "next/router"
 import classNames from "classnames";
 
 import classes from "./styles.module.css";
@@ -12,12 +13,25 @@ import Tab from "../user-tab"
 import UserLocation from "../user-location"
 
 const DrawerForm = ({ onClose, onOpen }) => {
+    const inputRef = useRef(null);
     const openHandler = useRef(null);
     const popoverClose = useRef(null);
     const popoverOpen = useRef(null);
 
     const focusHandler = (event) => {
         popoverOpen.current?.(event)
+    };
+
+    const router = useRouter();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        const { value } = inputRef.current;
+
+        if(value.trim()) {
+            router.push("/babysitter")
+        }
     };
 
     useEffect(() => {
@@ -39,7 +53,8 @@ const DrawerForm = ({ onClose, onOpen }) => {
                     </Tab>
                 </div>
                 <form className={classNames("border border-black border-solid flex items-stretch rounded-3xl py-2 pl-3 pr-1",
-                    classes.form)}>
+                    classes.form)}
+                    onSubmit={submitHandler}>
                     <div className="flex flex-col grow">
                         <label
                             className="font-semibold text-black text-xs"
@@ -51,9 +66,13 @@ const DrawerForm = ({ onClose, onOpen }) => {
                             id='search-form'
                             onClick={focusHandler}
                             placeholder="Search"
+                            ref={inputRef}
+                            required
                         />
                     </div>
-                    <IconButton className="bg-cyan-400 text-white">
+                    <IconButton 
+                        className="bg-cyan-400 text-white"
+                        type="submit">
                         <SearchIcon />
                     </IconButton>
                     <UserLocation onClick={popoverOpen} onClose={popoverClose} />

@@ -9,9 +9,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import Link from "src/components/link";
 import Drawer from "src/components/drawer";
 import Tab from "../user-tab"
+import UserLocation from "../user-location"
 
 const DrawerForm = ({ onClose, onOpen }) => {
     const openHandler = useRef(null);
+    const popoverClose = useRef(null);
+    const popoverOpen = useRef(null);
+
+    const focusHandler = (event) => {
+        popoverOpen.current?.(event)
+    };
 
     useEffect(() => {
         onOpen.current = openHandler.current;
@@ -42,12 +49,14 @@ const DrawerForm = ({ onClose, onOpen }) => {
                         <input 
                             className="border-0 outline-none py-1 w-full"
                             id='search-form'
+                            onClick={focusHandler}
                             placeholder="Search"
                         />
                     </div>
                     <IconButton className="bg-cyan-400 text-white">
                         <SearchIcon />
                     </IconButton>
+                    <UserLocation onClick={popoverOpen} onClose={popoverClose} />
                 </form>
             </div>
         </Drawer>

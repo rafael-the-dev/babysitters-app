@@ -37,6 +37,18 @@ const DrawerForm = ({ onClose, onOpen }) => {
 =======
 >>>>>>> c5ce83d (create como-funciona page)
 
+    const router = useRouter();
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        const { value } = inputRef.current;
+
+        if(value.trim()) {
+            router.push("/babysitter")
+        }
+    };
+
     useEffect(() => {
         onOpen.current = openHandler.current;
     }, [ onOpen ]);

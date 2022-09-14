@@ -53,7 +53,7 @@ const Hero = () => {
                         <span className="px-2 text-cyan-400" ref={swapText}>famílias</span> 
                         confia
                     </Typography>
-                    <Link href="/">
+                    <Link href="registo">
                         <Button
                             className="bg-cyan-700 mt-6 normal-case px-3 py-2 rounded-lg text-white sm:px-4 sm:py-3"
                             startIcon={<EditIcon />}>

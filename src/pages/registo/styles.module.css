@@ -1,0 +1,15 @@
+.form {
+    width: 90%;
+}
+
+@media screen and (min-width: 500px) {
+    .form {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 630px) {
+    .form {
+        width: 450px;
+    }
+}

@@ -2,10 +2,11 @@
 import { Button } from "@mui/material";
 import classNames from "classnames";
 
+import classes from "./styles.module.css";
+
 import Input from "src/components/default-input"
 import Link from "src/components/link"
 
-import classes from "./styles.module.css";
 
 const Container = () => {
 
@@ -16,23 +17,15 @@ const Container = () => {
                 <fieldset>
                     <legend 
                         className="font-bold text-lg">
-                        Bem-vindo à Babysits
+                        Esqueceu-se da sua palavra-passe?
                     </legend>
                     <div className="mt-8">
-                        <Input 
-                            fullWidth
-                            id="first-name" 
-                            label="Primeiro Nome"
-                            required
-                            variant="outlined" 
-                        />
-                        <Input 
-                            fullWidth
-                            id="last-name" 
-                            label="Apelido"
-                            required
-                            variant="outlined" 
-                        />
+                        <label
+                            className="block mb-4"
+                            htmlFor="e-mail">
+                            Introduza o endereço de e-mail ligado à sua conta e nós enviaremos-lhe um 
+                            link para redefinir a sua palavra-passe.
+                        </label>
                         <Input 
                             fullWidth
                             id="e-mail" 
@@ -41,24 +34,16 @@ const Container = () => {
                             type="email" 
                             variant="outlined" 
                         />
-                        <Input 
-                            fullWidth
-                            id="password" 
-                            label="Palavra-passe"
-                            required
-                            type="password" 
-                            variant="outlined" 
-                        />
                         <Button
                             className="bg-neutral-800 py-3 text-white w-full hover:bg-neutral-900 hover:opacity-70"
                             type="submit"
                             variant="contained">
-                            Registe-se
+                            Enviar link de redefinição
                         </Button>
                     </div>
-                    <div className="border-t border-solid border-gray-400 flex items-center justify-center mt-8 pt-4">
-                        Já tem uma conta?
-                        <Link className="font-bold ml-2 text-black underline" href="iniciar-sessao">Iniciar sessão</Link>
+                    <div className="border-t border-solid border-gray-400 flex items-center justify-center mt-4 pt-4">
+                        Não tem uma conta? 
+                        <Link className="font-bold ml-2 text-black underline" href="registo">Registe-se</Link>
                     </div>
                 </fieldset>
             </form>

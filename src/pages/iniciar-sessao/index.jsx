@@ -2,7 +2,7 @@
 import { Button } from "@mui/material";
 import classNames from "classnames";
 
-import Input from "src/components/default-input"
+import Input from "src/components/default-input";
 import Link from "src/components/link"
 
 import classes from "./styles.module.css";
@@ -16,23 +16,9 @@ const Container = () => {
                 <fieldset>
                     <legend 
                         className="font-bold text-lg">
-                        Bem-vindo à Babysits
+                        Iniciar sessão
                     </legend>
                     <div className="mt-8">
-                        <Input 
-                            fullWidth
-                            id="first-name" 
-                            label="Primeiro Nome"
-                            required
-                            variant="outlined" 
-                        />
-                        <Input 
-                            fullWidth
-                            id="last-name" 
-                            label="Apelido"
-                            required
-                            variant="outlined" 
-                        />
                         <Input 
                             fullWidth
                             id="e-mail" 
@@ -53,12 +39,17 @@ const Container = () => {
                             className="bg-neutral-800 py-3 text-white w-full hover:bg-neutral-900 hover:opacity-70"
                             type="submit"
                             variant="contained">
-                            Registe-se
+                            Iniciar sessão
                         </Button>
+                        <Link 
+                            className="block font-medium mt-4 text-black text-center underline" 
+                            href="recuperar-palavra-passe">
+                            Esqueceu-se da sua palavra-passe?
+                        </Link>
                     </div>
-                    <div className="border-t border-solid border-gray-400 flex items-center justify-center mt-8 pt-4">
-                        Já tem uma conta?
-                        <Link className="font-bold ml-2 text-black underline" href="iniciar-sessao">Iniciar sessão</Link>
+                    <div className="border-t border-solid border-gray-400 flex items-center justify-center mt-4 pt-4">
+                        Não tem uma conta? 
+                        <Link className="font-bold ml-2 text-black underline" href="registo">Registe-se</Link>
                     </div>
                 </fieldset>
             </form>

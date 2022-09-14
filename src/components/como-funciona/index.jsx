@@ -32,7 +32,7 @@ const ComoFuncionaContainer = () => {
                     title="Marcar"
                 />
             </div>
-            <Link href="/">
+            <Link href="registo">
                 <Button className="bg-neutral-800 normal-case py-2 px-8 rounded-lg text-white hover:bg-black">
                     Inscreva-se gratuitamente
                 </Button>

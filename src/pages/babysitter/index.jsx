@@ -94,7 +94,7 @@ const Container = () => {
                         </Typography>
                     </div>
                     <div className="border-b border-solid border-gray-400 flex flex-col py-4 sm:flex-row sm:items-center">
-                        <Link href="/">
+                        <Link href="registo">
                             <Button className="bg-neutral-800 py-2 px-6 rounded-lg text-white hover:bg-black">
                                 Inscreva-se gratuitamente
                             </Button>

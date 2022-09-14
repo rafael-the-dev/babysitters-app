@@ -1,0 +1,30 @@
+
+.buttonIcon {
+    height: 30px;
+    width: 22px;
+}
+
+.oqueAcreditamosImageContainer {
+    height: 150px;;
+}
+
+@media screen and (min-width: 600px) {
+    .appsImageContainer {
+        width: 40%
+    }
+
+    .appsContent {
+        width: 55%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .appsImageContainer {
+        height: 301px;
+        width: 442px;
+    }
+
+    .appsContent {
+        width: calc(100% - 442px);
+    }
+}

@@ -5,7 +5,9 @@ import classes from "./styles.module.css"
 
 import Card from "../candidate-card";
 import CityCard from "./components/city-card"
-import ComoFunciona from "src/components/como-funciona"
+import ComoFunciona from "src/components/como-funciona";
+import DescubraMais from "../descubra-mais";
+import NossasApps from "../nossas-apps"
 import Seguranca from "../seguranca";
 
 const Container = () => {
@@ -76,6 +78,8 @@ const Container = () => {
                 </ul>
             </section>
             <ComoFunciona />
+            <NossasApps />
+            <DescubraMais />
         </>
     );
 };

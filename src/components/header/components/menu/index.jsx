@@ -56,8 +56,8 @@ const Menu = () => {
                         <ListItem href="confianca" label="Confiança e Segurança" />
                     </ul>
                     <ul className="pt-3">
-                        <ListItem href="/" label="Iniciar sessão" />
-                        <ListItem href="/" label="Registe-se" />
+                        <ListItem href="iniciar-sessao" label="Iniciar sessão" />
+                        <ListItem href="registo" label="Registe-se" />
                     </ul>
                 </div>
             </Drawer>

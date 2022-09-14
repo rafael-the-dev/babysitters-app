@@ -104,13 +104,13 @@ const Container = () => {
             <section 
                 className={classNames(classes.hero, `bg-cover bg-center bg-no-repeat flex items-center px-5`)}
                 style={{
-                    backgroundImage: `linear-gradient(to right, rgba(89,190,201, .8), rgb(89,190,201)), url(https://cdn.babysits.com/users/f/7/b/3355522/babysitter-3355522-1645713548-rc-w350-h350.avif)`
+                    backgroundImage: `linear-gradient(to right, rgba(89,190,201, .8), rgb(89,190,201)), url(https://cdn.babysits.com/users/c/a/9/3583412/babysitter-3583412-1656372051-rc-w350-h350.jpg)`
                 }}>
                 <div className={classNames(classes.imageContainer, `relative rounded-xl`)}>
                     <Image 
                         alt="Adriana Bonifácio"
                         layout="fill"
-                        src="https://cdn.babysits.com/users/f/7/b/3355522/babysitter-3355522-1645713548-rc-w350-h350.avif"
+                        src="https://cdn.babysits.com/users/c/a/9/3583412/babysitter-3583412-1656372051-rc-w350-h350.jpg"
                     />
                 </div>
                 <div className="flex flex-col ml-4">

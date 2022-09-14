@@ -15,14 +15,14 @@ const Container = () => {
     const widthReducer = useRef(0);
 
     const list = [
-        { city: "Lagos", image: "https://cdn.babysits.com/users/7/f/d/782278/babysitter-782278-1623612403-rc-w350-h350.avif", name: "Rafaela", rating: 4 },
-        { city: "Lisboa", image: "https://cdn.babysits.com/users/0/b/7/3836133/babysitter-3836133-1649264328-rc-w350-h350.avif", name: "Beatriz", rating: 4 },
-        { city: "Caiscais", image: "https://cdn.babysits.com/users/4/6/9/1497560/babysitter-1497560-1579879651-rc-w350-h350.avif", name: "Adriana", rating: 4 },
-        { city: "Porto", image: "https://cdn.babysits.com/users/2/3/a/741188/babysitter-741188-1662152633-rc-w350-h350.avif", name: "Ildze", rating: 4 },
-        { city: "Lisboa", image: "https://cdn.babysits.com/users/c/a/9/3583412/babysitter-3583412-1656372051-rc-w350-h350.avif", name: "Monalyza", rating: 4 },
-        { city: "Tavira", image: "https://cdn.babysits.com/users/3/2/f/3827597/babysitter-3827597-1648915929-rc-w350-h350.avif", name: "Monica", rating: 4 },
-        { city: "Porto", image: "https://cdn.babysits.com/users/f/7/b/3355522/babysitter-3355522-1645713548-rc-w350-h350.avif", name: "Adriana", rating: 4 },
-        { city: "Lisboa", image: "https://cdn.babysits.com/users/7/f/8/3462643/babysitter-3462643-1634046466-rc-w350-h350.avif", name: "Laisla", rating: 4 }
+        { city: "Lagos", image: "https://cdn.babysits.com/users/7/f/d/782278/babysitter-782278-1623612403-rc-w350-h350.jpg", name: "Rafaela", rating: 4 },
+        { city: "Lisboa", image: "https://cdn.babysits.com/users/0/b/7/3836133/babysitter-3836133-1649264328-rc-w350-h350.jpg", name: "Beatriz", rating: 4 },
+        { city: "Caiscais", image: "https://cdn.babysits.com/users/2/3/a/741188/babysitter-741188-1662152633-rc-w350-h350.jpg", name: "Adriana", rating: 4 },
+        { city: "Porto", image: "https://cdn.babysits.com/users/3/2/f/3827597/babysitter-3827597-1648915929-rc-w350-h350.jpg", name: "Ildze", rating: 4 },
+        { city: "Lisboa", image: "https://cdn.babysits.com/users/7/f/8/3462643/babysitter-3462643-1634046466-rc-w350-h350.jpg", name: "Monalyza", rating: 4 },
+        { city: "Tavira", image: "https://cdn.babysits.com/users/3/c/6/4010495/babysitter-4010495-1656805845-rc-w350-h350.jpg", name: "Monica", rating: 4 },
+        { city: "Porto", image: "https://cdn.babysits.com/users/d/a/f/2329970/babysitter-2329970-1606671338-rc-w350-h350.jpg", name: "Adriana", rating: 4 },
+        { city: "Lisboa", image: "https://cdn.babysits.com/users/c/a/9/3583412/babysitter-3583412-1656372051-rc-w350-h350.jpg", name: "Laisla", rating: 4 }
     ];
 
     const layout = useCallback(() => {

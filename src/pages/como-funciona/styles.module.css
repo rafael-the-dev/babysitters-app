@@ -1,0 +1,13 @@
+.hero {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .4)), url(/images/como-funciona.jpg);
+}
+
+.heroDescription {
+    width: 80%;
+}
+
+@media screen and (min-width: 768px) {
+    .column {
+        width: 48%;
+    }
+}

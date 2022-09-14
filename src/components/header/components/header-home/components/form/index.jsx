@@ -15,7 +15,8 @@ import Popover from "src/components/popover";
 import FixedForm from "../../../form";
 import Drawer from "../../../drawer-form";
 import SearchFilters from "../../../tabs";
-import Tab from "../../../user-tab"
+import Tab from "../../../user-tab";
+import UserLocation from "../../../user-location"
 
 const Form = () => {
     const { addUser, filters: { type } } = useContext(AppContext)
@@ -41,13 +42,7 @@ const Form = () => {
     const searchButtonMemo = useMemo(() => <div className={classes.hideSearchButton}><FixedForm ref={buttonRef} /></div>, [])
 
     const popoverMemo = useMemo(() => (
-        <Popover onClickRef={popoverOpen} onCloseRef={popoverClose}>
-            <Link href="/">
-                <Button className='py-3 px-4 text-black' startIcon={<NearMeIcon />}>
-                    Pesquisar nas proximidades
-                </Button>
-            </Link>
-        </Popover>
+        <UserLocation onClick={popoverOpen} onClose={popoverClose} />
     ), [ ]);
 
     const focusHandler = useCallback((event) => {
@@ -64,7 +59,7 @@ const Form = () => {
         }
     }, []);
 
-    const clickHandler = useCallback(prop => () => addUser(prop), []);
+    const clickHandler = useCallback(prop => () => addUser(prop), [ addUser ]);
     
     const scrollHandler = useCallback(() => {
         const { innerWidth, scrollY } = window;

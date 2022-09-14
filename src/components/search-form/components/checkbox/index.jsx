@@ -37,9 +37,9 @@ const BpCheckedIcon = styled(BpIcon)({
     'input:hover ~ &': {
       backgroundColor: '#106ba3',
     },
-  });
+});
 
-const CheckboxContainer = ({ className, checked, label, onChange }) => (
+const CheckboxContainer = ({ className, checkboxClassName, checked, label, onChange }) => (
     <FormControlLabel 
         className={classNames("m-0", className)}
         control={

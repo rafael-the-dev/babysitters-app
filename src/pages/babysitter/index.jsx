@@ -99,7 +99,7 @@ const Container = () => {
                                 Inscreva-se gratuitamente
                             </Button>
                         </Link>
-                        <Link className="mt-3 text-black underline sm:mt-0 sm:ml-4" href="/">Como funciona</Link>
+                        <Link className="mt-3 text-black underline sm:mt-0 sm:ml-4" href="como-funciona">Como funciona</Link>
                     </div>
                     <div>
                         {

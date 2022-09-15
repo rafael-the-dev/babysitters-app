@@ -6,17 +6,14 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
 import classes from "./styles.module.css"
 
-import Input from "src/components/default-input"
+import Input from "src/components/default-input";
+import Legend from "../legend-container"
 
 const Container = () => {
     const [ date, setDate ] = useState(moment('2014-08-18T21:11:54'));
 
     const legendMemo = useMemo(() => (
-        <div className={classNames(classes.legendContainer, "bg-cyan-200 bg-no-repeat py-8")}>
-            <legend className="font-bold text-center text-cyan-700 text-xl">
-                Insira seus dados
-            </legend>
-        </div>
+        <Legend label="Insira seus dados" />
     ), []);
 
     const moradaMemo = useMemo(() => (

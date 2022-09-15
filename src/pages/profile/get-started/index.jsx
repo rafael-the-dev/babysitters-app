@@ -4,15 +4,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
 import Address from "src/components/complete-page-components/address"
-import GetStarted from "src/components/complete-page-components/get-started"
+import GetStarted from "src/components/complete-page-components/get-started";
+import MoreAboutYou from "src/components/complete-page-components/more-about-you"
 
 const Container = () => {
     const [ activeStep, setActiveStep ] = useState(0);
 
     const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
     const getStartedMemo = useMemo(() => <GetStarted />, []);
+    const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
 
-    const elements = [ getStartedMemo, addressMemo ];
+    const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

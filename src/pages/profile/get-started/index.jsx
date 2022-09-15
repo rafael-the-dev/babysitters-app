@@ -7,10 +7,12 @@ import classNames from "classnames"
 import classes from "./styles.module.css"
 
 import Address from "src/components/complete-page-components/address";
+import Experience from "src/components/complete-page-components/experience"
 import AppliesToYourself from "src/components/complete-page-components/applies-to-yourself"
 import DescrigeYourself from "src/components/complete-page-components/describe-yourself"
 import GetStarted from "src/components/complete-page-components/get-started";
 import MoreAboutYou from "src/components/complete-page-components/more-about-you";
+import Skills from "src/components/complete-page-components/skills"
 
 const Container = () => {
     const [ activeStep, setActiveStep ] = useState(0);
@@ -18,10 +20,13 @@ const Container = () => {
     const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
     const appliesToYourselfMemo = useMemo(() => <AppliesToYourself />, []);
     const descrigeYourself = useMemo(() => <DescrigeYourself />, []);
+    const experienceMemo = useMemo(() => <Experience />, []);
     const getStartedMemo = useMemo(() => <GetStarted />, []);
     const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
+    const skillsMemo = useMemo(() => <Skills />, []);
 
-    const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo ];
+    const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo,
+        skillsMemo, experienceMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -40,7 +45,7 @@ const Container = () => {
                     <MobileStepper
                         classes={{ progress: "grow" }}
                         variant="progress"
-                        steps={6}
+                        steps={elements.length}
                         position="static"
                         activeStep={activeStep}
                         sx={{ flexGrow: 1 }}
@@ -60,8 +65,8 @@ const Container = () => {
                                 Voltar
                             </Button>
                             <Button 
-                                className="bg-neutral-800 py-1 text-white hover:bg-neutral-700"
-                                disabled={activeStep === 5}
+                                className="bg-neutral-800 py-1 text-white hover:bg-neutral-700 md:py-2 md:px-4"
+                                disabled={activeStep === elements.length - 1}
                                 onClick={handleNext}>
                                 Próximo 
                             </Button>

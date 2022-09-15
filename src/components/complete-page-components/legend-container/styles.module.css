@@ -4,3 +4,9 @@
     background-size: 84px;
     height: 170px;
 }
+
+@media screen and (min-width: 768px) {
+    .legendContainer {
+        height: 200px;
+    }
+}

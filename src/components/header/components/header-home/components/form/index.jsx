@@ -61,11 +61,6 @@ const Form = () => {
         }
     }, []);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 848608f (add links in the footer and implement submit handlers in the forms)
     const router = useRouter();
 
     const submitHandler = (e) => {
@@ -78,13 +73,6 @@ const Form = () => {
         }
     };
 
-<<<<<<< HEAD
-=======
->>>>>>> c5ce83d (create como-funciona page)
-=======
->>>>>>> 848608f (add links in the footer and implement submit handlers in the forms)
-=======
->>>>>>> c5ce83d (create como-funciona page)
     const clickHandler = useCallback(prop => () => addUser(prop), [ addUser ]);
     
     const scrollHandler = useCallback(() => {

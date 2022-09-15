@@ -1,4 +1,6 @@
-
+.container:last-child > div {
+    border: none;
+}
 
 .imageContainer {
     height: 100px;

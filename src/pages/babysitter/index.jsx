@@ -78,8 +78,8 @@ const Container = () => {
                 <Search />
             </FilterContextProvider>
             <section 
-                className="xl:flex justify-between">
-                <div className={classNames(classes.content, "px-5 xl:pr-4")}
+                className="xl:flex justify-between pb-8">
+                <div className={classNames(classes.content, "overflow-y-auto px-5 xl:pr-4")}
                     ref={babysittersContentRef}>
                     <div className="border-b border-solid border-gray-400 py-4">
                         <Typography
@@ -95,13 +95,13 @@ const Container = () => {
                     </div>
                     <div className="border-b border-solid border-gray-400 flex flex-col py-4 sm:flex-row sm:items-center">
                         <Link href="registo">
-                            <Button className="bg-neutral-800 py-2 px-6 rounded-lg text-white hover:bg-black">
+                            <Button className="bg-neutral-800 capitalize py-2 px-6 rounded-lg text-white hover:bg-black">
                                 Inscreva-se gratuitamente
                             </Button>
                         </Link>
                         <Link className="mt-3 text-black underline sm:mt-0 sm:ml-4" href="como-funciona">Como funciona</Link>
                     </div>
-                    <div>
+                    <div className="pb-8">
                         {
                             usersData.map((user, index) => (
                                 <BabysitterCard { ...user } key={`${index}-${id}`} />
@@ -109,17 +109,12 @@ const Container = () => {
                         }
                     </div>
                 </div>
-                <div className="h-full grow bg-cyan-50">
-                    <h3>Hello world</h3>
-                </div>
                 <Hidden lgUp>
                     <div className={classNames(classes.mapContainer)}>
                         <DynamicMap />
                     </div>
                 </Hidden>
             </section>
-            <Seguranca />
-            <ComoFunciona />
         </main>
     );
 };

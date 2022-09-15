@@ -2,6 +2,9 @@ import { useCallback, useMemo, useState } from "react"
 import { Button, MobileStepper } from "@mui/material";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import classNames from "classnames"
+
+import classes from "./styles.module.css"
 
 import Address from "src/components/complete-page-components/address"
 import GetStarted from "src/components/complete-page-components/get-started";
@@ -27,7 +30,7 @@ const Container = () => {
 
     return (
         <main>
-            <div className="pb-12">
+            <div className={classNames(classes.container, "mx-auto pb-12")}>
                 { elements[activeStep] }
                 <div className="px-5">
                     <MobileStepper

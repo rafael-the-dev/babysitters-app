@@ -127,11 +127,6 @@ const Container = () => {
         )
     }, [ id, linguas, linguasItemlickHandler ]);
 
-
-    const handleDateChange = useCallback((newValue) => {
-        setDate(newValue);
-    }, []);
-
     return (
         <section className="px-5 py-12">
             <form>

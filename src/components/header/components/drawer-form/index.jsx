@@ -21,21 +21,6 @@ const DrawerForm = ({ onClose, onOpen }) => {
     const focusHandler = (event) => {
         popoverOpen.current?.(event)
     };
-<<<<<<< HEAD
-
-    const router = useRouter();
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-
-        const { value } = inputRef.current;
-
-        if(value.trim()) {
-            router.push("/babysitter")
-        }
-    };
-=======
->>>>>>> c5ce83d (create como-funciona page)
 
     const router = useRouter();
 

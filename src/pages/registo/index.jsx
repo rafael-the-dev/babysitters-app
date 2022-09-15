@@ -1,5 +1,5 @@
-
 import { Button } from "@mui/material";
+import { useRouter } from "next/router"
 import classNames from "classnames";
 
 import Input from "src/components/default-input"
@@ -8,11 +8,20 @@ import Link from "src/components/link"
 import classes from "./styles.module.css";
 
 const Container = () => {
+    const router = useRouter();
+
+    const submitHandler = e => {
+        e.preventDefault();
+
+        router.push('/registo/complete');
+    };
 
     return (
         <main>
-            <form className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12
-                px-4 py-6 md:my-16`)}>
+            <form 
+                className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12
+                px-4 py-6 md:my-16`)}
+                onSubmit={submitHandler}>
                 <fieldset>
                     <legend 
                         className="font-bold text-lg">

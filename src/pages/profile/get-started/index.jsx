@@ -7,6 +7,7 @@ import classNames from "classnames"
 import classes from "./styles.module.css"
 
 import Address from "src/components/complete-page-components/address";
+import AppliesToYourself from "src/components/complete-page-components/applies-to-yourself"
 import DescrigeYourself from "src/components/complete-page-components/describe-yourself"
 import GetStarted from "src/components/complete-page-components/get-started";
 import MoreAboutYou from "src/components/complete-page-components/more-about-you";
@@ -15,11 +16,12 @@ const Container = () => {
     const [ activeStep, setActiveStep ] = useState(0);
 
     const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
+    const appliesToYourselfMemo = useMemo(() => <AppliesToYourself />, []);
     const descrigeYourself = useMemo(() => <DescrigeYourself />, []);
     const getStartedMemo = useMemo(() => <GetStarted />, []);
     const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
 
-    const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself ];
+    const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

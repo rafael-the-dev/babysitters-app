@@ -1,7 +1,7 @@
 import { useCallback, useId, useMemo, useRef, useState } from "react"
 
 import Legend from "../legend-container";
-import Button from './components/button';
+import Button from '../button'
 
 const Container = () => {
     const [ traits, setTraits ] = useState([]);

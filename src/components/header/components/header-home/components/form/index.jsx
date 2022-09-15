@@ -61,6 +61,7 @@ const Form = () => {
         }
     }, []);
 
+<<<<<<< HEAD
     const router = useRouter();
 
     const submitHandler = (e) => {
@@ -73,6 +74,8 @@ const Form = () => {
         }
     };
 
+=======
+>>>>>>> c5ce83d (create como-funciona page)
     const clickHandler = useCallback(prop => () => addUser(prop), [ addUser ]);
     
     const scrollHandler = useCallback(() => {

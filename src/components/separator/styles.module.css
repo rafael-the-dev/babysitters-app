@@ -1,0 +1,7 @@
+.container {
+    height: 1px;
+}
+
+.label {
+    transform: translate(-50%, -50%);
+}

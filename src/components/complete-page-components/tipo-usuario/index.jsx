@@ -4,6 +4,7 @@ import classNames from "classnames";
 import classes from "./styles.module.css";
 
 import Button from "./components/button";
+import Separator from "src/components/separator"
 
 const Container = () => {
 
@@ -13,11 +14,12 @@ const Container = () => {
             <Typography
                 component="h1"
                 className="font-bold text-xl">
-                Antes de aderir
+                Concluir registo
             </Typography>
             <div className="mt-8">
                 <Button>Sou babysitter</Button>
                 <Button>Sou ama</Button>
+                <Separator className="mt-6 mb-8">Ou</Separator>
                 <Button>Estou à procura de babysitter</Button>
                 <Button>Sou uma empresa ou uma agência</Button>
             </div>

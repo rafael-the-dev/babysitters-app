@@ -18,7 +18,8 @@ import GetStarted from "src/components/complete-page-components/get-started";
 import HourRate from "src/components/complete-page-components/hourly-rate"
 import MoreAboutYou from "src/components/complete-page-components/more-about-you";
 import Notification from "src/components/complete-page-components/notifications";
-import ProfilePhoto from "src/components/complete-page-components/profile-photo"
+import ProfilePhoto from "src/components/complete-page-components/profile-photo";
+import ProfileVisibility from "src/components/complete-page-components/profile-visibility"
 import Skills from "src/components/complete-page-components/skills"
 
 const Container = () => {
@@ -37,11 +38,12 @@ const Container = () => {
     const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
     const notificationMemo = useMemo(() => <Notification />, []);
     const profilePhotoMemo = useMemo(() => <ProfilePhoto />, []);
+    const profileVisibilityMemo = useMemo(() => <ProfileVisibility />, []);
     const skillsMemo = useMemo(() => <Skills />, []);
 
     const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo,
         skillsMemo, experienceMemo, babysittingLocationMemo, confortableWithMemo, hourRateMemo, availabilityMemo,
-        aboutYourselfMemo, notificationMemo, profilePhotoMemo ];
+        aboutYourselfMemo, notificationMemo, profilePhotoMemo, profileVisibilityMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

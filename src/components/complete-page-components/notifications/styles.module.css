@@ -1,0 +1,5 @@
+@media screen and (min-width: 650px) {
+    .button {
+        width: 100% !important;
+    }
+}

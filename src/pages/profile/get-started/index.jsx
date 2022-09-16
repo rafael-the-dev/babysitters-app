@@ -7,7 +7,8 @@ import classNames from "classnames"
 import classes from "./styles.module.css"
 
 import Address from "src/components/complete-page-components/address";
-import Availability from "src/components/complete-page-components/availability"
+import Availability from "src/components/complete-page-components/availability";
+import AboutYourself from "src/components/complete-page-components/about-yourself"
 import BabysittingLocation from "src/components/complete-page-components/babysitting-location"
 import ConfortableWith from "src/components/complete-page-components/comfortable-with"
 import Experience from "src/components/complete-page-components/experience"
@@ -16,6 +17,7 @@ import DescrigeYourself from "src/components/complete-page-components/describe-y
 import GetStarted from "src/components/complete-page-components/get-started";
 import HourRate from "src/components/complete-page-components/hourly-rate"
 import MoreAboutYou from "src/components/complete-page-components/more-about-you";
+import Notification from "src/components/complete-page-components/notifications"
 import Skills from "src/components/complete-page-components/skills"
 
 const Container = () => {
@@ -23,6 +25,7 @@ const Container = () => {
 
     const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
     const appliesToYourselfMemo = useMemo(() => <AppliesToYourself />, []);
+    const aboutYourselfMemo = useMemo(() => <AboutYourself />, []);
     const availabilityMemo = useMemo(() => <Availability />, []);
     const babysittingLocationMemo = useMemo(() => <BabysittingLocation />, []);
     const confortableWithMemo = useMemo(() => <ConfortableWith />, []);
@@ -31,10 +34,12 @@ const Container = () => {
     const getStartedMemo = useMemo(() => <GetStarted />, []);
     const hourRateMemo = useMemo(() => <HourRate />, []);
     const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
+    const notificationMemo = useMemo(() => <Notification />, []);
     const skillsMemo = useMemo(() => <Skills />, []);
 
     const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo,
-        skillsMemo, experienceMemo, babysittingLocationMemo, confortableWithMemo, hourRateMemo, availabilityMemo ];
+        skillsMemo, experienceMemo, babysittingLocationMemo, confortableWithMemo, hourRateMemo, availabilityMemo,
+        aboutYourselfMemo, notificationMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

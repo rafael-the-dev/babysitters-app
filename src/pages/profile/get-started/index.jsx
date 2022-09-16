@@ -7,6 +7,7 @@ import classNames from "classnames"
 import classes from "./styles.module.css"
 
 import Address from "src/components/complete-page-components/address";
+import ConfortableWith from "src/components/complete-page-components/comfortable-with"
 import Experience from "src/components/complete-page-components/experience"
 import AppliesToYourself from "src/components/complete-page-components/applies-to-yourself"
 import DescrigeYourself from "src/components/complete-page-components/describe-yourself"
@@ -19,6 +20,7 @@ const Container = () => {
 
     const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
     const appliesToYourselfMemo = useMemo(() => <AppliesToYourself />, []);
+    const confortableWithMemo = useMemo(() => <ConfortableWith />, []);
     const descrigeYourself = useMemo(() => <DescrigeYourself />, []);
     const experienceMemo = useMemo(() => <Experience />, []);
     const getStartedMemo = useMemo(() => <GetStarted />, []);
@@ -26,7 +28,7 @@ const Container = () => {
     const skillsMemo = useMemo(() => <Skills />, []);
 
     const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo,
-        skillsMemo, experienceMemo ];
+        skillsMemo, experienceMemo, confortableWithMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { Button, Typography, Tooltip } from "@mui/material";
 import classNames from "classnames";
 import Image from "next/image";
@@ -10,8 +10,38 @@ import ErrorOutlinedIcon from '@mui/icons-material/ErrorOutlined';
 import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
 
 const Container = () => {
-    const [ imageFile, setImageFile ] = useState(null);
+    const [ imageFile, setImageFile ] = useState({
+        file: null,
+        url: null
+    });
     const [ videoFile, setVideoFile ] = useState(null);
+
+    const imageFileRef = useRef(null);
+
+    const imageChangeHandler = useCallback(event => {
+        const inputFile = event.target.files[0];
+        console.log(inputFile)
+        if(inputFile) {
+            const reader = new FileReader();
+
+            reader.onload = event => {
+                setImageFile(currentFile => ({
+                    ...currentFile,
+                    url:  event.target.result
+                }))
+            };
+
+            reader.readAsDataURL(inputFile);
+                setImageFile({
+                    file: inputFile,
+                    url:  event.target.result
+                })
+        }
+    }, [ ]);
+
+    const imageButtonClickHandler = useCallback(() => {
+        imageFileRef.current?.click();
+    }, [])
 
     const videoMemo = useMemo(() => (
         <div className={classNames(classes.videoWrapper)}>
@@ -31,13 +61,14 @@ const Container = () => {
 
     const imageContainerMemo  = useMemo(() => {
         
-        const selectedImage = imageFile ?? "https://cdn.babysits.com/logo/no-image/no-image-rc-w350-h350.jpg";
-        
+        const selectedImage = imageFile.url ?? "https://cdn.babysits.com/logo/no-image/no-image-rc-w350-h350.jpg";
+       
         return (
             <div className="flex flex-col items-center">
                 <Button
                     className={classNames(classes.button, classes.buttonImage, `bg-cover bg-center bg-no-repeat
-                    flex items-center justify-center relative text-white`)}>
+                    flex items-center justify-center relative text-white`)}
+                    onClick={imageButtonClickHandler}>
                     <CameraAltOutlinedIcon className={classNames(classes.buttonIcon, "absolute left-1/2 top-1/2 z-10")} />
                     <Image 
                         alt=""
@@ -45,6 +76,7 @@ const Container = () => {
                         src={selectedImage}
                     />
                 </Button>
+                <input accept="image/png, image/jpg, image/jpeg" className="hidden" ref={imageFileRef} type="file" onChange={imageChangeHandler} />
                 <div className="flex items-center my-3">
                     Foto de perfil
                     <Tooltip 
@@ -58,10 +90,10 @@ const Container = () => {
                 <div className='text-red-600 text-sm'>Foto clara do rosto necessária</div>
             </div>
         );
-    }, [ imageFile ]);
+    }, [ imageFile, imageChangeHandler, imageButtonClickHandler ]);
 
     const videoContainerMemo = useMemo(() => {
-        const selectedImage = imageFile ?? "https://cdn.babysits.com/logo/no-image/no-image-rc-w350-h350.jpg";
+        const selectedImage = "https://cdn.babysits.com/logo/no-image/no-image-rc-w350-h350.jpg";
 
         return (
             <div className="flex flex-col items-center mt-8 sm:mt-0">
@@ -87,7 +119,7 @@ const Container = () => {
                 <div className='text-cyan-700 text-sm'>Altamente recomendado</div>
             </div>
         );
-    }, [ imageFile ])
+    }, [  ])
 
     const examplesMemo = useMemo(() => (
         <>

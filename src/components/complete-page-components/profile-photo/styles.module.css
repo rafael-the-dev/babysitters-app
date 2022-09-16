@@ -8,6 +8,10 @@
     width: 200px;
 }
 
+.buttonImage img {
+    object-fit: contain !important;
+}
+
 .buttonIcon {
     transform: translate(-50%, -50%);
 }

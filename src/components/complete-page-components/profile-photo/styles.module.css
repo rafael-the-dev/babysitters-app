@@ -1,0 +1,46 @@
+
+.videoWrapper {
+    height: 300px;
+}
+
+.button {
+    height: 200px;
+    width: 200px;
+}
+
+.buttonIcon {
+    transform: translate(-50%, -50%);
+}
+
+.demoImageContainer {
+    height: 100px;
+    width: 100px;
+}
+
+.demoVideoWrapper {
+    height: 380px;
+}
+
+@media screen and (min-width: 600px) {
+    .demoImageContainer {
+        height: 140px;
+        width: 140px;
+    }
+
+    .demoVideoWrapper {
+        height: 380px;
+        margin: 0 auto;
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .demoImageContainer {
+        height: 190px;
+        width: 190px;
+    }
+
+    .demoVideoWrapper {
+        height: 450px;
+    }
+}

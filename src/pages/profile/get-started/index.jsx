@@ -17,7 +17,8 @@ import DescrigeYourself from "src/components/complete-page-components/describe-y
 import GetStarted from "src/components/complete-page-components/get-started";
 import HourRate from "src/components/complete-page-components/hourly-rate"
 import MoreAboutYou from "src/components/complete-page-components/more-about-you";
-import Notification from "src/components/complete-page-components/notifications"
+import Notification from "src/components/complete-page-components/notifications";
+import ProfilePhoto from "src/components/complete-page-components/profile-photo"
 import Skills from "src/components/complete-page-components/skills"
 
 const Container = () => {
@@ -35,11 +36,12 @@ const Container = () => {
     const hourRateMemo = useMemo(() => <HourRate />, []);
     const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
     const notificationMemo = useMemo(() => <Notification />, []);
+    const profilePhotoMemo = useMemo(() => <ProfilePhoto />, []);
     const skillsMemo = useMemo(() => <Skills />, []);
 
     const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo,
         skillsMemo, experienceMemo, babysittingLocationMemo, confortableWithMemo, hourRateMemo, availabilityMemo,
-        aboutYourselfMemo, notificationMemo ];
+        aboutYourselfMemo, notificationMemo, profilePhotoMemo ];
 
     const handleNext = useCallback(() => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);

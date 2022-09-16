@@ -14,33 +14,37 @@ const Container = () => {
         file: null,
         url: null
     });
-    const [ videoFile, setVideoFile ] = useState(null);
+    const [ videoFile, setVideoFile ] = useState({
+        file: null,
+        url: null
+    });
 
     const imageFileRef = useRef(null);
+    const videoFileRef = useRef(null);
 
-    const imageChangeHandler = useCallback(event => {
+    const changeHandler = useCallback(func => event => {
         const inputFile = event.target.files[0];
-        console.log(inputFile)
+        
         if(inputFile) {
             const reader = new FileReader();
 
             reader.onload = event => {
-                setImageFile(currentFile => ({
+                func(currentFile => ({
                     ...currentFile,
                     url:  event.target.result
                 }))
             };
 
             reader.readAsDataURL(inputFile);
-                setImageFile({
-                    file: inputFile,
-                    url:  event.target.result
-                })
+            func({
+                file: inputFile,
+                url:  event.target.result
+            })
         }
     }, [ ]);
 
-    const imageButtonClickHandler = useCallback(() => {
-        imageFileRef.current?.click();
+    const clickHandler = useCallback(elementRef => () => {
+        elementRef.current?.click();
     }, [])
 
     const videoMemo = useMemo(() => (
@@ -68,7 +72,7 @@ const Container = () => {
                 <Button
                     className={classNames(classes.button, classes.buttonImage, `bg-cover bg-center bg-no-repeat
                     flex items-center justify-center relative text-white`)}
-                    onClick={imageButtonClickHandler}>
+                    onClick={clickHandler(imageFileRef)}>
                     <CameraAltOutlinedIcon className={classNames(classes.buttonIcon, "absolute left-1/2 top-1/2 z-10")} />
                     <Image 
                         alt=""
@@ -76,7 +80,7 @@ const Container = () => {
                         src={selectedImage}
                     />
                 </Button>
-                <input accept="image/png, image/jpg, image/jpeg" className="hidden" ref={imageFileRef} type="file" onChange={imageChangeHandler} />
+                <input accept="image/png, image/jpg, image/jpeg" className="hidden" ref={imageFileRef} type="file" onChange={changeHandler(setImageFile)} />
                 <div className="flex items-center my-3">
                     Foto de perfil
                     <Tooltip 
@@ -90,23 +94,28 @@ const Container = () => {
                 <div className='text-red-600 text-sm'>Foto clara do rosto necessária</div>
             </div>
         );
-    }, [ imageFile, imageChangeHandler, imageButtonClickHandler ]);
+    }, [ imageFile, changeHandler, clickHandler ]);
 
     const videoContainerMemo = useMemo(() => {
         const selectedImage = "https://cdn.babysits.com/logo/no-image/no-image-rc-w350-h350.jpg";
-
+        
         return (
             <div className="flex flex-col items-center mt-8 sm:mt-0">
                 <Button
                     className={classNames(classes.button, classes.buttonImage, `bg-cover bg-center bg-no-repeat
-                    flex items-center justify-center relative text-white`)}>
+                    flex items-center justify-center relative text-white`)}
+                    onClick={clickHandler(videoFileRef)}>
                     <VideocamOutlinedIcon className={classNames(classes.buttonIcon, "absolute left-1/2 top-1/2 z-10")} />
-                    <Image 
+                    { !Boolean(videoFile.file) && <Image 
                         alt=""
                         layout="fill"
                         src={selectedImage}
-                    />
+                    />}
+                    {Boolean(videoFile.file) && <video autoPlay className="h-full object-cover w-full" loop muted  controlsList="nofullscreen nodownload noremoteplayback">
+                        <source src={videoFile.url} type="video/*" />
+                    </video>}
                 </Button>
+                <input accept="video/mp4,video/x-m4v,video/*" className="hidden" ref={videoFileRef} type="file" onChange={changeHandler(setVideoFile)} />
                 <div className="flex items-center my-3">
                     Vídeo de perfil
                     <Tooltip 
@@ -119,7 +128,7 @@ const Container = () => {
                 <div className='text-cyan-700 text-sm'>Altamente recomendado</div>
             </div>
         );
-    }, [  ])
+    }, [ changeHandler, clickHandler, videoFile ])
 
     const examplesMemo = useMemo(() => (
         <>

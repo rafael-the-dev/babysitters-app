@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from "react"
-import { Button, MobileStepper } from "@mui/material";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { Button, CircularProgress, MobileStepper } from "@mui/material";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import classNames from "classnames"
@@ -23,7 +23,15 @@ import ProfileVisibility from "src/components/complete-page-components/profile-v
 import Skills from "src/components/complete-page-components/skills"
 
 const Container = () => {
-    const [ activeStep, setActiveStep ] = useState(0);
+    const [ properties, setProperties ] = useState({
+        activeStep: 0,
+        disabled: false,
+        loading: false
+    });
+
+    const { activeStep, disabled, loading } = properties;
+
+    const disabledRef = useRef(false);
 
     const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
     const appliesToYourselfMemo = useMemo(() => <AppliesToYourself />, []);
@@ -46,17 +54,33 @@ const Container = () => {
         aboutYourselfMemo, notificationMemo, profilePhotoMemo, profileVisibilityMemo ];
 
     const handleNext = useCallback(() => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setProperties((props) => ({ ...props, activeStep: props.activeStep + 1}));
     }, []);
 
     const handleBack = useCallback(() => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        setProperties((props) => ({ ...props, activeStep: props.activeStep - 1}));
     }, []);
 
+    const submitHandler = useCallback((e) => {
+        e.preventDefault();
+
+        if(!disabledRef.current) {
+            setProperties(props => ({ ...props, loading: true }))
+            setTimeout(() => {
+                setProperties(props => ({ ...props, activeStep: props.activeStep + 1, loading: false }))
+            }, 3000)
+        }
+    }, [ ]);
+
+    useEffect(() => {
+        disabledRef.current = disabled;
+    }, [ disabled ])
 
     return (
         <main>
-            <div className={classNames(classes.container, "mx-auto pb-12")}>
+            <form
+                className={classNames(classes.container, "mx-auto pb-12")}
+                onSubmit={submitHandler}>
                 { elements[activeStep] }
                 <div className="px-5">
                     <MobileStepper
@@ -70,27 +94,28 @@ const Container = () => {
                     { activeStep === 0 ? (
                         <Button 
                             className="bg-neutral-800 mt-3 py-3 text-white w-full hover:bg-neutral-700"
-                            onClick={handleNext}>
-                            Vamos começar!
+                            type="submit">
+                            { loading ? "Loading..." : "Vamos começar!" }
                         </Button>
                     ) : (
                         <div className=" flex items-center justify-between mt-3">
                             <Button 
                                 className="text-black"
                                 disabled={activeStep === 0}
-                                onClick={handleBack}>
+                                onClick={handleBack}
+                                type="button">
                                 Voltar
                             </Button>
                             <Button 
                                 className="bg-neutral-800 py-1 text-white hover:bg-neutral-700 md:py-2 md:px-4"
-                                disabled={activeStep === elements.length - 1}
-                                onClick={handleNext}>
-                                Próximo 
+                                disabled={(activeStep === elements.length - 1) || disabled}
+                                type="submit">
+                                { loading ? <CircularProgress className="text-white" size={22} /> : "Próximo" } 
                             </Button>
                         </div>
                     )}
                 </div>
-            </div>
+            </form>
         </main>
     );
 };

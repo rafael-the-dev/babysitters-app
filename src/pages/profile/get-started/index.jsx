@@ -32,22 +32,27 @@ const Container = () => {
     const { activeStep, disabled, loading } = properties;
 
     const disabledRef = useRef(false);
+    const submitHelperFunc = useRef(null);
 
-    const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address /></LocalizationProvider>, []);
-    const appliesToYourselfMemo = useMemo(() => <AppliesToYourself />, []);
-    const aboutYourselfMemo = useMemo(() => <AboutYourself />, []);
-    const availabilityMemo = useMemo(() => <Availability />, []);
-    const babysittingLocationMemo = useMemo(() => <BabysittingLocation />, []);
-    const confortableWithMemo = useMemo(() => <ConfortableWith />, []);
-    const descrigeYourself = useMemo(() => <DescrigeYourself />, []);
-    const experienceMemo = useMemo(() => <Experience />, []);
-    const getStartedMemo = useMemo(() => <GetStarted />, []);
-    const hourRateMemo = useMemo(() => <HourRate />, []);
-    const moreAboutYouMemo = useMemo(() => <MoreAboutYou />, []);
-    const notificationMemo = useMemo(() => <Notification />, []);
-    const profilePhotoMemo = useMemo(() => <ProfilePhoto />, []);
-    const profileVisibilityMemo = useMemo(() => <ProfileVisibility />, []);
-    const skillsMemo = useMemo(() => <Skills />, []);
+    const disableHandler = useCallback(() => {
+        setProperties(props => ({ ...props, disabled: true }))
+    }, [])
+
+    const addressMemo = useMemo(() => <LocalizationProvider dateAdapter={AdapterMoment}><Address onSubmit={submitHelperFunc} onDisable={disableHandler} /></LocalizationProvider>, [ disableHandler ]);
+    const appliesToYourselfMemo = useMemo(() => <AppliesToYourself onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const aboutYourselfMemo = useMemo(() => <AboutYourself onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const availabilityMemo = useMemo(() => <Availability onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const babysittingLocationMemo = useMemo(() => <BabysittingLocation onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const confortableWithMemo = useMemo(() => <ConfortableWith onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const descrigeYourself = useMemo(() => <DescrigeYourself onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const experienceMemo = useMemo(() => <Experience onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const getStartedMemo = useMemo(() => <GetStarted onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const hourRateMemo = useMemo(() => <HourRate onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const moreAboutYouMemo = useMemo(() => <MoreAboutYou onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const notificationMemo = useMemo(() => <Notification onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const profilePhotoMemo = useMemo(() => <ProfilePhoto onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const profileVisibilityMemo = useMemo(() => <ProfileVisibility onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
+    const skillsMemo = useMemo(() => <Skills onSubmit={submitHelperFunc} onDisable={disableHandler} />, [ disableHandler ]);
 
     const elements = [ getStartedMemo, addressMemo, moreAboutYouMemo, descrigeYourself, appliesToYourselfMemo,
         skillsMemo, experienceMemo, babysittingLocationMemo, confortableWithMemo, hourRateMemo, availabilityMemo,
@@ -66,15 +71,31 @@ const Container = () => {
 
         if(!disabledRef.current) {
             setProperties(props => ({ ...props, loading: true }))
-            setTimeout(() => {
-                setProperties(props => ({ ...props, activeStep: props.activeStep + 1, loading: false }))
-            }, 3000)
+            submitHelperFunc.current?.()
+                .then(() => {
+                    setTimeout(() => {
+                        submitHelperFunc.current = null;
+                        setProperties(props => ({ ...props, activeStep: props.activeStep + 1, loading: false }))
+                    }, 1000)
+                })
+                .catch(e => {
+                    console.error(e);
+                    setProperties(props => ({ ...props, loading: false }))
+                })
         }
     }, [ ]);
 
     useEffect(() => {
         disabledRef.current = disabled;
-    }, [ disabled ])
+    }, [ disabled ]);
+
+    useEffect(() => {
+        if(activeStep === 0) {
+            submitHelperFunc.current = () => {
+                return new Promise((resolve) => resolve(""))
+            };
+        }
+    }, [ activeStep ])
 
     return (
         <main>

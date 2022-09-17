@@ -1,14 +1,17 @@
-import { useCallback, useId, useMemo, useState } from "react"
-import classNames from "classnames";
-import { Chip, MenuItem, TextField } from "@mui/material"
-
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
+import { Chip, MenuItem } from "@mui/material"
 
 import Input from "src/components/default-input";
 import Legend from "../legend-container"
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ educacao, setEducacao ] = useState([]);
-    const [ linguas, setLinguas ] = useState([]);
+    const [ linguas, setLinguas ] = useState([ "Português" ]);
+    const [ error, setError ] = useState({
+        educacao: false,
+        linguas: false
+    });
+    const errorRef = useRef({});
     const id = useId();
 
     const legendMemo = useMemo(() => (
@@ -33,7 +36,7 @@ const Container = () => {
 
     const deleteItem = useCallback((prop, func) => () => {
         func(currentList => currentList.filter(item => item !== prop))
-    }, [])
+    }, []);
 
     const educacaoChipsList = useMemo(() => {
         return (
@@ -127,11 +130,42 @@ const Container = () => {
         )
     }, [ id, linguas, linguasItemlickHandler ]);
 
+    useEffect(() => {
+        setError(props => ({
+            ...props,
+            linguas: linguas.length === 0
+        }));
+    }, [ linguas ]);
+
+    useEffect(() => {
+        errorRef.current = error;
+    }, [ error ]);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            if(errorRef.current.educacao || errorRef.current.linguas) {
+                reject("Preencha todos os campos");
+                return;
+            }
+
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
+
     return (
         <section className="px-5 py-12">
             <form>
                 <fieldset>
                     { legendMemo }
+                    { (error.educacao || error.linguas) && <label
+                        className="block font-medium mt-8 mb-4 text-center text-red-600"
+                        htmlFor="address-input">
+                        Por favor preencha todos os campos.
+                    </label>}
                     <div className="flex flex-col mt-8">
                         { educacaoLabelMemo }
                         { educacaoChipsList }

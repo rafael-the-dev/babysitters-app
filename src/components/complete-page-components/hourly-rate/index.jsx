@@ -1,10 +1,13 @@
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 
 import Legend from "../legend-container"
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ value, setValue ] = useState(0);
+    const [ hasError, setHasError ] = useState(false);
+
+    const hasErrorRef = useRef(false);
 
     const legendMemo = useMemo(() => (
         <Legend label="Qual é a sua taxa horária?" />
@@ -19,12 +22,39 @@ const Container = () => {
         </div>
     ), []);
 
-    const changeHandler = useCallback(e => setValue(e.target.value), [])
+    const changeHandler = useCallback(e => setValue(e.target.value), []);
+
+    useEffect(() => {
+        setHasError(!Boolean(parseFloat(value)));
+    }, [ value ]);
+
+    useEffect(() => {
+        hasErrorRef.current = hasError;
+    }, [ hasError ]);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            if(hasErrorRef.current) {
+                reject("Preencha todos os campos");
+                return;
+            }
+
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <form className="pb-16 pt-12">
             <fieldset>
                 { legendMemo }
+                { hasError && <label
+                    className="block leading-6 mt-8 text-red-600 text-center">
+                    Por favor preencha todos os campos.
+                </label> }
                 <div className="border border-gray-500 border-solid flex items-stretch mt-8 md:mt-12 rounded-lg">
                     <label
                         className="bg-slate-200 flex items-center justify-center px-3 rounded-l-lg"

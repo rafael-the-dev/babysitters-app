@@ -1,10 +1,10 @@
-import { useCallback, useId, useMemo, useState } from "react"
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 
 import Checkbox from "src/components/checkbox";
 import Legend from "../legend-container"
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ disponibilidadeDiaria, setDisponibilidadeDiaria ] = useState({
         segunda: {
             fimDaTarte: false,
@@ -49,6 +49,9 @@ const Container = () => {
             noite: false
         }
     });
+    const [ hasError, setHasError ] = useState(false);
+
+    const hasErrorRef = useRef(false)
     const id = useId();
 
     const legendMemo = useMemo(() => (
@@ -100,12 +103,45 @@ const Container = () => {
             
         }
         return rows;
-    }, [ disponibilidadeDiaria, disponibilidadeDiariaChangeHandler, id ])
+    }, [ disponibilidadeDiaria, disponibilidadeDiariaChangeHandler, id ]);
+
+    useEffect(() => {
+        const hasErrorTemp = true;
+        Object.values(disponibilidadeDiaria).forEach(item => {
+            if([ ...new Set(Object.values(item))].includes(true)) {
+                hasErrorTemp = false;
+            }
+        })
+        setHasError(hasErrorTemp);
+    }, [ disponibilidadeDiaria ]);
+
+    useEffect(() => {
+        hasErrorRef.current = hasError;
+    }, [ hasError ]);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            if(hasErrorRef.current) {
+                reject("Preencha todos os campos");
+                return;
+            }
+
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <form className="pb-16 pt-12">
             <fieldset>
                 { legendMemo }
+                { hasError && <label
+                    className="block leading-6 mt-8 text-red-600 text-center">
+                    Por favor selecione sua disponibilidade.
+                </label> }
                 <TableContainer className="mt-8 md:mt-12" >
                     <Table sx={{ minWidth: 200 }} aria-label="simple table">
                         <TableHead>

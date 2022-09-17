@@ -1,4 +1,4 @@
-import { useCallback, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { MenuItem } from "@mui/material";
 
 import Button from '../button';
@@ -6,7 +6,7 @@ import Checkbox from "src/components/checkbox";
 import Input from "src/components/default-input"
 import Legend from "../legend-container";
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ anos, setAnos ] = useState(0)
     const [ criancasComNecessidadesEspecias, setCriancasComNecessidadesEspecias ] = useState(false);
     const [ faixaEtaria, setFaixaEtaria ] = useState([]);
@@ -50,7 +50,17 @@ const Container = () => {
 
     const anosChangeHandler = useCallback((e) => {
         setAnos(e.target.value)
-    }, [])
+    }, []);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     const anosExperienciaMemo = useMemo(() => (
         <Input

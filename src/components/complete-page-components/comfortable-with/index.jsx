@@ -1,9 +1,9 @@
-import { useCallback, useId, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 
 import Legend from "../legend-container";
 import Button from '../button'
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ comfortableWith, setComfortableWith ] = useState([]);
     const id = useId();
     const list = useRef([
@@ -24,7 +24,17 @@ const Container = () => {
 
     const removeItem = useCallback(prop => () => {
         setComfortableWith(currentList => currentList.filter(item => item !== prop));
-    }, [])
+    }, []);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <section className="px-5 py-12">

@@ -1,11 +1,11 @@
-import { useCallback, useId, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 
 import classes from "./styles.module.css";
 
 import Legend from "../legend-container";
 import Button from '../button'
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ traits, setTraits ] = useState([]);
     const list = useRef([
         "Tenho um certificado de primeiros socorros", "Tenho carta de condução", "Tenho carro",
@@ -26,7 +26,17 @@ const Container = () => {
 
     const removeItem = useCallback(prop => () => {
         setTraits(currentList => currentList.filter(item => item !== prop));
-    }, [])
+    }, []);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <section className="px-5 py-12">

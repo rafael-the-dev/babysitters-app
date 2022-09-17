@@ -1,12 +1,15 @@
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import classNames from "classnames"
 
 import classes from "./styles.module.css";
 
 import Input from "src/components/default-input"
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ value, setValue ] = useState("");
+    const [ hasError, setHasError ] = useState(false)
+
+    const hasErrorRef = useRef(false)
 
     const leftChars = 200 - value.length;
 
@@ -34,11 +37,38 @@ const Container = () => {
         </label>
     ), []);
 
-    const changeHandler = useCallback((e) => setValue(e.target.value.trim()), [])
+    const changeHandler = useCallback((e) => setValue(e.target.value.trim()), []);
+
+    useEffect(() => {
+        setHasError(!Boolean(value.trim()));
+    }, [ value ]);
+
+    useEffect(() => {
+        hasErrorRef.current = hasError;
+    }, [ hasError ]);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            if(hasErrorRef.current) {
+                reject("Preencha todos os campos");
+                return;
+            }
+
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <div className="px-5 py-12 mb-12">
             { videoMemo }
+            { hasError && <label
+                className="block leading-6 mt-8 text-red-600 text-center">
+                Por favor preencha todos os campos.
+            </label> }
             <div className="mt-12">
                 { inputLabel }
                 <Input 

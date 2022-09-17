@@ -129,9 +129,11 @@ const Container = () => {
                             </Button>
                             <Button 
                                 className="bg-neutral-800 py-1 text-white hover:bg-neutral-700 md:py-2 md:px-4"
-                                disabled={(activeStep === elements.length - 1) || disabled}
+                                disabled={disabled}
                                 type="submit">
-                                { loading ? <CircularProgress className="text-white" size={22} /> : "Próximo" } 
+                                { loading ? <CircularProgress className="text-white" size={22} /> : (
+                                    activeStep === elements.length - 1 ? "Guardar" : "Próximo"
+                                ) } 
                             </Button>
                         </div>
                     )}

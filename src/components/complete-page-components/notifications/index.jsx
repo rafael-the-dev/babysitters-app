@@ -1,11 +1,11 @@
-import { useCallback, useMemo, useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
 import classes from "./styles.module.css";
 
 import Legend from "../legend-container";
 import Button from '../button'
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ receiveNotification, setReceiveNotifcation ] = useState(null);
 
     const legendMemo = useMemo(() => (
@@ -15,7 +15,17 @@ const Container = () => {
 
     const clickHandler = useCallback(prop => () => {
         setReceiveNotifcation(prop);
-    }, [])
+    }, []);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <section className="px-5 py-12">

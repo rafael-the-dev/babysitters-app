@@ -1,17 +1,28 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "@mui/material";
 import classNames from "classnames"
 
 import Legend from "../legend-container";
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ isVisible, setIsVisible ] = useState(true);
 
     const legendMemo = useMemo(() => <Legend label="Quem consegue ver este perfil?" />, []);
 
     const clickHandler = useCallback(prop => () => {
         setIsVisible(prop);
-    }, [])
+    }, []);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
+
 
     return (
         <fieldset className="py-16">

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button, Typography, Tooltip } from "@mui/material";
 import classNames from "classnames";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import ErrorOutlinedIcon from '@mui/icons-material/ErrorOutlined';
 import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
 
-const Container = () => {
+const Container = ({ onSubmit }) => {
     const [ imageFile, setImageFile ] = useState({
         file: null,
         url: null
@@ -18,7 +18,12 @@ const Container = () => {
         file: null,
         url: null
     });
+    const [ errors, setErrors ] = useState({
+        image: false,
+        video: false
+    })
 
+    const errorsRef = useRef({});
     const imageFileRef = useRef(null);
     const videoFileRef = useRef(null);
 
@@ -177,12 +182,37 @@ const Container = () => {
         </>
     ), [])
 
+    useEffect(() => {
+        setErrors({
+            image: !Boolean(imageFile.file),
+            video: !Boolean(videoFile.file) && !Boolean(imageFile.file)
+        });
+    }, [ imageFile, videoFile ]);
+
+    useEffect(() => {
+        errorsRef.current = errors;
+    }, [ errors ]);
+
+    const submitHandler = useCallback(() => {
+        return new Promise((resolve, reject) => {
+            if(errorsRef.current.image || errorsRef.current.video) {
+                reject("Preencha todos os campos");
+                return;
+            }
+
+            resolve("")
+        })
+    }, [ ]);
+
+    useEffect(() => {
+        onSubmit.current = submitHandler;
+    }, [ onSubmit, submitHandler ])
 
     return (
         <div className="px-5 py-12">
             { videoMemo }
             <div>
-                { alertLabel }
+                { ( errors.image || errors.video) && alertLabel }
                 <div className="flex flex-col justify-between mt-8 sm:flex-row">
                     { imageContainerMemo }
                     { videoContainerMemo }

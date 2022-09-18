@@ -2,6 +2,7 @@ const path = require('path')
 
 module.exports = {
   env: {
+    FB_APP_ID: "1263499417770261",
     GOOGLE_CLIENT_SECRET_KEY: "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",
     GOOGLE_CLIENT_ID: "767474218175-909li7orom3b7gt1o97ok53atuloalqs.apps.googleusercontent.com"
   },

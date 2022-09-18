@@ -12,6 +12,8 @@ export default class MyDocument extends Document {
           {/* PWA primary color 
           <meta name="theme-color" content={theme.palette.primary.main} />*/}
           <script src="https://accounts.google.com/gsi/client" async defer></script>
+          <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+          <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/pt_PT/sdk.js#xfbml=1&amp;version=v15.0&amp;appId=1263499417770261&amp;autoLogAppEvents=1" nonce="yY3qQsd8"></script>
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="stylesheet"

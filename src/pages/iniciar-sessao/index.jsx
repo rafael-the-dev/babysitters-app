@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Button } from "@mui/material";
-import jwtDecode from "jwt-decode"
+import jwtDecode from "jwt-decode";
+import dynamic from "next/dynamic"
 import classNames from "classnames";
 
 import Input from "src/components/default-input";
@@ -8,6 +9,10 @@ import Link from "src/components/link";
 import Separator from "src/components/separator"
 
 import classes from "./styles.module.css";
+
+const FbLogin = dynamic(() => import("src/components/fb-login"), {
+    ssr: false
+});
 
 const Container = () => {
     const handleCredentialResponse = React.useCallback(res => {
@@ -28,12 +33,15 @@ const Container = () => {
         )
     }, [ handleCredentialResponse ]);
 
+    
+
     return (
         <main>
             <form className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12
                 px-4 py-6 md:my-16`)}>
                 <div>
                     <div className={classes.googleSignContainer} id="signInDiv"></div>
+                    <FbLogin />
                 </div>
                 <Separator className="my-8">Ou</Separator>
                 <fieldset>

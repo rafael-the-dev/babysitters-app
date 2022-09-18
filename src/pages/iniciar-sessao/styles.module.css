@@ -2,6 +2,10 @@
     width: 90%;
 }
 
+.googleSignContainer #container {
+    width: 100%;
+}
+
 @media screen and (min-width: 500px) {
     .form {
         width: 80%;

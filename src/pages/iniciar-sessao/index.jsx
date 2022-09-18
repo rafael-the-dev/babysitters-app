@@ -1,4 +1,4 @@
-
+import * as React from "react"
 import { Button } from "@mui/material";
 import classNames from "classnames";
 
@@ -8,11 +8,30 @@ import Link from "src/components/link"
 import classes from "./styles.module.css";
 
 const Container = () => {
+    const handleCredentialResponse = React.useCallback(response => {
+        console.log(response)
+    }, []);
+
+    React.useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: process.env.GOOGLE_CLIENT_ID,
+            callback: handleCredentialResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { size: "large", theme: "outline" }
+        )
+    }, [ handleCredentialResponse ]);
 
     return (
         <main>
             <form className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12
                 px-4 py-6 md:my-16`)}>
+                <div>
+                    <div className={classes.googleSignContainer} id="signInDiv"></div>
+                </div>
                 <fieldset>
                     <legend 
                         className="font-bold text-lg">

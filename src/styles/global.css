@@ -1,8 +1,14 @@
 * {
     font-family: 'Montserrat', Roboto, sans-serif !important;
 }
+
 a {
     text-decoration: none;
+}
+
+body #signInDiv iframe, body #container {
+    display: block;
+    width: 100% !important;
 }
 
 @media screen and (min-width: 990px) {

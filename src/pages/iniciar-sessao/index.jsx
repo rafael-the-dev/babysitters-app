@@ -1,15 +1,18 @@
 import * as React from "react"
 import { Button } from "@mui/material";
+import jwtDecode from "jwt-decode"
 import classNames from "classnames";
 
 import Input from "src/components/default-input";
-import Link from "src/components/link"
+import Link from "src/components/link";
+import Separator from "src/components/separator"
 
 import classes from "./styles.module.css";
 
 const Container = () => {
-    const handleCredentialResponse = React.useCallback(response => {
-        console.log(response)
+    const handleCredentialResponse = React.useCallback(res => {
+        const user = jwtDecode(res.credential);
+        console.log(user)
     }, []);
 
     React.useEffect(() => {
@@ -21,7 +24,7 @@ const Container = () => {
 
         google.accounts.id.renderButton(
             document.getElementById("signInDiv"),
-            { size: "large", theme: "outline" }
+            { size: "large", theme: "outline", width: "100%" }
         )
     }, [ handleCredentialResponse ]);
 
@@ -32,6 +35,7 @@ const Container = () => {
                 <div>
                     <div className={classes.googleSignContainer} id="signInDiv"></div>
                 </div>
+                <Separator className="my-8">Ou</Separator>
                 <fieldset>
                     <legend 
                         className="font-bold text-lg">

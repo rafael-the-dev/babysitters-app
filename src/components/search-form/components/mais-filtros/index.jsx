@@ -32,6 +32,12 @@ const MaisFiltros = () => {
     const tableBodyMemo = useMemo(() => {
         const rows = [];
         const time = [ "Manhã", "Tarde", "Fim da tarde", "Noite" ];
+        const dayTimes = {
+            0: "manha",
+            1: "tarde",
+            2: "fimDaTarte",
+            3: "noite"
+        }
 
         for(let i = 0; i < 4; i++) {
             rows.push(
@@ -51,8 +57,8 @@ const MaisFiltros = () => {
                                         align="right"
                                         key={`${index}${id}`}>
                                         <Checkbox 
-                                            checked={Object.values(values)[i]}
-                                            onChange={disponibilidadeDiariaChangeHandler(key, Object.keys(values)[i])} 
+                                            checked={values[dayTimes[i]]}
+                                            onChange={disponibilidadeDiariaChangeHandler(key, dayTimes[i])} 
                                         />
                                     </TableCell>
                                 )

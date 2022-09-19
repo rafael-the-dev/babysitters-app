@@ -1,25 +1,42 @@
 import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { FilterContext } from "src/context"
+import { FilterContext } from "src/context";
+
+const hasElement = (item, data) => {
+    if(typeof data === "string") {
+        return data === item;
+    } 
+    else if (Array.isArray(data)) {
+        return data.includes(item);
+    }
+
+    return false;
+};
 
 export const useQuery = () => {
     const { 
         setDisponibilidade, 
         setExperiencia, 
         setIdade, 
-        setInformacaoAdiconal 
+        setInformacaoAdiconal ,
+        setLocalBabysitting,
+        setVerificacoes, setTipo
     } = useContext(FilterContext);
 
     const { query: {
         age_groups,
+        babysit_location,
         children, cooking, chores, car,
-        driving_license,
+        driving_license, documents,
         first_aid,
         homework_assistance,
+        identity_verified,
         min_experience, min_age,
         pets,
-        smoking, special_needs
+        reviews_references,
+        smoking, supersitter, special_needs,
+        user_type
     }} = useRouter();
     
     useEffect(() => {
@@ -32,25 +49,14 @@ export const useQuery = () => {
     }, [ chores, cooking, homework_assistance, pets, setDisponibilidade ]);
 
     useEffect(() => {
-        const checkAgeGroup = (item) => {
-            if(typeof age_groups === "string") {
-                return age_groups === item;
-            } 
-            else if (Array.isArray(age_groups)) {
-                return age_groups.includes(item);
-            }
-
-            return false;
-        };
-
         setExperiencia({
             anos: min_experience ? parseInt(min_experience) : 0,
             faixaEtaria: {
-                adolescente: checkAgeGroup("teenager"),
-                bebe: checkAgeGroup("baby"),
-                crianca: checkAgeGroup("toddler"),
-                criancaPreEscolar: checkAgeGroup("preschooler"),
-                criancaEnsinoBasico: checkAgeGroup("gradeschooler"),
+                adolescente: hasElement("teenager", age_groups),
+                bebe: hasElement("baby", age_groups),
+                crianca: hasElement("toddler", age_groups),
+                criancaPreEscolar: hasElement("preschooler", age_groups),
+                criancaEnsinoBasico: hasElement("gradeschooler", age_groups),
                 criancaComNecessidades: Boolean(special_needs)
             }
         })
@@ -59,7 +65,6 @@ export const useQuery = () => {
     useEffect(() => setIdade(parseInt(min_age ?? 14)), [ min_age, setIdade ]);
 
     useEffect(() => {
-        console.log(typeof car)
         setInformacaoAdiconal({
             certificadoPrimeirosSocorros: Boolean(first_aid ?? false),
             naoFumador:  Boolean(smoking ?? false),
@@ -67,5 +72,29 @@ export const useQuery = () => {
             temFilhos:  Boolean(children ?? false),
             temCartaConducao:  Boolean(driving_license ?? false)
         });
-    }, [ car, children, driving_license, first_aid, smoking, setInformacaoAdiconal ])
+    }, [ car, children, driving_license, first_aid, smoking, setInformacaoAdiconal ]);
+
+    useEffect(() => {
+        setLocalBabysitting({
+            casaFamilia: hasElement("at_consumer", babysit_location),
+            casaBabysitter: hasElement("at_provider", babysit_location)
+        });
+    }, [ babysit_location, setLocalBabysitting ]);
+
+    useEffect(() => {
+        setVerificacoes({
+            avaliacoesReferencias: Boolean(reviews_references ?? false),
+            documentoDeIdentifcacao: Boolean(identity_verified ?? false),
+            registoCriminal: documents === "pt_registo_criminal",
+            supersitter: Boolean(supersitter ?? false)
+        });
+    }, [ documents, identity_verified, reviews_references, supersitter, setVerificacoes ]);
+
+    useEffect(() => {
+        setTipo({
+            ama:hasElement("childminder", user_type),
+            babysitter: hasElement("babysitter", user_type),
+            outraFamilia:hasElement("parent", user_type)
+        });
+    }, [ setTipo, user_type ])
 };

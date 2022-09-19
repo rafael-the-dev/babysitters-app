@@ -153,7 +153,7 @@ export const FilterContextProvider = ({ children }) => {
     const localBabysittingQueryString = useMemo(() => {
         const { casaBabysitter, casaFamilia } = localBabysitting;
 
-        return `${ casaBabysitter ? "babysit_location=at_consumer" : ""}&${casaFamilia ? "babysit_location=at_provider": ""}`;
+        return `${ casaBabysitter ? "babysit_location=at_provider" : ""}&${casaFamilia ? "babysit_location=at_consumer": ""}`;
     }, [ localBabysitting ])
 
     const [ verificacoes, setVerificacoes ] = useState({

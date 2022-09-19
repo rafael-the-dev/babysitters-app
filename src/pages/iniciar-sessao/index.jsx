@@ -46,7 +46,7 @@ const Container = () => {
                 <Separator className="my-8">Ou</Separator>
                 <fieldset>
                     <legend 
-                        className="font-bold text-lg">
+                        className="block font-bold text-center text-lg">
                         Iniciar sessão
                     </legend>
                     <div className="mt-8">

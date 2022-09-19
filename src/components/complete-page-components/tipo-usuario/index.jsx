@@ -22,7 +22,7 @@ const Container = () => {
             </Typography>
             <div className="mt-8">
                 <Button onClick={clickHandler("/profile/get-started")}>Sou babysitter</Button>
-                <Button>Sou ama</Button>
+                <Button onClick={clickHandler("/profile/get-started")}>Sou ama</Button>
                 <Separator className="mt-6 mb-8">Ou</Separator>
                 <Button>Estou à procura de babysitter</Button>
                 <Button>Sou uma empresa ou uma agência</Button>

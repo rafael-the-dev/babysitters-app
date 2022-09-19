@@ -1,11 +1,18 @@
+import * as React from "react";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router"
+import dynamic from "next/dynamic";
 import classNames from "classnames";
 
 import Input from "src/components/default-input"
-import Link from "src/components/link"
+import Link from "src/components/link";
+import Separator from "src/components/separator"
 
 import classes from "./styles.module.css";
+
+const FbLogin = dynamic(() => import("src/components/fb-login"), {
+    ssr: false
+});
 
 const Container = () => {
     const router = useRouter();
@@ -16,15 +23,38 @@ const Container = () => {
         router.push('/registo/complete');
     };
 
+    const handleCredentialResponse = React.useCallback(res => {
+        const user = jwtDecode(res.credential);
+        console.log(user)
+    }, []);
+
+    React.useEffect(() => {
+        /* global google */
+        google.accounts.id.initialize({
+            client_id: process.env.GOOGLE_CLIENT_ID,
+            callback: handleCredentialResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"),
+            { size: "large", theme: "outline", width: "100%" }
+        )
+    }, [ handleCredentialResponse ]);
+
     return (
         <main>
             <form 
                 className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12
                 px-4 py-6 md:my-16`)}
                 onSubmit={submitHandler}>
+                <div className="flex flex-col items-center">
+                    <div className={classes.googleSignContainer} id="signInDiv"></div>
+                    <FbLogin />
+                </div>
+                <Separator className="my-8">Ou</Separator>
                 <fieldset>
                     <legend 
-                        className="font-bold text-lg">
+                        className="block font-bold text-center text-lg">
                         Bem-vindo à Babysits
                     </legend>
                     <div className="mt-8">

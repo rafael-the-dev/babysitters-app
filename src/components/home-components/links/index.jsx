@@ -8,8 +8,8 @@ import ListItem from "./components/list-item"
 
 const Container = () => {
     const list = [
-        { href: "/", label: "Babysitters" },
-        { href: "/", label: "Amas" },
+        { href: "babysitter", label: "Babysitters" },
+        { href: "amas", label: "Amas" },
         { href: "/", label: "Cuidados para crianças com necessidades especiais" },
         { href: "/", label: "Famílias que ajudam famílias Ofertas de trabalho de babysitting" },
         { href: "/", label: " Trabalhos de ama" },
@@ -17,20 +17,20 @@ const Container = () => {
     ];
 
     const cities = [
-        { href: "/", label: "Lisboa" },
-        { href: "/", label: "Porto" },
-        { href: "/", label: "Cascais" },
-        { href: "/", label: "Sintra" },
-        { href: "/", label: "Vila Nova de Gaia" },
-        { href: "/", label: "Coimbra" },
-        { href: "/", label: "Oeiras" },
-        { href: "/", label: "Braga" },
-        { href: "/", label: "Almada" },
-        { href: "/", label: "Loures" },
-        { href: "/", label: "Seixal" },
-        { href: "/", label: "Matosinhos" },
-        { href: "/", label: "Amadora" },
-        { href: "/", label: "Odivelas" },
+        { href: "babysitter/lisboa", label: "Lisboa" },
+        { href: "babysitter/porto", label: "Porto" },
+        { href: "babysitter/cascais", label: "Cascais" },
+        { href: "babysitter/sintra", label: "Sintra" },
+        { href: "babysitter/vila-nova-de-gaia", label: "Vila Nova de Gaia" },
+        { href: "babysitter/coimbra", label: "Coimbra" },
+        { href: "babysitter/oeiras", label: "Oeiras" },
+        { href: "babysitter/braga", label: "Braga" },
+        { href: "babysitter/almada", label: "Almada" },
+        { href: "babysitter/loures", label: "Loures" },
+        { href: "babysitter/seixal", label: "Seixal" },
+        { href: "babysitter/matosinhos", label: "Matosinhos" },
+        { href: "babysitter/amadora", label: "Amadora" },
+        { href: "babysitter/odivelas", label: "Odivelas" },
     ];
 
     return (

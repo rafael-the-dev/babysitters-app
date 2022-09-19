@@ -4,6 +4,7 @@
 
 .headerFixed {
     background-color: #FFF !important;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     left: 0 !important;
     position: fixed !important;
     top: 0 !important;

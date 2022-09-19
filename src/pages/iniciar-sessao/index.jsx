@@ -39,7 +39,7 @@ const Container = () => {
         <main>
             <form className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12
                 px-4 py-6 md:my-16`)}>
-                <div>
+                <div className="flex flex-col items-center">
                     <div className={classes.googleSignContainer} id="signInDiv"></div>
                     <FbLogin />
                 </div>

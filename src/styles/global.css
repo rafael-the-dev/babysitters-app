@@ -6,9 +6,8 @@ a {
     text-decoration: none;
 }
 
-body #signInDiv iframe, body #container {
-    display: block;
-    width: 100% !important;
+body #signInDiv iframe {
+    margin: 0 !important;
 }
 
 @media screen and (min-width: 990px) {

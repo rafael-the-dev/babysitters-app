@@ -22,7 +22,7 @@ const Card = ({ image, name }) => {
     const loader = () => image.url;
 
     return (
-        <Link className={classNames(classes.container, "text-black")} href="babysitter/porto/1">
+        <Link className={classNames(classes.container, "text-black")} href="/babysitter/porto/1">
             <div className="border-b border-gray-300 border-solid flex items-start justify-between py-6">
                 <div className={classNames("relative rounded-xl", classes.imageContainer)}>
                     <Image 

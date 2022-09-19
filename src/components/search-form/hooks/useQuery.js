@@ -21,7 +21,8 @@ export const useQuery = () => {
         setIdade, 
         setInformacaoAdiconal ,
         setLocalBabysitting,
-        setVerificacoes, setTipo
+        setVerificacoes, 
+        setTipo, setTaxaMaximaPorHora
     } = useContext(FilterContext);
 
     const { query: {
@@ -32,7 +33,7 @@ export const useQuery = () => {
         first_aid,
         homework_assistance,
         identity_verified,
-        min_experience, min_age,
+        min_experience, min_age, max_rate_amount,
         pets,
         reviews_references,
         smoking, supersitter, special_needs,
@@ -96,5 +97,7 @@ export const useQuery = () => {
             babysitter: hasElement("babysitter", user_type),
             outraFamilia:hasElement("parent", user_type)
         });
-    }, [ setTipo, user_type ])
+    }, [ setTipo, user_type ]);
+
+    useEffect(() => setTaxaMaximaPorHora(parseFloat(max_rate_amount ?? 0)), [ max_rate_amount, setTaxaMaximaPorHora ])
 };

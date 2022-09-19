@@ -5,6 +5,7 @@ import { FilterContext } from "src/context"
 
 import Checkbox from "../checkbox";
 import Label from "../label";
+import MaxRate from "./components/max-rate"
 import Range from "../range";
 import Title from "../title"
 
@@ -78,7 +79,7 @@ const MaisFiltros = () => {
             ...properties,
             [prop]: !properties[prop]
         }))
-    }, [])
+    }, []);
 
     return (
         <div>
@@ -127,6 +128,7 @@ const MaisFiltros = () => {
                     </Table>
                 </TableContainer>
             </div>
+            <MaxRate />
             <div className="border-b border-solid border-gray-300 py-8">
                 <Title className="">
                     Tenho disponibilidade para/Estou à vontade com

@@ -188,7 +188,11 @@ export const FilterContextProvider = ({ children }) => {
         const isOutraFamilia = outraFamilia ? "user_type=parent&type_babysit=parents_help_parents" : "";
 
         return `${isAma}&${isBabysitter}&${isOutraFamilia}`;
-    }, [ tipo ])
+    }, [ tipo ]);
+
+    const [ taxaMaximaPorHora, setTaxaMaximaPorHora ] = useState(0);
+
+    const taxaMaximaPorHoraQueryString = useMemo(() => taxaMaximaPorHora > 0 ? `max_rate_amount=${taxaMaximaPorHora}` : "", [ taxaMaximaPorHora ])
 
     const experienciasSelecionada = useMemo(() => {
         const ano = experiencia.anos > 0 ? 1 : 0; 
@@ -200,9 +204,10 @@ export const FilterContextProvider = ({ children }) => {
         const idadeSelecionada = idade > 14 ? 1: 0;
         const informacaoAdicionalLength = countHelper(Object.values(informacaoAdicional));
         const localBabysittingLength = countHelper(Object.values(localBabysitting));
+        const taxaPorHora = taxaMaximaPorHora > 0 ? 1 : 0;
 
-        return disponibilidadeLength + idadeSelecionada + informacaoAdicionalLength + localBabysittingLength;
-    }, [ disponibilidade, idade, informacaoAdicional, localBabysitting ])
+        return disponibilidadeLength + idadeSelecionada + informacaoAdicionalLength + localBabysittingLength + taxaPorHora;
+    }, [ disponibilidade, idade, informacaoAdicional, localBabysitting, taxaMaximaPorHora ])
 
     const tiposSelecionados = useMemo(() => {
         return Object.values(tipo).filter(item => item).length;
@@ -213,10 +218,12 @@ export const FilterContextProvider = ({ children }) => {
     }, [ verificacoes ]);
 
     const queriesStringParams = useMemo(() => {
-        return `${disponibilidadeQueryString}&${disponibilidadeDiariaQueryString}&${experienciaQueryString}&${idadeQueryString}&${informacaoAdicionalQueryString}&${localBabysittingQueryString}&${verificacoesQueryString}&${tipoQueryString}`.replace(/&{2,}/g, "&").replace(/&$/g, "").replace(/^&/g, "");
+        return `${disponibilidadeQueryString}&${disponibilidadeDiariaQueryString}&${experienciaQueryString}&${idadeQueryString}&${informacaoAdicionalQueryString}&${localBabysittingQueryString}&${verificacoesQueryString}&${tipoQueryString}&${taxaMaximaPorHoraQueryString}`.replace(/&{2,}/g, "&").replace(/&$/g, "").replace(/^&/g, "");
     }, [ disponibilidadeQueryString, disponibilidadeDiariaQueryString, experienciaQueryString, idadeQueryString,
-        informacaoAdicionalQueryString, localBabysittingQueryString, verificacoesQueryString, tipoQueryString ]);
-        console.log(queriesStringParams)
+        informacaoAdicionalQueryString, localBabysittingQueryString, verificacoesQueryString, tipoQueryString,
+        taxaMaximaPorHoraQueryString ]);
+        
+
     const totalCamposSelecionads = useMemo(() => {
         return experienciasSelecionada + tiposSelecionados + verificacoesSelecionadas + maisFiltrosSelecionados;
     }, [ experienciasSelecionada, maisFiltrosSelecionados, tiposSelecionados, verificacoesSelecionadas ])
@@ -231,8 +238,8 @@ export const FilterContextProvider = ({ children }) => {
             localBabysitting,
             maisFiltrosSelecionados,
             setDisponibilidade, setDisponibilidadeDiaria, setExperiencia, setIdade, setInformacaoAdiconal, setLocalBabysitting, 
-            setTipo, setVerificacoes,
-            tipo, 
+            setTipo, setTaxaMaximaPorHora, setVerificacoes,
+            tipo, taxaMaximaPorHora,
             totalCamposSelecionads, 
             tiposSelecionados, 
             verificacoes, 

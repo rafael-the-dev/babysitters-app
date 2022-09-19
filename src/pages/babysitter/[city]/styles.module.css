@@ -1,0 +1,12 @@
+
+@media screen and (min-width: 1024px) {
+    .content {
+        max-height: 600px;
+        width: 55%;
+    }
+
+    .mapContainer {
+        padding-left: 5%;
+        width: 40%;
+    }
+}

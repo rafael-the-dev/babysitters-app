@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useMemo, useRef } from "react"
+import { useEffect, useId, useMemo, useRef } from "react"
 import { Button, Hidden, Typography } from "@mui/material";
 import classNames from "classnames";
 import dynamic from 'next/dynamic'
@@ -11,8 +11,6 @@ import { useFetch, useLazyFetch } from "src/hooks"
 import BabysitterCard from "src/components/babysitter-card"
 import Link from "src/components/link";
 import Search from "src/components/search-form";
-import Seguranca from "src/components/home-components/seguranca";
-import ComoFunciona from "src/components/babysitter-page-components/como-funciona";
 
 const DynamicMap = dynamic(() => import('src/components/leaflet-map'), {
     ssr: false,
@@ -38,39 +36,11 @@ const Container = () => {
         return [];
     }, [ data, users ]);
 
-    const scrollHandler = useCallback((e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const { scrollY } = window;
-        console.log(scrollY)
-        //console.log(scrollY, babysittersContentRef)
-        if((scrollY > 40) && (scrollY < 800)) {
-            console.log(scrollY)
-            //window.scrollTo(0, 40);
-            babysittersContentRef.current.scrollIntoView();
-            /*babysittersContentRef.current.scroll({
-                top: babysittersContentRef.current.scrollTop + 5,
-                behavior: 'smooth'
-              })*/
-            return false;
-        }
-    }, [])
-
     useEffect(() => {
         if(data) {
             lazyFetch({ url: "https://jsonplaceholder.typicode.com/users" })
         }
     }, [ data, lazyFetch ]);
-
-    useEffect(() => {
-        const currentWindow = window;
-
-        currentWindow.addEventListener('wheel', scrollHandler, {passive: false});
-
-        return () => {
-            currentWindow.removeEventListener('wheel', scrollHandler);
-        };
-    }, [ scrollHandler ])
 
     return (
         <main className="">
@@ -85,12 +55,12 @@ const Container = () => {
                         <Typography
                             className="font-bold text-2xl"
                             component="h1">
-                            Babysitter em Porto
+                            Encontrar uma babysitter
                         </Typography>
                         <Typography
                             className="mt-1"
                             component="p">
-                            Encontre uma babá de confiança em Babysits
+                            11 008 babysitters que correspondem à sua pesquisa
                         </Typography>
                     </div>
                     <div className="border-b border-solid border-gray-400 flex flex-col py-4 sm:flex-row sm:items-center">

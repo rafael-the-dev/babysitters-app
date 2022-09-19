@@ -30,7 +30,7 @@ const DrawerForm = ({ onClose, onOpen }) => {
         const { value } = inputRef.current;
 
         if(value.trim()) {
-            router.push("/babysitter")
+            router.push(`/babysitter/${value}`);
         }
     };
 

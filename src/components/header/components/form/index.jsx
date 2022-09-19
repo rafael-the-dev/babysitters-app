@@ -1,16 +1,17 @@
 import { forwardRef, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Button, IconButton, Typography } from "@mui/material"
+import { Button } from "@mui/material";
+import { useRouter } from "next/router"
 import classNames from "classnames";
 
 import classes from "./styles.module.css";
 
 import SearchIcon from '@mui/icons-material/Search';
 
-import Link from "src/components/link";
-import Drawer from "src/components/drawer"
 import DrawerForm from "../drawer-form";
 
 const Form = forwardRef(({ className }, ref) => {
+    const  { query: { city }} = useRouter();
+
     const [ open, setOpen ] = useState(false);
 
     const openHandler = useRef(null);
@@ -33,7 +34,7 @@ const Form = forwardRef(({ className }, ref) => {
                 onClick={clickHandler}
                 
                 variant="outlined">
-                Porto
+                { city ?? "Comece a sua busca" }
                 <span className={classNames(classes.buttonIcon, "bg-cyan-400 text-white flex items-center justify-center rounded-full")}>
                     <SearchIcon />
                 </span>

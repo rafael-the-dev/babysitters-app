@@ -12,6 +12,10 @@
     width: 80%;
 }
 
+.buttonBorder {
+    border: 1px solid #d1d5db;
+}
+
 @media screen and (min-width: 600px) {
     .drawerPaper {
         width: 300px;

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { Avatar, Badge, Button, IconButton } from "@mui/material"
 import classNames from "classnames";
 import { styled } from "@mui/material/styles";
@@ -25,9 +25,35 @@ const CustomBadge = styled(Badge)({
 const Menu = () => {
     const { pathname } = useRouter();
 
+    const buttonRef = useRef(null)
     const openDrawer = useRef(null);
 
     const onClick = () => openDrawer.current?.();
+
+    const headerRef = useRef(null);
+
+    const scrollHandler = useCallback(() => {
+        const { scrollY } = window;
+
+        if(scrollY > 50) {
+            buttonRef.current.classList.add(classes.buttonBorder);
+        } else {
+            buttonRef.current.classList.remove(classes.buttonBorder);
+        }
+        
+    }, []);
+
+    useEffect(() => {
+        const currentWindow = window;
+
+        scrollHandler();
+
+        currentWindow.addEventListener("scroll", scrollHandler);
+
+        return () => {
+            currentWindow.removeEventListener("scroll", scrollHandler);
+        };
+    }, [ pathname, scrollHandler ])
 
     return (
         <>
@@ -35,7 +61,8 @@ const Menu = () => {
                 <Button
                     className={classNames("bg-white px-2 py-1 rounded-xl hover:bg-gray-100",
                     { "border border-gray-300 border-solid ": pathname !== "/" })}
-                    onClick={onClick}>
+                    onClick={onClick}
+                    ref={buttonRef}>
                         <MenuIcon className="text-black" />
                         <Avatar 
                             alt=""

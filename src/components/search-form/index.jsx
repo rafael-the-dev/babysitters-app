@@ -1,12 +1,14 @@
 import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { Avatar, Button, Hidden, IconButton, Stack } from "@mui/material";
+import { useRouter } from "next/router"
 
 import SearchIcon from '@mui/icons-material/Search';
 
 import classes from "./styles.module.css";
 
-import { FilterContext } from "src/context"
+import { FilterContext } from "src/context";
+import { useQuery } from "./hooks/useQuery"
 
 import Chip from "./components/chip";
 import Drawer from "../drawer";
@@ -18,6 +20,8 @@ import MaisFiltros from "./components/mais-filtros"
 import Popover from "../popover"
 
 const Search = () => {
+    useQuery();
+    
     const { experienciasSelecionada, maisFiltrosSelecionados, tiposSelecionados, totalCamposSelecionads, verificacoesSelecionadas } = useContext(FilterContext);
 
     const [ value, setValue ] = useState("");

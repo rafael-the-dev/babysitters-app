@@ -8,7 +8,8 @@ import classes from "./styles.module.css";
 import { FilterContextProvider } from "src/context";
 import { useFetch, useLazyFetch } from "src/hooks"
 
-import BabysitterCard from "src/components/babysitter-card"
+import BabysitterCard from "src/components/babysitter-card";
+import DefaultContainer from "src/components/babysitter-page-components/container"
 import Link from "src/components/link";
 import Search from "src/components/search-form";
 
@@ -43,7 +44,7 @@ const Container = () => {
     }, [ data, lazyFetch ]);
 
     return (
-        <main className="">
+        <DefaultContainer className="">
             <FilterContextProvider>
                 <Search />
             </FilterContextProvider>
@@ -85,7 +86,7 @@ const Container = () => {
                     </div>
                 </Hidden>
             </section>
-        </main>
+        </DefaultContainer>
     );
 };
 

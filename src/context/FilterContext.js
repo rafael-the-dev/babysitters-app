@@ -8,7 +8,7 @@ const countHelper = (values) => {
 };
 
 export const FilterContextProvider = ({ children }) => {
-
+    
     const [ disponibilidade, setDisponibilidade ] = useState({
         animaisEstimacao: false,
         apoiarTrabalhosCasa: false,
@@ -216,7 +216,7 @@ export const FilterContextProvider = ({ children }) => {
         return `${disponibilidadeQueryString}&${disponibilidadeDiariaQueryString}&${experienciaQueryString}&${idadeQueryString}&${informacaoAdicionalQueryString}&${localBabysittingQueryString}&${verificacoesQueryString}&${tipoQueryString}`.replace(/&{2,}/g, "&").replace(/&$/g, "").replace(/^&/g, "");
     }, [ disponibilidadeQueryString, disponibilidadeDiariaQueryString, experienciaQueryString, idadeQueryString,
         informacaoAdicionalQueryString, localBabysittingQueryString, verificacoesQueryString, tipoQueryString ]);
-
+        console.log(queriesStringParams)
     const totalCamposSelecionads = useMemo(() => {
         return experienciasSelecionada + tiposSelecionados + verificacoesSelecionadas + maisFiltrosSelecionados;
     }, [ experienciasSelecionada, maisFiltrosSelecionados, tiposSelecionados, verificacoesSelecionadas ])

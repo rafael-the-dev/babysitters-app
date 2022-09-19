@@ -30,8 +30,6 @@ const Menu = () => {
 
     const onClick = () => openDrawer.current?.();
 
-    const headerRef = useRef(null);
-
     const scrollHandler = useCallback(() => {
         const { scrollY } = window;
 

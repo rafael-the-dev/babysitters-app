@@ -36,7 +36,7 @@ export const useQuery = () => {
         min_experience, min_age, max_rate_amount,
         pets,
         reviews_references,
-        smoking, supersitter, special_needs,
+        slug, smoking, supersitter, special_needs,
         user_type
     }} = useRouter();
     
@@ -93,11 +93,11 @@ export const useQuery = () => {
 
     useEffect(() => {
         setTipo({
-            ama:hasElement("childminder", user_type),
-            babysitter: hasElement("babysitter", user_type),
+            ama: hasElement("childminder", user_type) || slug === "amas",
+            babysitter: hasElement("babysitter", user_type) || slug === "babysitter",
             outraFamilia:hasElement("parent", user_type)
         });
-    }, [ setTipo, user_type ]);
+    }, [ slug, setTipo, user_type ]);
 
     useEffect(() => setTaxaMaximaPorHora(parseFloat(max_rate_amount ?? 0)), [ max_rate_amount, setTaxaMaximaPorHora ])
 };

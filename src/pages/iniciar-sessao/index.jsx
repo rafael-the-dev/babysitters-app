@@ -33,8 +33,6 @@ const Container = () => {
         )
     }, [ handleCredentialResponse ]);
 
-    
-
     return (
         <main>
             <form className={classNames(classes.form, `border border-solid border-gray-300 mx-auto my-12

@@ -1,5 +1,5 @@
 
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import classNames from "classnames";
 
 import classes from "./styles.module.css"
@@ -31,7 +31,7 @@ const Container = () => {
                         Foo boo
                     </Typography>
                     <span className={classNames(classes.email, `px-6 relative`)}>fooboo@gmail.com</span>
-                    <Link className="text-black underline" href="/">
+                    <Link className="text-black underline" href="profile">
                         Vá ao seu perfil
                     </Link>
                 </div>
@@ -66,6 +66,9 @@ const Container = () => {
                         icon={<NotificationsNoneOutlinedIcon className="md:text-4xl" />}
                         title="Notificações"
                     />
+                </div>
+                <div className="flex font-medium justify-center mt-8">
+                    <Button className="text-black underline">Desativar conta</Button>
                 </div>
             </section>
         </main>

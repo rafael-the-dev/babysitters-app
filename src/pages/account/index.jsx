@@ -1,6 +1,8 @@
 
 import { Typography } from "@mui/material";
-import classNames from "classnames"
+import classNames from "classnames";
+
+import classes from "./styles.module.css"
 
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import MoodOutlinedIcon from '@mui/icons-material/MoodOutlined';
@@ -10,6 +12,7 @@ import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 
 import Card from "src/components/account-page/card";
+import Link from "src/components/link";
 
 const Container = () => {
 
@@ -21,6 +24,17 @@ const Container = () => {
                     className={classNames("font-bold text-xl sm:text-2xl md:text-3xl")}>
                     Olá, Foo boo
                 </Typography>
+                <div className="flex flex-wrap items-center mt-4">
+                    <Typography 
+                        component="h2"
+                        className="font-semibold">
+                        Foo boo
+                    </Typography>
+                    <span className={classNames(classes.email, `px-6 relative`)}>fooboo@gmail.com</span>
+                    <Link className="text-black underline" href="/">
+                        Vá ao seu perfil
+                    </Link>
+                </div>
                 <div className="flex flex-wrap items-stretch justify-between mt-8">
                     <Card 
                         href="/"

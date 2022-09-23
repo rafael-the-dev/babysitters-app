@@ -1,0 +1,15 @@
+.email::before, .email::after {
+    content: ".";
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    transform: translate(0, -54%);
+}
+
+.email::before {
+    left: 7px;
+}
+
+.email::after {
+    right: 7px;
+}

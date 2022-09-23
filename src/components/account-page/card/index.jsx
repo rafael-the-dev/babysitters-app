@@ -17,7 +17,7 @@ const Card = ({ href, icon, title }) => (
             { icon }
             <div className="grow flex items-end mt-3">
                 <Typography
-                    component="h2"
+                    component="h3"
                     className="font-semibold mr-2">
                     { title }
                 </Typography>

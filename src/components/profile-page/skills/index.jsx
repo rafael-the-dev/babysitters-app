@@ -5,21 +5,21 @@ import Legend from "../legend"
 
 const Container = () => {
     const list = [
-        "Tenho um certificado de primeiros socorros", "Tenho carta de condução", "Sou fumador(a)", "Tenho filhos"
+        "Desenhar", "Trabalhos manuais", "Ler", "Música", "Línguas", "Jogos"
     ];
 
     const id = React.useId();
 
     return (
         <fieldset className="mt-4">
-            <Legend>O que se aplica a você?</Legend>
+            <Legend>Habilidades</Legend>
             <div className="flex flex-wrap">
                 {
                     list.map((item, index) => (
                         <Chip 
                             key={`${id}${index}`} 
                             label={item} 
-                            selected={index === 0}
+                            selected={index === 2}
                         />
                     ))
                 }

@@ -15,41 +15,41 @@ const Container = () => {
 
     return (
         <main>
-            <section className="px-4 py-12">
+            <section className="px-5 py-12 ">
                 <Typography
                     component="h1"
-                    className={classNames("font-bold text-lg")}>
+                    className={classNames("font-bold text-xl sm:text-2xl md:text-3xl")}>
                     Olá, Foo boo
                 </Typography>
                 <div className="flex flex-wrap items-stretch justify-between mt-8">
                     <Card 
                         href="/"
-                        icon={<BadgeOutlinedIcon />}
+                        icon={<BadgeOutlinedIcon className="md:text-4xl" />}
                         title="Informações pessoais"
                     />
                     <Card 
                         href="/"
-                        icon={<WorkspacePremiumOutlinedIcon />}
+                        icon={<WorkspacePremiumOutlinedIcon className="md:text-4xl" />}
                         title="Crachás "
                     />
                     <Card 
                         href="/"
-                        icon={<MoodOutlinedIcon />}
+                        icon={<MoodOutlinedIcon className="md:text-4xl" />}
                         title="Referências "
                     />
                     <Card 
                         href="/"
-                        icon={<PaymentOutlinedIcon />}
+                        icon={<PaymentOutlinedIcon className="md:text-4xl" />}
                         title="Pagamentos"
                     />
                     <Card 
                         href="/"
-                        icon={<SecurityOutlinedIcon />}
+                        icon={<SecurityOutlinedIcon className="md:text-4xl" />}
                         title="Inicio de sessão e segurança"
                     />
                     <Card 
                         href="/"
-                        icon={<NotificationsNoneOutlinedIcon />}
+                        icon={<NotificationsNoneOutlinedIcon className="md:text-4xl" />}
                         title="Notificações"
                     />
                 </div>

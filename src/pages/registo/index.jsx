@@ -2,6 +2,7 @@ import * as React from "react";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic";
+import jwtDecode from "jwt-decode";
 import classNames from "classnames";
 
 import Input from "src/components/default-input"

@@ -11,7 +11,7 @@ const Container = () => {
     const gradesList = [ "9 ano", "12º ano", "Licenciatura", "Mestrado", "Pós-graduação" ];
 
     return (
-        <div>
+        <div className="mt-4">
             <div>
                 <Label
                     htmlFor="educacao-input">

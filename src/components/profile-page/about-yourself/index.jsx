@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import HelperText from "src/components/helper-text";
 import Input from "src/components/default-input";
 import Label from "../label"
 import Legend from "../legend";
@@ -27,11 +28,10 @@ const Container = () => {
                     value={value}
                 />
                 <div className="flex justify-between text-xs">
-                    <label
-                        className="font-semibold mr-4"
+                    <HelperText
                         htmlFor="textarea-input">
                         Comunique apenas através de Babysits, não inclua detalhes de contacto. Mínimo de 200 caracteres.
-                    </label>
+                    </HelperText>
                 </div>
             </div>
         </fieldset>

@@ -4,12 +4,15 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
 import classes from "./styles.module.css"
 
-import AboutYourself from "src/components/profile-page/about-yourself"
+import AboutYourself from "src/components/profile-page/about-yourself";
+import Availability from "src/components/profile-page/availability";
 import AppliesToYou from "src/components/profile-page/applies-to-you";
-import Address from "src/components/profile-page/address"
+import Address from "src/components/profile-page/address";
+import BabysittingLocation from "src/components/profile-page/babysitting-location"
 import ComfortableWith from "src/components/profile-page/confortable-with";
 import DescribeYourself from "src/components/profile-page/describe-yourself"
-import Education from "src/components/profile-page/education"
+import Education from "src/components/profile-page/education";
+import HourlyRate from "src/components/profile-page/hourly-rate"
 import Skills from "src/components/profile-page/skills"
 
 const Container = () => {
@@ -24,6 +27,9 @@ const Container = () => {
                 <AppliesToYou />
                 <Skills />
                 <ComfortableWith />
+                <BabysittingLocation />
+                <HourlyRate />
+                <Availability />
             </form>
         </main>
     )

@@ -19,7 +19,7 @@ const Container = () => {
                 </Label>
                 <Input 
                     fullWidth
-                    id="educacao-input"
+                    inputProps={{ id: "educacao-input" }}
                     select
                 >
                     {

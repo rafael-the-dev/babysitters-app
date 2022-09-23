@@ -12,7 +12,7 @@ const Container = () => {
     const id = React.useId();
 
     return (
-        <fieldset className="mt-4">
+        <fieldset className="mt-6">
             <Legend>Descreva-se em 3 palavras</Legend>
             <div className="flex flex-wrap">
                 {

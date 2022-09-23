@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import moment from "moment"
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
+import HelperText from "src/components/helper-text";
 import Input from "src/components/default-input"
 import Label from "../label";
 
@@ -35,11 +36,10 @@ const Container = () => {
                     value={date}
                     renderInput={(params) => <Input className="my-2" id="birth-date" {...params} />}
                 />
-                <label
-                    className="text-sm sm:text-base"
+                <HelperText
                     htmlFor="birth-date">
                     Peça permissão aos seus pais se tiver menos de 18 anos. As babysitters devem ter 14 anos ou mais.
-                </label>
+                </HelperText>
             </div>
         </div>
     );

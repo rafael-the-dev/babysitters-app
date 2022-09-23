@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
-import classNames from "classnames";
 import TextField from "@mui/material/TextField"
 import moment from "moment"
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 
-import classes from "./styles.module.css"
-
 import Input from "src/components/default-input";
 import Legend from "../legend-container"
+import HelperText from "src/components/helper-text";
 
 const Container = ({ onDisable, onSubmit }) => {
     const [ date, setDate ] = useState(moment('2014-08-18T21:11:54'));
@@ -30,11 +28,10 @@ const Container = ({ onDisable, onSubmit }) => {
     ), []);
 
     const moradaLabelHelperMemo = useMemo(() => (
-        <label
-            className="text-sm sm:text-base"
+        <HelperText
             htmlFor="address-input">
             A sua localização aproximada será exibida no seu perfil. Introduza a sua morada e selecione uma opção da lista.
-        </label>
+        </HelperText>
     ), [])
 
     const handleDateChange = useCallback((newValue) => {
@@ -100,11 +97,10 @@ const Container = ({ onDisable, onSubmit }) => {
                         onChange={handleDateChange}
                         renderInput={(params) => <TextField className="my-2" id="birth-date" {...params} />}
                     />
-                    <label
-                        className="text-sm sm:text-base"
+                    <HelperText
                         htmlFor="birth-date">
                         Peça permissão aos seus pais se tiver menos de 18 anos. As babysitters devem ter 14 anos ou mais.
-                    </label>
+                    </HelperText>
                 </div>
             </fieldset>
         </div>

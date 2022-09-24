@@ -30,6 +30,8 @@ import TodayOutlinedIcon from '@mui/icons-material/TodayOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ViewAgendaOutlinedIcon from '@mui/icons-material/ViewAgendaOutlined';
 
+import AvalicacaoCard from "src/components/babysitter-page-components/avaliacao"
+import Carousel from "src/components/carousel"
 import Link from "src/components/link"
 import ListItem from "src/components/babysitter-list-item"
 import OutrasOpcoes from "src/components/babysitter-page-components/outras-opcoes"
@@ -38,17 +40,29 @@ import Rating from "src/components/blue-rating"
 const Container = () => {
     const { asPath } = useRouter();
     
-    const cantactCardRef = useRef(null);
+    const contactCardRef = useRef(null);
+
+    const avaliacoes = [
+        { description: "", image: "https://xsgames.co/randomusers/avatar.php?g=male", name: "Diego", rating: 4, time: "Setembro 2022" },
+        { description: "Jéssica é muito prestativa e atenciosa! Recomendo seu trabalho feito com empenho e dedicação!", image: "https://xsgames.co/randomusers/avatar.php?g=female", name: "Jessica", rating: 3.5, time: "Setembro 2022" },
+        { description: "She was perfect. Would highly recommend. English is great, responsive and trustworthy.", image: "https://xsgames.co/randomusers/avatar.php?g=male", name: "Aakash", rating: 2 },
+        { description: "Nilza is very punctual, she does her best, she knows a lot about her city which is very useful. We just wished she had more experience wit ", image: "https://xsgames.co/randomusers/avatar.php?g=female", name: "Nilza", rating: 5, time: "Setembro 2022" },
+        { description: "", image: "https://xsgames.co/randomusers/avatar.php?g=male", name: "Carlos", rating: 3.4, time: "Setembro 2022", time: "Setembro 2022" },
+        { description: "Celeste é muito prestativa e atenciosa! Recomendo seu trabalho feito com empenho e dedicação!", image: "https://xsgames.co/randomusers/avatar.php?g=female", name: "Celeste", rating: 4, time: "Setembro 2022" },
+        { description: "She was perfect. Would highly recommend. English is great, responsive and trustworthy.", image: "https://xsgames.co/randomusers/avatar.php?g=female", name: "Marta", rating: 4, time: "Setembro 2022" },
+        { description: "", image: "https://xsgames.co/randomusers/avatar.php?g=male", name: "Joaquim", rating: 2, time: "Setembro 2022" },
+        { description: "Matilde é muito prestativa e atenciosa! Recomendo seu trabalho feito com empenho e dedicação!", image: "https://xsgames.co/randomusers/avatar.php?g=female", name: "Matilde", rating: 2.5, time: "Setembro 2022" }
+    ];
 
     const scrollHandler = useCallback(() => {
         const { scrollY } = window;
 
         if((scrollY < 1600) && (scrollY > 225)) {
-            cantactCardRef.current.classList.add(classes.contactCard);
+            contactCardRef.current.classList.add(classes.contactCard);
             return;
         }
 
-        cantactCardRef.current.classList.remove(classes.contactCard)
+        contactCardRef.current.classList.remove(classes.contactCard)
     }, []);
 
     useEffect(() => {
@@ -291,7 +305,7 @@ const Container = () => {
                     <div 
                         className={classNames(classes.contactContainer, classes.contactCard, "xl:items-stretch",
                         "flex flex-col items-stretch justify-between mt-4 rounded-lg sm:flex-row sm:items-center xl:flex-col")}
-                        ref={cantactCardRef}>
+                        ref={contactCardRef}>
                         <Typography
                             component="h2"
                             className="font-bold">
@@ -306,6 +320,40 @@ const Container = () => {
                     </div>
                 </Grid>
             </Grid>
+            <section className="px-5">
+                <div className="border-t border-gray-400 border-solid py-8 md:py-12">
+                    <Typography
+                        component="h2"
+                        className="font-bold mb-4 text-lg">
+                        { avaliacoes.length } Avaliações
+                    </Typography>
+                    <Carousel
+                        spacing={{ xs: { width: 1, gap: 80 }, sm: { width: 2, gap: 80 }, md: { width: 2.2, gap: 80 }, lg: { width: 2.5, gap: 80 }, xl: { width: 3.1, gap: 80 }, '2xl': { width: 3.7, gap: 80 } }}>
+                        {
+                            avaliacoes.map((item, index) => (
+                                <AvalicacaoCard { ...item } isRating key={index} />
+                            ))
+                        }
+                    </Carousel>
+                </div>
+            </section>
+            <section className="px-5">
+                <div className="border-t border-gray-400 border-solid py-8 md:py-12">
+                    <Typography
+                        component="h2"
+                        className="font-bold mb-4 text-lg">
+                        { avaliacoes.length } Referência{ avaliacoes.length > 1 && "s" }
+                    </Typography>
+                    <Carousel
+                        spacing={{ xs: { width: 1, gap: 80 }, sm: { width: 2, gap: 80 }, md: { width: 2.2, gap: 80 }, lg: { width: 2.5, gap: 80 }, xl: { width: 3.1, gap: 80 }, '2xl': { width: 3.7, gap: 80 } }}>
+                        {
+                            avaliacoes.map((item, index) => (
+                                <AvalicacaoCard { ...item } key={index} />
+                            ))
+                        }
+                    </Carousel>
+                </div>
+            </section>
             <div className="px-5">
                 <div className="border-t border-gray-400 border-solid pt-8 md:flex md:pt-12">
                     <div className="md:w-1/2">

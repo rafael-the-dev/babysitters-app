@@ -50,25 +50,27 @@ const Container = ({ data, onChange }) => {
     };
 
     return (
-        <TableContainer >
-            <Table sx={{ minWidth: 200 }} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell align="right">2ª</TableCell>
-                        <TableCell align="right">3ª</TableCell>
-                        <TableCell align="right">4ª</TableCell>
-                        <TableCell align="right">5ª</TableCell>
-                        <TableCell align="right">6ª</TableCell>
-                        <TableCell align="right">Sá</TableCell>
-                        <TableCell align="right">Do</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    { getRows() }
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div>
+            <TableContainer >
+                <Table sx={{ minWidth: 200 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell align="right">2ª</TableCell>
+                            <TableCell align="right">3ª</TableCell>
+                            <TableCell align="right">4ª</TableCell>
+                            <TableCell align="right">5ª</TableCell>
+                            <TableCell align="right">6ª</TableCell>
+                            <TableCell align="right">Sá</TableCell>
+                            <TableCell align="right">Do</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        { getRows() }
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
     );
 };
 

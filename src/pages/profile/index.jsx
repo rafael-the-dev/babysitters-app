@@ -9,9 +9,10 @@ import Availability from "src/components/profile-page/availability";
 import AppliesToYou from "src/components/profile-page/applies-to-you";
 import Address from "src/components/profile-page/address";
 import BabysittingLocation from "src/components/profile-page/babysitting-location"
-import ComfortableWith from "src/components/profile-page/confortable-with";
+import ComfortableWith from "src/components/profile-page/comfortable-with";
 import DescribeYourself from "src/components/profile-page/describe-yourself"
 import Education from "src/components/profile-page/education";
+import Experience from "src/components/profile-page/experience"
 import HourlyRate from "src/components/profile-page/hourly-rate"
 import Skills from "src/components/profile-page/skills"
 
@@ -30,6 +31,7 @@ const Container = () => {
                 <BabysittingLocation />
                 <HourlyRate />
                 <Availability />
+                <Experience />
             </form>
         </main>
     )

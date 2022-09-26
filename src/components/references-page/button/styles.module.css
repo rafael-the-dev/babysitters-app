@@ -1,0 +1,8 @@
+.selectedButton::after {
+    bottom: -4px;
+    background: #FFF;
+    content: "";
+    height: 4px;
+    position: absolute;
+    width: 100%;
+}

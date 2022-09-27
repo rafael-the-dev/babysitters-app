@@ -8,7 +8,7 @@ import classes from "./styles.module.css"
 import Controllers from "./components/carousel-controllers"
 
 
-const CarouselContainer = forwardRef(({ children, spacing, sliderClassName, wrapperClassName }, ref) => {
+const CarouselContainer = forwardRef(({ children, helper, spacing, sliderClassName, wrapperClassName }, ref) => {
     const setChildrenListRef = useRef(null);
     const sliderRef = useRef(null);
     const childrenList = useRef([]);
@@ -45,11 +45,16 @@ const CarouselContainer = forwardRef(({ children, spacing, sliderClassName, wrap
                 width = innerWidth / spacing.sm.width;
                 widthReducer.current = spacing.sm.gap;
             }  
+
+            if(helper) {
+                width = helper();
+            }
+
             child.classList.remove("h-full");
 
             const { height } = child.getBoundingClientRect();
             if(height > maxHeight) maxHeight = height;
-            
+
             child.style.width = `${width - widthReducer.current}px`;
             child.classList.add("h-full");
             child.style.left = `${(width - (widthReducer.current - 20)) * index}px`;
@@ -58,7 +63,7 @@ const CarouselContainer = forwardRef(({ children, spacing, sliderClassName, wrap
         widthRef.current = width;
         sliderRef.current.style.height = `${maxHeight}px`
         sliderRef.current.style.width = `${width * childrenList.current.length}px`;
-    }, [ spacing ]);
+    }, [ helper, spacing ]);
 
     const slide = useCallback(({ index }) => {
         const width = widthRef.current - (widthReducer.current - 20);
@@ -75,10 +80,11 @@ const CarouselContainer = forwardRef(({ children, spacing, sliderClassName, wrap
 
     useEffect(() => {
         const list = [ ...sliderRef.current.children ];
+        console.log("list", children)
         childrenList.current = list;
         layout();
         setChildrenListRef.current?.(list);
-    }, [ childrenList, layout ]);
+    }, [ children, childrenList, layout ]);
 
     useEffect(() => {
         const currentWindow = window;

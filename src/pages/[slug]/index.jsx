@@ -1,13 +1,15 @@
-import { useEffect, useId, useMemo, useRef } from "react"
+import { useContext, useEffect, useId, useMemo, useRef } from "react"
 import { Button, Hidden, Typography } from "@mui/material";
+import { v4 as uuidV4 } from "uuid"
 import { useRouter } from "next/router"
 import classNames from "classnames";
 import dynamic from 'next/dynamic'
 
 import classes from "./styles.module.css";
+import lang from "./lang.json"
 
-import { FilterContextProvider } from "src/context";
-import { useFetch, useLazyFetch } from "src/hooks"
+import { AppContext, FilterContextProvider } from "src/context";
+import { useFetch, useLazyFetch } from "src/hooks";
 
 import BabysitterCard from "src/components/babysitter-card";
 import DefaultContainer from "src/components/babysitter-page-components/container"
@@ -19,6 +21,7 @@ const DynamicMap = dynamic(() => import('src/components/leaflet-map'), {
 })
 
 const Container = () => {
+    const { language } = useContext(AppContext);
     const { query: { slug } } = useRouter();
 
     const { data } = useFetch({ url: "https://jsonplaceholder.typicode.com/photos" });
@@ -30,22 +33,20 @@ const Container = () => {
     const id = useId();//
 
     const titleMemo = useMemo(() => {
-        switch(slug) {
-            case "babysitter": return "Encontrar uma babysitter";
-            case "amas": return "Encontrar uma ama";
-            case "babysitting": return "Encontrar trabalhos de babysitting";
-            default: return "";
+        if([ "babysitter", "amas" ].includes(slug)) {
+            return lang[language].babysitter.title.replace("%slug", slug);
         }
-    }, [ slug ])
+
+        return "Encontrar trabalhos de babysitting";
+    }, [ language, slug ])
 
     const descriptionMemo = useMemo(() => {
-        switch(slug) {
-            case "babysitter": return `11 023 babysitters que correspondem à sua pesquisa`;
-            case "amas": return `11 023 amas que correspondem à sua pesquisa`;
-            case "babysitting": return "1 263 famílias que correspondem à sua pesquisa";
-            default: return "";
+        if([ "babysitter", "amas" ].includes(slug)) {
+            return lang[language].babysitter.description.replace("%slug", slug).replace("%results", 10450);
         }
-    }, [ slug ])
+
+        return "1 263 famílias que correspondem à sua pesquisa";
+    }, [ language, slug ])
 
     const usersData = useMemo(() => {
         if(Boolean(data) && Boolean(users)) {
@@ -88,15 +89,17 @@ const Container = () => {
                     <div className="border-b border-solid border-gray-400 flex flex-col py-4 sm:flex-row sm:items-center">
                         <Link href="registo">
                             <Button className="bg-neutral-800 capitalize py-2 px-6 rounded-lg text-white hover:bg-black">
-                                Inscreva-se gratuitamente
+                                { language === "PORTUGUESE" ? "Inscreva-se gratuitamente" : "Sign up for free" }
                             </Button>
                         </Link>
-                        <Link className="mt-3 text-black underline sm:mt-0 sm:ml-4" href="como-funciona">Como funciona</Link>
+                        <Link className="mt-3 text-black underline sm:mt-0 sm:ml-4" href="como-funciona">
+                            { language === "PORTUGUESE" ? "Como funciona" : "How it works" }
+                        </Link>
                     </div>
                     <div className="pb-8">
                         {
                             usersData.map((user, index) => (
-                                <BabysitterCard { ...user } key={`${index}-${id}`} />
+                                <BabysitterCard { ...user } key={uuidV4()} />
                             ))
                         }
                     </div>

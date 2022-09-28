@@ -1,0 +1,14 @@
+{
+    "ENGLISH": {
+        "babysitter": {
+            "description": "%results %slug matching your search",
+            "title": "Find a %slug"
+        }
+    },
+    "PORTUGUESE": {
+        "babysitter": {
+            "description": "%results %type que correspondem à sua pesquisa",
+            "title": "Encontrar uma %slug"
+        }
+    }
+}

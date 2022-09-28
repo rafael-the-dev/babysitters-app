@@ -4,6 +4,8 @@ import jwtDecode from "jwt-decode";
 import dynamic from "next/dynamic"
 import classNames from "classnames";
 
+import { AppContext } from "src/context"
+
 import Input from "src/components/default-input";
 import Link from "src/components/link";
 import Separator from "src/components/separator"
@@ -15,6 +17,8 @@ const FbLogin = dynamic(() => import("src/components/fb-login"), {
 });
 
 const Container = () => {
+    const { language } = React.useContext(AppContext);
+
     const handleCredentialResponse = React.useCallback(res => {
         const user = jwtDecode(res.credential);
         console.log(user)
@@ -41,11 +45,13 @@ const Container = () => {
                     <div className={classes.googleSignContainer} id="signInDiv"></div>
                     <FbLogin />
                 </div>
-                <Separator className="my-8">Ou</Separator>
+                <Separator className="my-8">
+                    { language === "PORTUGUESE" ? "Ou" : "Or" }
+                </Separator>
                 <fieldset>
                     <legend 
                         className="block font-bold text-center text-lg">
-                        Iniciar sessão
+                        { language === "PORTUGUESE" ? "Iniciar sessão" : "Log in" }
                     </legend>
                     <div className="mt-8">
                         <Input 
@@ -59,7 +65,7 @@ const Container = () => {
                         <Input 
                             fullWidth
                             id="password" 
-                            label="Palavra-passe"
+                            label={ language === "PORTUGUESE" ? "Palavra-passe" : "Password" }
                             required
                             type="password" 
                             variant="outlined" 
@@ -68,17 +74,19 @@ const Container = () => {
                             className="bg-neutral-800 py-3 text-white w-full hover:bg-neutral-900 hover:opacity-70"
                             type="submit"
                             variant="contained">
-                            Iniciar sessão
+                            { language === "PORTUGUESE" ? "Iniciar sessão" : "Log in" }
                         </Button>
                         <Link 
                             className="block font-medium mt-4 text-black text-center underline" 
                             href="recuperar-palavra-passe">
-                            Esqueceu-se da sua palavra-passe?
+                            { language === "PORTUGUESE" ? "Esqueceu-se da sua palavra-passe?" : "Forgot password?" }
                         </Link>
                     </div>
                     <div className="border-t border-solid border-gray-400 flex items-center justify-center mt-4 pt-4">
-                        Não tem uma conta? 
-                        <Link className="font-bold ml-2 text-black underline" href="registo">Registe-se</Link>
+                        { language === "PORTUGUESE" ?" Não tem uma conta?" : "Don't have an account?"} 
+                        <Link className="font-bold ml-2 text-black underline" href="registo">
+                        { language === "PORTUGUESE" ? "Registe-se" : "Sign up" }
+                        </Link>
                     </div>
                 </fieldset>
             </form>

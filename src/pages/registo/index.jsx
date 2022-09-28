@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import jwtDecode from "jwt-decode";
 import classNames from "classnames";
 
+import { AppContext } from "src/context"
+
 import Input from "src/components/default-input"
 import Link from "src/components/link";
 import Separator from "src/components/separator"
@@ -16,6 +18,7 @@ const FbLogin = dynamic(() => import("src/components/fb-login"), {
 });
 
 const Container = () => {
+    const { language } = React.useContext(AppContext);
     const router = useRouter();
 
     const submitHandler = e => {
@@ -52,24 +55,26 @@ const Container = () => {
                     <div className={classes.googleSignContainer} id="signInDiv"></div>
                     <FbLogin />
                 </div>
-                <Separator className="my-8">Ou</Separator>
+                <Separator className="my-8">
+                    { language === "PORTUGUESE" ? "Ou" : "Or" }
+                </Separator>
                 <fieldset>
                     <legend 
                         className="block font-bold text-center text-lg">
-                        Bem-vindo à Babysits
+                        { language === "PORTUGUESE" ? "Bem-vindo à Babysits" : "Welcome to Babysits" }
                     </legend>
                     <div className="mt-8">
                         <Input 
                             fullWidth
                             id="first-name" 
-                            label="Primeiro Nome"
+                            label={ language === "PORTUGUESE" ? "Primeiro Nome" : "First name" }
                             required
                             variant="outlined" 
                         />
                         <Input 
                             fullWidth
                             id="last-name" 
-                            label="Apelido"
+                            label={ language === "PORTUGUESE" ? "Apelido": "Last name" }
                             required
                             variant="outlined" 
                         />
@@ -84,7 +89,7 @@ const Container = () => {
                         <Input 
                             fullWidth
                             id="password" 
-                            label="Palavra-passe"
+                            label={ language === "PORTUGUESE" ? "Palavra-passe" : "Password" }
                             required
                             type="password" 
                             variant="outlined" 
@@ -93,12 +98,14 @@ const Container = () => {
                             className="bg-neutral-800 py-3 text-white w-full hover:bg-neutral-900 hover:opacity-70"
                             type="submit"
                             variant="contained">
-                            Registe-se
+                            { language === "PORTUGUESE" ? "Registe-se" : "Sign up" }
                         </Button>
                     </div>
                     <div className="border-t border-solid border-gray-400 flex items-center justify-center mt-8 pt-4">
-                        Já tem uma conta?
-                        <Link className="font-bold ml-2 text-black underline" href="iniciar-sessao">Iniciar sessão</Link>
+                        { language === "PORTUGUESE" ? "Já tem uma conta?" : "Already have an account?" }
+                        <Link className="font-bold ml-2 text-black underline" href="/iniciar-sessao">
+                            { language === "PORTUGUESE" ? "Iniciar sessão" : "Log in" }
+                        </Link>
                     </div>
                 </fieldset>
             </form>

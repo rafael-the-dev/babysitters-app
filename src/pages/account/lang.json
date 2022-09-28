@@ -1,0 +1,14 @@
+{ 
+    "ENGLISH": {
+        "delete-account": "Delete account",
+        "greeting": "Hello",
+        "list": [ "Personal Information", "Badges", "References", "Payments", "Login & security", "Notifications " ],
+        "profile-link": "Go to your profile"
+    },
+    "PORTUGUESE": {
+        "delete-account": "Desativar conta",
+        "greeting": "Olá,",
+        "list": [ "Informações pessoais", "Crachás", "Referências", "Pagamentos", "Inicio de sessão e segurança", "Notificações" ],
+        "profile-link": "Vá ao seu perfil"
+    }
+}

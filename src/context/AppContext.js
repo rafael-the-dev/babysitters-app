@@ -4,6 +4,7 @@ export const AppContext = createContext();
 AppContext.displayName = 'AppContext';
 
 export const AppContextProvider = ({ children }) => {
+    const [ language, setLanguage ] = useState("ENGLISH");
     const [ filters, setFilters ] = useState({
         type: "CRIANCAS",
         user: "EMPLOYERS"
@@ -20,7 +21,7 @@ export const AppContextProvider = ({ children }) => {
     })), []);
 
     return (
-        <AppContext.Provider value={{ filters, addType, addUser }}>
+        <AppContext.Provider value={{ addType, addUser, filters, language, setLanguage }}>
             { children }
         </AppContext.Provider>
     );
